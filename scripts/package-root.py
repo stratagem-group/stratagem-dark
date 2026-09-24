@@ -36,7 +36,7 @@ exec uwsm start -g -1 -e -D Hyprland hyprland.desktop
 write('usr/share/applications/stratagem-dark-tools.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Tools\nExec=foot dark tools\nIcon=utilities-terminal\nCategories=System;\n')
 
 copy(repo/'config/firewall.nft','usr/share/stratagem-dark/firewall.nft')
-write('etc/systemd/resolved.conf.d/20-stratagem-dark.conf','[Resolve]\nLLMNR=no\nMulticastDNS=no\n')
+write('etc/systemd/resolved.conf.d/90-stratagem-dark.conf','[Resolve]\nLLMNR=no\nMulticastDNS=no\n')
 write('usr/lib/systemd/system/stratagem-dark-firewall.service','''[Unit]
 Description=STRATAGEM DARK inbound firewall
 DefaultDependencies=no
@@ -53,3 +53,5 @@ WantedBy=multi-user.target
 ''')
 
 copy(repo/'LEGAL.md','usr/share/doc/stratagem-dark/LEGAL.md')
+
+write('etc/NetworkManager/conf.d/90-stratagem-dark.conf','[connection]\nconnection.mdns=0\nconnection.llmnr=0\n')

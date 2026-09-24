@@ -65,3 +65,5 @@ openssl
 librsvg
 rtkit
 wireless-regdb
+inotify-tools
+iw

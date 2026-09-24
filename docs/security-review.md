@@ -39,6 +39,7 @@ production credential. Root is locked, SSH is disabled and no sudo grant is adde
 - Functional ISO acceptance passed in run 36048967952. Its service audit found
   multicast discovery listeners; the follow-up hardening candidate disables these
   and adds a default-drop inbound/forward firewall, with explicit VM assertions.
+  Clipboard history is disabled by default to avoid retaining copied secrets.
 - Independent source and installer review, including privileged file operations,
   dependency scriptlets, network listeners and default service policy.
 - Broader vulnerability coverage for BlackArch, embedded binaries and dependencies;
