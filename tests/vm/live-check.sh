@@ -28,7 +28,16 @@ export HYPRLAND_INSTANCE_SIGNATURE=$(find "$XDG_RUNTIME_DIR/hypr" -mindepth 1 -m
 runuser -u stratagem --preserve-environment -- hyprctl configerrors | tee /mnt/test-results/hyprland-errors.txt
 # hyprctl emits blank lines even when there are no configuration errors.
 test -z "$(tr -d '[:space:]' < /mnt/test-results/hyprland-errors.txt)"
-runuser -u stratagem --preserve-environment -- stratagem-shell shell ping | grep -qx ok
+# A process existing does not mean its QML engine and IPC endpoint are ready.
+ready=0
+for attempt in $(seq 1 30); do
+  if runuser -u stratagem --preserve-environment -- stratagem-shell shell ping 2>/dev/null | grep -qx ok; then
+    ready=1
+    break
+  fi
+  sleep 1
+done
+test "$ready" = 1
 runuser -u stratagem --preserve-environment -- foot --check-config
 runuser -u stratagem --preserve-environment -- foot sh -c 'printf "STRATAGEM DARK\nSecurity workstation testing session\n\n"; dark --version; printf "\nBlackArch tools:\n"; capa --version; sleep 120' &
 sleep 5
