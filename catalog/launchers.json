@@ -1,0 +1,106 @@
+{
+  "nmap": [
+    "nmap",
+    "--help"
+  ],
+  "wireshark": [
+    "wireshark"
+  ],
+  "tcpdump": [
+    "tcpdump",
+    "--help"
+  ],
+  "aircrack-ng": [
+    "aircrack-ng",
+    "--help"
+  ],
+  "sqlmap": [
+    "sqlmap",
+    "--help"
+  ],
+  "gobuster": [
+    "gobuster",
+    "--help"
+  ],
+  "nikto": [
+    "nikto",
+    "-Help"
+  ],
+  "sslscan": [
+    "sslscan",
+    "--help"
+  ],
+  "testssl": [
+    "testssl.sh",
+    "--help"
+  ],
+  "ffuf": [
+    "ffuf",
+    "-h"
+  ],
+  "subfinder": [
+    "subfinder",
+    "-h"
+  ],
+  "httpx": [
+    "httpx",
+    "-h"
+  ],
+  "amass": [
+    "amass",
+    "-h"
+  ],
+  "feroxbuster": [
+    "feroxbuster",
+    "--help"
+  ],
+  "dnsrecon": [
+    "dnsrecon",
+    "-h"
+  ],
+  "john": [
+    "john",
+    "--list=help"
+  ],
+  "hashcat": [
+    "hashcat",
+    "--help"
+  ],
+  "capa": [
+    "capa",
+    "--help"
+  ],
+  "yara": [
+    "yara",
+    "--help"
+  ],
+  "radare2": [
+    "r2",
+    "-h"
+  ],
+  "gdb": [
+    "gdb",
+    "--help"
+  ],
+  "binwalk": [
+    "binwalk",
+    "--help"
+  ],
+  "foremost": [
+    "foremost",
+    "-h"
+  ],
+  "exiftool": [
+    "exiftool",
+    "-ver"
+  ],
+  "lynis": [
+    "lynis",
+    "show",
+    "help"
+  ],
+  "sleuthkit": [
+    "fls",
+    "-V"
+  ]
+}

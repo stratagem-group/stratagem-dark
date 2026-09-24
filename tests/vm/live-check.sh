@@ -80,3 +80,32 @@ for line in Path('/mnt/test-results/listeners.txt').read_text().splitlines()[1:]
         continue
     assert address.startswith('127.') or address in {'[::1]', '::1'}, line
 VERIFY
+
+# Regression gates from physical live testing: firmware, auth agent, shortcuts and actual tools.
+find /usr/lib/firmware -name 'iwlwifi*' -print -quit | grep -q .
+runuser -u stratagem --preserve-environment -- systemctl --user is-active hyprpolkitagent.service
+runuser -u stratagem --preserve-environment -- hyprctl -j binds > /mnt/test-results/bindings.json
+runuser -u stratagem --preserve-environment -- nmcli general permissions > /mnt/test-results/network-permissions.txt
+opencode --version > /mnt/test-results/agent-version.txt
+python - <<'DESKTOP'
+import json,subprocess
+from pathlib import Path
+bindings=json.load(open('/mnt/test-results/bindings.json'))
+assert any(x.get('key')=='K' and 'desktop help' in x.get('arg','') for x in bindings)
+assert any(x.get('key')=='A' and 'desktop engagement' in x.get('arg','') for x in bindings)
+commands=json.load(open('/usr/lib/stratagem-dark/catalog/launchers.json'))
+report={}
+for name,argv in commands.items():
+    if name=='wireshark':argv=['wireshark','--version']
+    result=subprocess.run(['unshare','--net','--',*argv],capture_output=True,text=True,timeout=30)
+    output=result.stdout+result.stderr
+    assert result.returncode in (0,1), (name,result.returncode,output)
+    assert len(output.strip())>0, (name,output)
+    assert not any(s in output for s in ('error while loading shared libraries','ModuleNotFoundError','Traceback (most recent call last)')), (name,output)
+    report[name]={'returncode':result.returncode,'output':output[:3000]}
+Path('/mnt/test-results/tools.json').write_text(json.dumps(report,indent=2))
+DESKTOP
+runuser -u stratagem --preserve-environment -- stratagem-shell shell summon stratagem.menu '{"menu":"apps"}'
+sleep 2
+runuser -u stratagem --preserve-environment -- grim /tmp/stratagem-apps.png
+cp /tmp/stratagem-apps.png /mnt/test-results/apps.png

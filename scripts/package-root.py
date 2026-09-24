@@ -33,7 +33,7 @@ export XDG_SESSION_TYPE=wayland
 dark setup --apply
 exec uwsm start -g -1 -e -D Hyprland hyprland.desktop
 ''',0o755)
-write('usr/share/applications/stratagem-dark-tools.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Tools\nExec=foot dark tools\nIcon=utilities-terminal\nCategories=System;\n')
+write('usr/share/applications/stratagem-dark-tools.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Tools\nExec=foot dark desktop tool nmap\nIcon=utilities-terminal\nCategories=System;\n')
 
 copy(repo/'config/firewall.nft','usr/share/stratagem-dark/firewall.nft')
 write('etc/systemd/resolved.conf.d/90-stratagem-dark.conf','[Resolve]\nLLMNR=no\nMulticastDNS=no\n')
@@ -55,3 +55,5 @@ WantedBy=multi-user.target
 copy(repo/'LEGAL.md','usr/share/doc/stratagem-dark/LEGAL.md')
 
 write('etc/NetworkManager/conf.d/90-stratagem-dark.conf','[connection]\nconnection.mdns=0\nconnection.llmnr=0\n')
+
+write('usr/share/applications/stratagem-dark-setup.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Setup\nExec=foot dark desktop welcome\nIcon=preferences-system\nCategories=Settings;\n')

@@ -97,10 +97,14 @@ function fuzzyScore(entry, query) {
 function sortedEntries(values, query, hiddenCallback) {
   var q = String(query || "").trim()
   var rows = []
+  var seen = Object.create(null)
 
   for (var i = 0; i < values.length; i++) {
     var entry = values[i]
     if (!entry || entry.noDisplay) continue
+    var identity = String(entry.id || "").replace(/\.desktop$/, "")
+    if (!identity || seen[identity]) continue
+    seen[identity] = true
     if (hiddenCallback && hiddenCallback(entry)) continue
     var name = entryName(entry)
     if (!name) continue

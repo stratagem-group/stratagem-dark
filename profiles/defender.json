@@ -6,7 +6,10 @@
   ],
   "tools": [
     "tcpdump",
+    "wireshark",
     "yara",
-    "lynis"
+    "lynis",
+    "sleuthkit",
+    "exiftool"
   ]
 }

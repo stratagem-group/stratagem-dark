@@ -26,6 +26,8 @@ jobs:
           .venv/bin/python tests/validate_schemas.py
       - name: Unit and CLI contracts
         run: python3 -m unittest discover -s tests -v
+      - name: Application search regressions
+        run: node tests/app-search.cjs
       - name: Shell syntax
         run: |
           while IFS= read -r -d '' script; do

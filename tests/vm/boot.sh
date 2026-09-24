@@ -6,7 +6,7 @@ results=${2:?results directory required}
 mkdir -p "$results"
 results=$(realpath "$results")
 cp /usr/share/OVMF/OVMF_VARS_4M.fd "$results/OVMF_VARS.fd"
-timeout 420 qemu-system-x86_64 -machine q35,accel=kvm:tcg -cpu max -m 4096 -smp 2 \
+timeout 720 qemu-system-x86_64 -machine q35,accel=kvm:tcg -cpu max -m 4096 -smp 2 \
   -drive if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE_4M.fd \
   -drive if=pflash,format=raw,file="$results/OVMF_VARS.fd" \
   -cdrom "$iso" -boot d -device virtio-vga -display none \

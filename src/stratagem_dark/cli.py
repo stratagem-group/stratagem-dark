@@ -35,9 +35,13 @@ def host_checks():
 
 def main(argv=None, root=None):
     parser = argparse.ArgumentParser(prog='dark', description='STRATAGEM DARK developer CLI')
-    parser.add_argument('--version', action='version', version='STRATAGEM DARK 0.2.0-alpha1')
+    parser.add_argument('--version', action='version', version='STRATAGEM DARK 0.2.0-alpha2')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('about', help='product and attribution')
+    desktop = sub.add_parser('desktop', help='interactive setup, agents, tools and help')
+    desktop.add_argument('action', choices=['welcome','agents','engagement','tool','network','help','about','reboot','poweroff'])
+    desktop.add_argument('tool', nargs='?')
+    desktop.add_argument('--once', action='store_true')
     setup = sub.add_parser('setup', help='seed missing desktop defaults without overwriting user files')
     setup.add_argument('--apply', action='store_true')
     for action in ('verify-bundle', 'install'):
@@ -67,8 +71,11 @@ def main(argv=None, root=None):
             group.add_argument('--apply', action='store_true')
     args = parser.parse_args(argv)
     try:
+        if args.command == 'desktop':
+            from .desktop import main as desktop_main
+            return desktop_main(args.action, args.tool, args.once, root)
         if args.command == 'about':
-            print('STRATAGEM DARK 0.2.0-alpha1\nOpen security workstation.\nDesktop derived from Omarchy (MIT), copyright David Heinemeier Hansson.\nIncludes separately licensed Arch and selected BlackArch packages.\nhttps://github.com/stratagem-group/stratagem-dark')
+            print('STRATAGEM DARK 0.2.0-alpha2\nOpen security workstation.\nDesktop derived from Omarchy (MIT), copyright David Heinemeier Hansson.\nIncludes separately licensed Arch and selected BlackArch packages.\nhttps://github.com/stratagem-group/stratagem-dark')
             return 0
         if args.command == 'setup':
             print(canonical(setup_user(apply=args.apply)), end='')
@@ -118,6 +125,6 @@ def main(argv=None, root=None):
                 if args.command == 'bootstrap' and args.stage:
                     print(f'Staged review files: {args.stage}')
         return 0
-    except (ValidationError, OSError, json.JSONDecodeError, subprocess.CalledProcessError, KeyError) as error:
+    except (ValidationError, ValueError, OSError, json.JSONDecodeError, subprocess.CalledProcessError, KeyError) as error:
         print(f'dark: {error}', file=sys.stderr)
         return 2

@@ -11,7 +11,9 @@
         "Namespace omarchy \u2192 stratagem; environment OMARCHY \u2192 STRATAGEM_DARK; visible product name \u2192 STRATAGEM DARK.",
         "Original menu, theme, logo glyph and autostart policy replace product-specific defaults.",
         "Subset of desktop helpers only; upstream updater, provisioning, installers, keyrings, artwork and fonts are not imported.",
-        "Restore executable permissions for imported shell helper scripts."
+        "Restore executable permissions for imported shell helper scripts.",
+        "Replace application bindings with shipped entry points; desktop onboarding and networking integration are Stratagem-owned.",
+        "Deduplicate desktop IDs in application search; route DNS configuration to the installed NetworkManager editor."
       ],
       "files": [
         {
@@ -336,7 +338,7 @@
           "source": "shell/services/AppSearch.js",
           "source_sha256": "bbc4965f7b46932bd7127b5d921b977679f2a892e6bd9672f29049d340821bd7",
           "destination": "desktop/runtime/shell/services/AppSearch.js",
-          "adapted_sha256": "bbc4965f7b46932bd7127b5d921b977679f2a892e6bd9672f29049d340821bd7"
+          "adapted_sha256": "861662bd2e8adffbe26ed88c27ec2d28b260f4041cef6af92f84edb332d062b0"
         },
         {
           "source": "shell/plugins/background/Background.qml",
@@ -918,7 +920,7 @@
           "source": "shell/plugins/panels/network/Panel.qml",
           "source_sha256": "bbe572efef6ccf876c722cbdb74491004617f9c9701c6117a9e1e42cb457e022",
           "destination": "desktop/runtime/shell/plugins/panels/network/Panel.qml",
-          "adapted_sha256": "076da57951f0fa7b3eb4f6fcdb0dc1c1a0bf5251536e65611a01255815159352"
+          "adapted_sha256": "f58ec79cca4379ad23bf9ef2dfad3bcd40ae25a8c8f16670c8bb56b4fd868837"
         },
         {
           "source": "shell/plugins/panels/disk-speedtest/manifest.json",
@@ -1104,7 +1106,7 @@
           "source": "default/hypr/autostart.lua",
           "source_sha256": "13f447c272869a66927283fca4ce29c3a9e4e9dbc6b05a9d3c7d4d2373115071",
           "destination": "desktop/runtime/default/hypr/autostart.lua",
-          "adapted_sha256": "59927b8b7b37b9df525315a3e504b159d9b47af6c8ac1a4cba6130baaf47d702"
+          "adapted_sha256": "14913a50a0c649b4d0061fa299ccd2966de5529ceec9acd2291eb71ce77497cd"
         },
         {
           "source": "default/hypr/qconsole.lua",
@@ -1254,7 +1256,7 @@
           "source": "default/hypr/bindings/applications.lua",
           "source_sha256": "6ef93bfe3df6f3b93379e0b194f3ec925cd84cfdb30115c6ece18198f21e0e3e",
           "destination": "desktop/runtime/default/hypr/bindings/applications.lua",
-          "adapted_sha256": "c2bf42764bb154e3c0628560126dda5cce1882857e2efae3c748b0b84fa1e94e"
+          "adapted_sha256": "b50d2560ce239940a293efdd14534bc80ed4778dd381c8415a4c46e83484d660"
         },
         {
           "source": "default/hypr/bindings/media.lua",
@@ -1416,7 +1418,7 @@
           "source": "config/hypr/bindings.lua",
           "source_sha256": "b7ef36b9edbf91abd6935283498d458f577e28457b56fb54078fe2ecf20dfc5d",
           "destination": "desktop/runtime/config/hypr/bindings.lua",
-          "adapted_sha256": "c6edcd25ef7a77d25904ed14798c9a9082b7bad289071260ad95c023ea371fed"
+          "adapted_sha256": "3ad72e9efafd3e175fa5a0a8110680aee293b5f1a0f6648c43cc1dff96e682da"
         },
         {
           "source": "config/hypr/looknfeel.lua",

@@ -3,3 +3,6 @@ o.bind("SUPER + SPACE", "STRATAGEM DARK menu", "stratagem-shell shell toggle str
 o.bind("SUPER + B", "Browser", "firefox")
 o.bind("SUPER + E", "Files", "thunar")
 o.bind("SUPER + CTRL + L", "Lock session", "hyprlock")
+o.bind("SUPER + SHIFT + A", "Agent workspace", "foot dark desktop agents")
+o.bind("SUPER + K", "Keyboard shortcuts", "foot dark desktop help")
+o.bind("SUPER + A", "New authorized engagement", "foot dark desktop engagement")

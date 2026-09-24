@@ -1,18 +1,53 @@
 {
-  "terminal": {
-    "icon": ">_",
-    "label": "Terminal",
-    "action": "foot"
-  },
   "apps": {
     "icon": "+",
     "label": "Applications",
     "provider": "apps"
   },
+  "terminal": {
+    "icon": ">_",
+    "label": "Terminal",
+    "action": "foot"
+  },
+  "setup": {
+    "icon": "*",
+    "label": "Setup",
+    "aliases": [
+      "settings"
+    ]
+  },
+  "setup.welcome": {
+    "label": "Getting started",
+    "action": "foot dark desktop welcome"
+  },
+  "setup.network": {
+    "label": "Connect Wi-Fi / network",
+    "action": "foot nmtui"
+  },
+  "setup.connections": {
+    "label": "Advanced network settings",
+    "action": "nm-connection-editor"
+  },
+  "setup.agent": {
+    "label": "Choose coding agent and workspace",
+    "action": "foot dark desktop agents"
+  },
+  "setup.audio": {
+    "label": "Audio",
+    "action": "pavucontrol"
+  },
+  "setup.bluetooth": {
+    "label": "Bluetooth",
+    "action": "stratagem-shell shell toggle stratagem.bluetooth"
+  },
+  "agents": {
+    "icon": "A",
+    "label": "Agent workspace",
+    "action": "foot dark desktop agents"
+  },
   "tools": {
     "icon": "#",
-    "label": "Security tools",
-    "action": "foot sh -c 'dark tools; printf \\\"\\\\nPress Enter to close\\\\n\\\"; read answer'"
+    "label": "Security tools"
   },
   "files": {
     "icon": "/",
@@ -24,24 +59,146 @@
     "label": "Browser",
     "action": "firefox"
   },
+  "learn": {
+    "icon": "?",
+    "label": "Help"
+  },
+  "learn.keys": {
+    "label": "Keyboard shortcuts",
+    "action": "foot dark desktop help"
+  },
+  "learn.wifi": {
+    "label": "Wi-Fi diagnostics",
+    "action": "foot dark desktop network"
+  },
   "about": {
     "icon": "i",
     "label": "About STRATAGEM DARK",
-    "action": "foot sh -c 'dark about; read answer'"
+    "action": "foot dark desktop about"
   },
-  "lock": {
-    "icon": "*",
-    "label": "Lock session",
+  "system": {
+    "icon": "\u23fb",
+    "label": "System"
+  },
+  "system.lock": {
+    "label": "Lock",
     "action": "hyprlock"
   },
-  "reboot": {
-    "icon": "↻",
-    "label": "Restart",
-    "action": "systemctl reboot"
+  "system.reboot": {
+    "label": "Restart\u2026",
+    "action": "foot dark desktop reboot"
   },
-  "poweroff": {
-    "icon": "⏻",
-    "label": "Power off",
-    "action": "systemctl poweroff"
+  "system.poweroff": {
+    "label": "Power off\u2026",
+    "action": "foot dark desktop poweroff"
+  },
+  "tools.nmap": {
+    "label": "nmap",
+    "action": "foot dark desktop tool nmap"
+  },
+  "tools.wireshark": {
+    "label": "wireshark",
+    "action": "foot dark desktop tool wireshark"
+  },
+  "tools.tcpdump": {
+    "label": "tcpdump",
+    "action": "foot dark desktop tool tcpdump"
+  },
+  "tools.aircrack-ng": {
+    "label": "aircrack-ng",
+    "action": "foot dark desktop tool aircrack-ng"
+  },
+  "tools.sqlmap": {
+    "label": "sqlmap",
+    "action": "foot dark desktop tool sqlmap"
+  },
+  "tools.gobuster": {
+    "label": "gobuster",
+    "action": "foot dark desktop tool gobuster"
+  },
+  "tools.nikto": {
+    "label": "nikto",
+    "action": "foot dark desktop tool nikto"
+  },
+  "tools.sslscan": {
+    "label": "sslscan",
+    "action": "foot dark desktop tool sslscan"
+  },
+  "tools.testssl": {
+    "label": "testssl",
+    "action": "foot dark desktop tool testssl"
+  },
+  "tools.ffuf": {
+    "label": "ffuf",
+    "action": "foot dark desktop tool ffuf"
+  },
+  "tools.subfinder": {
+    "label": "subfinder",
+    "action": "foot dark desktop tool subfinder"
+  },
+  "tools.httpx": {
+    "label": "httpx",
+    "action": "foot dark desktop tool httpx"
+  },
+  "tools.amass": {
+    "label": "amass",
+    "action": "foot dark desktop tool amass"
+  },
+  "tools.feroxbuster": {
+    "label": "feroxbuster",
+    "action": "foot dark desktop tool feroxbuster"
+  },
+  "tools.dnsrecon": {
+    "label": "dnsrecon",
+    "action": "foot dark desktop tool dnsrecon"
+  },
+  "tools.john": {
+    "label": "john",
+    "action": "foot dark desktop tool john"
+  },
+  "tools.hashcat": {
+    "label": "hashcat",
+    "action": "foot dark desktop tool hashcat"
+  },
+  "tools.capa": {
+    "label": "capa",
+    "action": "foot dark desktop tool capa"
+  },
+  "tools.yara": {
+    "label": "yara",
+    "action": "foot dark desktop tool yara"
+  },
+  "tools.radare2": {
+    "label": "radare2",
+    "action": "foot dark desktop tool radare2"
+  },
+  "tools.gdb": {
+    "label": "gdb",
+    "action": "foot dark desktop tool gdb"
+  },
+  "tools.binwalk": {
+    "label": "binwalk",
+    "action": "foot dark desktop tool binwalk"
+  },
+  "tools.foremost": {
+    "label": "foremost",
+    "action": "foot dark desktop tool foremost"
+  },
+  "tools.exiftool": {
+    "label": "exiftool",
+    "action": "foot dark desktop tool exiftool"
+  },
+  "tools.lynis": {
+    "label": "lynis",
+    "action": "foot dark desktop tool lynis"
+  },
+  "tools.sleuthkit": {
+    "label": "sleuthkit",
+    "action": "foot dark desktop tool sleuthkit"
+  },
+  "engagement": {
+    "icon": "A",
+    "label": "New authorized engagement",
+    "action": "foot dark desktop engagement"
   }
 }

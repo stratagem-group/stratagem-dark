@@ -30,3 +30,5 @@ Version-specific source and notice obligations must be reviewed before release
 promotion. A testing label does not waive any third-party license obligation.
 
 See [LEGAL.md](LEGAL.md) for project warranty, liability and responsible-use disclosures.
+
+Alpha2 candidate: OpenCode and additional security packages retain their own upstream licenses. The build manifest and SPDX inventory enumerate actual versions and package license metadata. The expanded selection does not change the outstanding binary/source redistribution review.

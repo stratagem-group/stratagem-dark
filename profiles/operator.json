@@ -5,6 +5,21 @@
     "core"
   ],
   "tools": [
-    "tcpdump"
+    "nmap",
+    "tcpdump",
+    "aircrack-ng",
+    "sqlmap",
+    "gobuster",
+    "nikto",
+    "sslscan",
+    "testssl",
+    "ffuf",
+    "subfinder",
+    "httpx",
+    "amass",
+    "feroxbuster",
+    "dnsrecon",
+    "john",
+    "hashcat"
   ]
 }

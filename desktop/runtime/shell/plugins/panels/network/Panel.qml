@@ -720,18 +720,7 @@ Panel {
   }
 
   function setDns(provider) {
-    if (!root.bar || !provider || actionProc.running) return
-
-    if (provider === "Custom") {
-      var launcher = "stratagem-launch-floating-terminal-with-presentation"
-      root.bar.run(launcher + " " + Util.shellQuote(root.dnsCommand(provider)))
-      root.close()
-      return
-    }
-
-    root.pendingDnsProvider = provider
-    actionProc.command = ["bash", "-c", root.dnsCommand(provider)]
-    actionProc.running = true
+    Quickshell.execDetached(["nm-connection-editor"])
     root.close()
   }
 
