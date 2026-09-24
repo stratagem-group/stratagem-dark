@@ -27,7 +27,10 @@ jobs:
       - name: Unit and CLI contracts
         run: python3 -m unittest discover -s tests -v
       - name: Shell syntax
-        run: bash -n bootstrap/install.sh iso/build.sh
+        run: |
+          while IFS= read -r -d '' script; do
+            bash -n "$script"
+          done < <(git ls-files -z '*.sh')
       - name: Deterministic plan and staging smoke test
         run: |
           mkdir -p build
