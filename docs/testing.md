@@ -2,12 +2,12 @@
 
 ## Automated checks
 
-`python3 -m unittest discover -s tests -v` runs 44 tests covering profile resolution,
+`python3 -m unittest discover -s tests -v` runs 45 tests covering profile resolution,
 metadata validation, reproducible plans, staging guards, imported-source hashes,
 configuration preservation, and signed-bundle verification. Seven signature tests
-require GnuPG and skip when it is unavailable. All 44 passed in
-[Linux CI](https://github.com/stratagem-group/stratagem-dark/actions/runs/36044968271).
-Local macOS checks pass 37 with those seven skipped.
+require GnuPG and skip when it is unavailable. All 45 passed in
+[Linux CI](https://github.com/stratagem-group/stratagem-dark/actions/runs/36046038022).
+Local macOS checks pass 38 with those seven skipped.
 
 CI also validates JSON schemas, Bash syntax, deterministic plans and core staging.
 These checks do not establish that the workstation boots successfully.
