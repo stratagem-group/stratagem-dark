@@ -4,4 +4,4 @@ subfinder
 httpx
 amass
 feroxbuster
-dnsrecon
+dnsenum

@@ -332,15 +332,15 @@
       "description": "feroxbuster security analysis; launcher opens help without selecting a target."
     },
     {
-      "id": "dnsrecon",
+      "id": "dnsenum",
       "repository": "blackarch",
-      "package": "dnsrecon",
+      "package": "dnsenum",
       "category": "analysis",
       "isolation": "authorized-network",
-      "upstream": "https://github.com/darkoperator/dnsrecon",
+      "upstream": "https://github.com/fwaeytens/dnsenum",
       "license_expression": "NOASSERTION",
       "license_review": "pending",
-      "description": "dnsrecon security analysis; launcher opens help without selecting a target."
+      "description": "dnsenum security analysis; launcher opens help without selecting a target."
     },
     {
       "id": "john",

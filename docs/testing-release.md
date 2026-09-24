@@ -11,7 +11,7 @@ This is a derivative of the MIT-licensed Omarchy desktop, with original STRATAGE
 branding, startup policy and menu. It includes its real Quickshell shell and Hyprland
 configuration, not a visual imitation. The inherited updater, installer, provisioning,
 commercial-app defaults, logos, fonts and wallpapers are excluded. Arch provides the
-base system. BlackArch provides a small explicit selection, capa, ffuf, subfinder, httpx, amass, feroxbuster and dnsrecon in the alpha2 candidate. WhatWeb remains a catalog candidate: its current package hook
+base system. BlackArch provides a small explicit selection, capa, ffuf, subfinder, httpx, amass, feroxbuster and dnsenum in the alpha2 candidate. WhatWeb remains a catalog candidate: its current package hook
 downloads unpinned Ruby gems and failed the offline acceptance review.
 The broader catalog includes candidates that are not yet part of the binary release.
 
@@ -120,3 +120,12 @@ package signatures. They require internet and may fail if rolling BlackArch
 requirements are incompatible with the pinned Arch base; nothing is force-installed.
 Wi-Fi setup uses authenticated per-user profiles; no general sudo or system-wide
 network configuration grant was added. Enterprise Wi-Fi remains a manual setup case.
+
+### Excluded broken upstream package
+
+DNSRecon 2:1.6.3-1 remains discoverable in the upstream catalog but is not bundled:
+its package omits required Python HTTPX and Stamina dependencies, and Stamina is
+not available in the configured repositories. Its optional installation does not
+currently produce a working CLI. DNSenum supplies the bundled DNS enumeration
+launcher for this candidate. Do not bypass package verification or install unpinned
+Python dependencies to work around this limitation.

@@ -148,9 +148,9 @@
     "label": "feroxbuster",
     "action": "foot dark desktop tool feroxbuster"
   },
-  "tools.dnsrecon": {
-    "label": "dnsrecon",
-    "action": "foot dark desktop tool dnsrecon"
+  "tools.dnsenum": {
+    "label": "dnsenum",
+    "action": "foot dark desktop tool dnsenum"
   },
   "tools.john": {
     "label": "john",

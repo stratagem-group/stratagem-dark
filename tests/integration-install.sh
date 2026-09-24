@@ -33,8 +33,12 @@ arch-chroot "$target" runuser -u tester -- dark setup --apply > "$results/config
 grep -q USER_CUSTOMIZATION_TEST "$target/home/tester/.config/foot/foot.ini"
 arch-chroot "$target" systemctl is-enabled sddm.service NetworkManager.service stratagem-dark-firewall.service > "$results/services.txt"
 arch-chroot "$target" nft --check -f /usr/share/stratagem-dark/firewall.nft
-arch-chroot "$target" python /usr/lib/stratagem-dark/check-tools.py /tmp/tools.json
+# arch-chroot forks a PID namespace after mounting proc. Mount a private proc
+# inside that namespace so tools resolving /proc/<pid>/exe see their own PID.
+status=0
+arch-chroot "$target" unshare --mount --propagation private --mount-proc python /usr/lib/stratagem-dark/check-tools.py /tmp/tools.json || status=$?
 cp "$target/tmp/tools.json" "$results/tools.json"
+(( status == 0 )) || exit "$status"
 umount "$target/bundle"
 trap - EXIT
 if [[ ${STRATAGEM_KEEP_TEST_ROOT:-0} != 1 ]]; then rm -rf "$target"; fi
