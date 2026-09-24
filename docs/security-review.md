@@ -20,8 +20,8 @@ establish that the workstation is fully secure or production hardened.
 Only ViralFawkes currently maintains the repository. Independent approving reviews
 are not required until a second reviewer is designated. Pull requests and required
 checks still apply. This is an explicit remaining governance gap. The organization does not currently
-require two-factor authentication. The current API session could not establish
-the maintainer account's own 2FA status; an account/organization review is required.
+require two-factor authentication. The owner-only membership audit found no members with 2FA disabled. Enforcing
+organization-wide 2FA is awaiting confirmation because it affects 28 repositories.
 
 ## Findings and evidence
 
