@@ -122,7 +122,7 @@ def main(action, tool=None, once=False, root=None):
     pause(); return 0
 
 
-def create_engagement(directory, scope, tool_commands):
+def create_engagement(directory, scope, tool_commands, optional_catalog=None):
     """Create a new private engagement; never replace an existing project's files."""
     if not scope.strip(): raise ValueError('An authorized scope is required.')
     directory = Path(directory).expanduser().resolve()
@@ -130,6 +130,10 @@ def create_engagement(directory, scope, tool_commands):
     for name in ('evidence', 'notes', 'reports'):
         (directory/name).mkdir(mode=0o700)
     installed = {name: argv[0] for name, argv in tool_commands.items() if shutil.which(argv[0])}
+    if optional_catalog is not None:
+        packages=set(subprocess.run(['pacman','-Qq'],capture_output=True,text=True,check=True).stdout.splitlines())
+        for name, data in optional_catalog.items():
+            if data['package'] in packages: installed.setdefault(name, 'Installed package: '+data['package']+'; discover binaries with pacman -Ql')
     files = {
         'SCOPE.md': '# Authorized engagement scope\n\n'+scope.strip()+'\n\nRecord permitted targets, exclusions, test window, and authorization reference before active testing.\n',
         'TOOLS.json': json.dumps(installed, indent=2)+'\n',
@@ -156,7 +160,7 @@ def engagement(root):
     if dest.returncode: return 0
     scope = subprocess.run(['gum','input','--header','Authorized targets, exclusions and authorization reference'],capture_output=True,text=True)
     if scope.returncode: return 0
-    directory = create_engagement(dest.stdout.strip(), scope.stdout, json.loads((root/'catalog/launchers.json').read_text()))
+    directory = create_engagement(dest.stdout.strip(), scope.stdout, json.loads((root/'catalog/launchers.json').read_text()), json.loads((root/'catalog/optional-tools.json').read_text()))
     print(f'Workspace created: {directory}\nRead SCOPE.md before active testing. Commands require approval.')
     if shutil.which('opencode'):
         return launch_agent('opencode', directory, 'Read SCOPE.md, AGENTS.md and TOOLS.json. Help me plan and carry out this authorized assessment using the installed tools. Clarify missing scope before active testing, obtain command approval, preserve evidence and draft findings.')
@@ -179,22 +183,36 @@ def describe_bindings(bindings):
 def cheatsheet(root):
     launchers=json.loads((root/'catalog/launchers.json').read_text())
     extras=json.loads((root/'catalog/optional-tools.json').read_text())
-    metadata={t['id']:t['description'] for t in json.loads((root/'catalog/tools.json').read_text())['tools']}
+    installed=set(subprocess.run(['pacman','-Qq'],capture_output=True,text=True,check=True).stdout.splitlines())
+    categories=sorted({c for t in extras.values() for c in t.get('categories',[]) if c!='blackarch'})
+    category=choose('BlackArch tool catalog / cheat sheet', ['Included launchers','All packages','Installed packages',*categories])
+    if not category:return 0
     options={}
-    for name,argv in launchers.items():
-        if shutil.which(argv[0]):
-            options[f"[Installed] {name} — {metadata.get(name, 'Open tool help')}"]=('open',name)
-    for name,tool in extras.items():
-        installed=subprocess.run(['pacman','-Q',tool['package']],capture_output=True).returncode==0
-        state='Installed' if installed else 'Install'
-        options[f"[{state}] {name} — {tool['description']}"]=('present' if installed else 'install',name)
-    print('STRATAGEM DARK tool cheat sheet\nSelect an installed tool to open help, or an available tool to install.\nInstall needs internet, authentication and free space. Live-session installs disappear on reboot.\nOptional packages are not covered by the ISO tool smoke tests.\n')
-    selected=choose('Tool / status / purpose',list(options))
-    if not selected:return 0
+    if category=='Included launchers':
+        for name,argv in launchers.items():
+            if shutil.which(argv[0]):options[f"[Open help] {name}"]=('open',name)
+    else:
+        for name,tool in extras.items():
+            present=tool['package'] in installed
+            if category=='Installed packages' and not present:continue
+            if category not in ('All packages','Installed packages') and category not in tool.get('categories',[]):continue
+            state='Installed' if present else 'Install'
+            description=' '.join(''.join(c for c in tool['description'] if c.isprintable()).split())
+            options[f"[{state}] {name} — {description}"]=('present' if present else 'install',name)
+    print('Search by name or purpose. Install needs internet, authentication and free space.\nLive-session installs disappear on reboot. Catalog presence is not individual testing.\n')
+    result=subprocess.run(['gum','filter','--placeholder','Search tools; Enter selects'],input='\n'.join(options),capture_output=True,text=True)
+    if result.returncode:return 0
+    selected=result.stdout.strip()
+    if selected not in options:return 0
     action,name=options[selected]
     if action=='open':return main('tool',name,root=root)
-    if action=='present':print(f"{name} is installed. Use its launcher or terminal command.");pause();return 0
-    # Only this fixed helper receives authorization; callers cannot supply pacman flags.
+    tool=extras[name]
+    print(name+' — '+tool['description'])
+    print('Source: '+tool['repository']+' / '+tool['package'])
+    if action=='present':
+        subprocess.run(['pacman','-Ql',tool['package']],check=False)
+        pause();return 0
+    # This fixed helper validates the root-owned catalog before requesting a signed package.
     code=subprocess.call(['pkexec','/usr/lib/stratagem-dark/install-optional-tool',name])
     print('Installation complete.' if code==0 else 'Installation did not complete. Review the package-manager message above.')
     pause();return code

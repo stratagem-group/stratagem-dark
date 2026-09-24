@@ -13,8 +13,11 @@ def install(name):
     catalog=json.loads((ROOT/'catalog/optional-tools.json').read_text())
     if name not in catalog: raise ValueError('Tool is not in the supported installation catalog.')
     package=catalog[name]['package']
+    repository=catalog[name]['repository']
+    if repository not in ('arch','blackarch'): raise ValueError('Unsupported repository.')
     import re
     if not re.fullmatch(r'[a-z0-9][a-z0-9+._-]*',package): raise ValueError('Invalid catalog package.')
-    # Fixed root-owned config; official signed snapshot only, no arbitrary URLs or commands.
+    subprocess.run(['/usr/bin/pacman-key','--populate','stratagem-blackarch'],check=True,env={'PATH':'/usr/bin','LANG':'C.UTF-8'})
+    # Fixed root-owned config and signed packages; no arbitrary URLs or commands.
     # Full synchronization avoids unsupported partial upgrades.
-    return subprocess.call(['/usr/bin/pacman','--config',str(CONFIG),'-Syu','--needed','--noconfirm','extra/'+package],cwd='/',env={'PATH':'/usr/bin','LANG':'C.UTF-8'})
+    return subprocess.call(['/usr/bin/pacman','--config',str(CONFIG),'-Syu','--needed','--noconfirm',('extra' if repository=='arch' else 'blackarch')+'/'+package],cwd='/',env={'PATH':'/usr/bin','LANG':'C.UTF-8'})

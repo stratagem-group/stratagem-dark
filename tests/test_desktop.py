@@ -39,8 +39,8 @@ class OptionalInstallerTests(unittest.TestCase):
         from stratagem_dark import optional_tools
         with tempfile.TemporaryDirectory() as t:
             root=Path(t);(root/'catalog').mkdir()
-            (root/'catalog/optional-tools.json').write_text(json.dumps({'socat':{'package':'socat'},'bad':{'package':'--config=/tmp/evil'}}))
-            with patch.object(optional_tools,'ROOT',root),patch('os.geteuid',return_value=0),patch('subprocess.call',return_value=0) as call:
+            (root/'catalog/optional-tools.json').write_text(json.dumps({'socat':{'package':'socat','repository':'arch'},'bad':{'package':'--config=/tmp/evil','repository':'arch'}}))
+            with patch.object(optional_tools,'ROOT',root),patch('os.geteuid',return_value=0),patch('subprocess.call',return_value=0) as call, patch('subprocess.run'):
                 for name in ['../../bin/sh','--noconfirm','bad']:
                     with self.assertRaises(ValueError):optional_tools.install(name)
                 call.assert_not_called()

@@ -34,10 +34,19 @@ Upstream interface references: [OpenCode CLI](https://opencode.ai/docs/cli/) and
 its MIT notice; engagement scaffolding and launcher integration are Stratagem-owned.
 
 
-Optional installs use the pinned Arch snapshot and system authentication. The narrow
+The cheat sheet includes the full captured BlackArch repository catalog (5,050 packages, including dependencies, across 53 groups), plus Arch add-ons. Its date and database hash are recorded in catalog/optional-tools-source.json. Category browsing and search separate installed packages from available packages.
+
+Optional installs use the pinned Arch snapshot plus the current BlackArch mirror and system authentication. The narrow
 polkit action permits an active local user to authenticate as themselves for catalog
 installs only; it is not a general sudo grant. On the live image that credential is
 the documented testing password. Changes disappear on live reboot. Installation can
 need significant disk space and downloads. Optional tools are not all exercised by
 the ISO smoke tests, and adding them changes the tested package set. The installer
 uses full package synchronization instead of a partial upgrade; review its output.
+
+BlackArch is rolling; catalog versions describe the captured metadata, while optional
+installation resolves the mirror's currently available signed version. Thus optional
+installs are not reproducible in the same way as the locked base bundle. Dependency
+conflicts or missing archives fail without forced overwrites. Package availability
+is not a compatibility, safety or legal certification. Review the installed version
+and resulting package-manager output before using a newly added tool.

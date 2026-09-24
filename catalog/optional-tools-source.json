@@ -1,0 +1,7 @@
+{
+  "source": "https://ftp.halifax.rwth-aachen.de/blackarch/blackarch/os/x86_64/blackarch.db",
+  "database_sha256": "935e219b05e4a43ef10daf77f70aaaaa40e910ddc716b993063e722458b3cf10",
+  "catalog_date": "2026-09-24",
+  "blackarch_packages": 5050,
+  "note": "Availability metadata only; package signatures are checked on installation. Catalog presence is not individual testing or redistribution approval."
+}

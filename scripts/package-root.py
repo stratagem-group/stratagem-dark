@@ -58,7 +58,7 @@ write('etc/NetworkManager/conf.d/90-stratagem-dark.conf','[connection]\nconnecti
 
 write('usr/share/applications/stratagem-dark-setup.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Setup\nExec=foot dark desktop welcome\nIcon=preferences-system\nCategories=Settings;\n')
 
-write('usr/share/stratagem-dark/optional-pacman.conf','[options]\nArchitecture = x86_64\nCheckSpace\nSigLevel = Required DatabaseOptional\nLocalFileSigLevel = Required\n[core]\nServer = https://archive.archlinux.org/repos/2026/09/23/$repo/os/$arch\n[extra]\nServer = https://archive.archlinux.org/repos/2026/09/23/$repo/os/$arch\n')
+write('usr/share/stratagem-dark/optional-pacman.conf','[options]\nArchitecture = x86_64\nCheckSpace\nSigLevel = Required DatabaseOptional\nLocalFileSigLevel = Required\n[core]\nServer = https://archive.archlinux.org/repos/2026/09/23/$repo/os/$arch\n[extra]\nServer = https://archive.archlinux.org/repos/2026/09/23/$repo/os/$arch\n[blackarch]\nServer = https://ftp.halifax.rwth-aachen.de/blackarch/$repo/os/$arch\n')
 write('usr/lib/stratagem-dark/install-optional-tool','''#!/usr/bin/python3 -I
 import sys
 sys.path.insert(0, '/usr/lib/stratagem-dark/src')
