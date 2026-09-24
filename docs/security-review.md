@@ -13,12 +13,15 @@ establish that the workstation is fully secure or production hardened.
 - Secret scanning and push protection, dependency alerts and automated security
   fixes are enabled. Workflow tokens default to read-only and cannot approve PRs.
 - Only GitHub-owned actions are allowed; commit SHA pinning is required.
+  All external contributors require workflow-run approval.
 - Publication uses the testing-release environment with explicit maintainer review,
   protected-branch deployment policy and administrator bypass disabled.
 
 Only ViralFawkes currently maintains the repository. Independent approving reviews
 are not required until a second reviewer is designated. Pull requests and required
-checks still apply. This is an explicit remaining governance gap.
+checks still apply. This is an explicit remaining governance gap. The organization does not currently
+require two-factor authentication. The current API session could not establish
+the maintainer account's own 2FA status; an account/organization review is required.
 
 ## Findings and evidence
 
