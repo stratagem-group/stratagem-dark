@@ -20,7 +20,9 @@ Super+E           Files
 Super+Ctrl+L      Lock
 Print             Select screenshot region
 
-Setup > Connect Wi-Fi opens NetworkManager's connection wizard.
+Click the Wi-Fi icon, select your network and enter its password.
+Setup > Default agent / provider / model changes your saved agent settings.
+Style > Theme (Super+Ctrl+Shift+Space) opens the visual theme picker.
 Security tools opens each installed tool's help; no target is selected for you.
 This testing ISO is live-only. Changes and agent logins are lost on reboot.
 '''
@@ -53,44 +55,64 @@ def launch_agent(agent, workspace, prompt=None, model=None):
     return subprocess.call(command, cwd=directory)
 
 
-def agents():
+def save_agent_settings(config, settings):
+    config.parent.mkdir(parents=True, exist_ok=True)
+    if config.is_symlink(): raise ValueError('Agent settings must not be a symlink.')
+    config.write_text(json.dumps(settings)+'\n')
+    config.chmod(0o600)
+
+
+def agents(setup=False):
     installed = [a for a in AGENTS if shutil.which(a)]
     if not installed:
         print('No supported agent is installed. The testing image should include OpenCode.')
         pause(); return 1
     config = Path.home() / '.config/stratagem/agent.json'
     settings = json.loads(config.read_text()) if config.exists() else {}
-    default = settings.get('agent')
-    if default in installed:
-        installed.remove(default); installed.insert(0, default)
-    agent = choose('Choose your coding agent (normal provider permissions)', installed)
-    if not agent: return 0
-    workspace = Path.home() / 'Work'
-    workspace.mkdir(exist_ok=True)
-    p = subprocess.run(['gum', 'input', '--header', 'Workspace directory', '--value', settings.get('workspace', str(workspace))], stdout=subprocess.PIPE, text=True)
-    if p.returncode: return 0
-    workspace = Path(p.stdout.strip()).expanduser().resolve()
-    if not workspace.is_dir(): raise ValueError('Workspace directory does not exist.')
     models = settings.get('models', {})
     if not isinstance(models, dict): models = {}
-    while agent == 'opencode':
-        selected_model = models.get(agent) or 'provider default'
-        action = choose('OpenCode — model: '+selected_model,
-                        ['Launch agent', 'Sign in to a provider', 'Choose provider / model', 'Use provider default', 'Cancel'])
-        if action in ('', 'Cancel'): return 0
+    workspace = Path(settings.get('workspace', str(Path.home()/'Work'))).expanduser()
+    workspace.mkdir(parents=True, exist_ok=True)
+    agent = settings.get('agent')
+    first_use = agent not in installed
+    if first_use:
+        agent = choose('Choose your default coding agent', installed)
+        if not agent: return 0
+    settings = {'agent': agent, 'workspace': str(workspace), 'models': models}
+    if first_use:
+        if agent == 'opencode':
+            action = choose('OpenCode — connect your provider', ['Sign in and start', 'Start without signing in', 'Cancel'])
+            if action in ('', 'Cancel'): return 0
+            if action == 'Sign in and start' and subprocess.call(['opencode','auth','login']) != 0:
+                return 1
+        save_agent_settings(config, settings)
+        # Other clients display their own onboarding when first launched.
+        return launch_agent(agent, workspace, model=models.get(agent))
+    while setup:
+        action = choose('Default agent: '+agent, ['Launch agent', 'Sign in to a provider', 'Choose provider / model', 'Use provider default', 'Change default agent', 'Change workspace', 'Done'])
+        if action in ('', 'Done'): return 0
+        if action == 'Launch agent': break
         if action == 'Sign in to a provider':
-            subprocess.call(['opencode','auth','login'])
+            commands = {'opencode':['opencode','auth','login'], 'codex':['codex','login'], 'claude':['claude','auth','login']}
+            subprocess.call(commands[agent])
         elif action == 'Choose provider / model':
-            selected = select_model()
-            if selected: models[agent] = selected
+            if agent == 'opencode':
+                selected = select_model()
+                if selected: models[agent] = selected
+            else:
+                print('Select the model in this agent’s native interface.')
         elif action == 'Use provider default': models.pop(agent, None)
-        elif action == 'Launch agent': break
-    config.parent.mkdir(parents=True, exist_ok=True)
-    if config.is_symlink(): raise ValueError('Agent settings must not be a symlink.')
-    config.write_text(json.dumps({'agent': agent, 'workspace': str(workspace), 'models': models})+'\n')
-    config.chmod(0o600)
-    print('Provider credentials stay in the agent’s own credential store, not this settings file.')
-    print('For security work, describe your authorized scope and review proposed actions.')
+        elif action == 'Change default agent':
+            selected = choose('Choose your default coding agent', installed)
+            if selected: agent = selected
+        elif action == 'Change workspace':
+            result = subprocess.run(['gum','input','--header','Workspace directory','--value',str(workspace)],stdout=subprocess.PIPE,text=True)
+            if result.returncode == 0 and result.stdout.strip():
+                selected = Path(result.stdout.strip()).expanduser().resolve()
+                if not selected.is_dir(): raise ValueError('Choose an existing workspace directory.')
+                workspace = selected
+        settings = {'agent': agent, 'workspace': str(workspace), 'models': models}
+        save_agent_settings(config, settings)
     return launch_agent(agent, workspace, model=models.get(agent))
 
 
@@ -122,17 +144,18 @@ def main(action, tool=None, once=False, root=None):
         if once and marker.exists(): return 0
         print('STRATAGEM DARK — Welcome\n\n'+HELP)
         selection = choose('Get started', ['Connect Wi-Fi', 'Agent workspace', 'Keyboard shortcuts', 'Finish'])
-        if selection == 'Connect Wi-Fi': wifi()
+        if selection == 'Connect Wi-Fi': subprocess.call(['stratagem-shell','shell','summon','stratagem.network'])
         elif selection == 'Agent workspace': agents()
         elif selection == 'Keyboard shortcuts': print(HELP); pause()
         if selection:
             marker.parent.mkdir(parents=True, exist_ok=True)
             marker.touch(mode=0o600)
         return 0
-    if action == 'wifi': return wifi()
+    if action == 'wifi': return subprocess.call(['stratagem-shell','shell','summon','stratagem.network'])
     if action == 'cheatsheet': return cheatsheet(root)
     if action == 'engagement': return engagement(root)
     if action == 'agents': return agents()
+    if action == 'agent-setup': return agents(setup=True)
     if action == 'tool':
         commands = json.loads((root/'catalog/launchers.json').read_text())
         if tool not in commands: raise ValueError('Unknown tool.')

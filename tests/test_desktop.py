@@ -67,3 +67,27 @@ class ModelSelectionTests(unittest.TestCase):
         from subprocess import CompletedProcess
         with patch('subprocess.run',side_effect=[CompletedProcess([],0,'INFO loading\nprovider/model-one\nother/model-two\n'),CompletedProcess([],0,'provider/model-one\n')]),patch('stratagem_dark.desktop.choose',return_value='provider'):
             self.assertEqual(select_model(),'provider/model-one')
+
+class AgentOnboardingTests(unittest.TestCase):
+    def test_saved_agent_launch_has_no_setup_prompts(self):
+        from stratagem_dark.desktop import agents
+        with tempfile.TemporaryDirectory() as t, patch('pathlib.Path.home',return_value=Path(t)), patch('shutil.which',return_value='/usr/bin/opencode'), patch('stratagem_dark.desktop.choose') as choose, patch('stratagem_dark.desktop.launch_agent',return_value=0) as launch:
+            config=Path(t)/'.config/stratagem/agent.json';config.parent.mkdir(parents=True)
+            config.write_text(json.dumps({'agent':'opencode','workspace':t,'models':{'opencode':'provider/model'}}))
+            self.assertEqual(agents(),0)
+            choose.assert_not_called()
+            launch.assert_called_once_with('opencode',Path(t),model='provider/model')
+    def test_first_signin_native_and_only_success_saves_default(self):
+        from stratagem_dark.desktop import agents
+        for status in (0,1):
+            with tempfile.TemporaryDirectory() as t, patch('pathlib.Path.home',return_value=Path(t)), patch('shutil.which',side_effect=lambda x:'/bin/opencode' if x=='opencode' else None), patch('stratagem_dark.desktop.choose',side_effect=['opencode','Sign in and start']), patch('subprocess.call',return_value=status) as call, patch('stratagem_dark.desktop.launch_agent',return_value=0) as launch:
+                self.assertEqual(agents(),status)
+                call.assert_called_once_with(['opencode','auth','login'])
+                self.assertEqual((Path(t)/'.config/stratagem/agent.json').exists(),status==0)
+                self.assertEqual(launch.called,status==0)
+    def test_cancel_does_not_select_or_launch_agent(self):
+        from stratagem_dark.desktop import agents
+        with tempfile.TemporaryDirectory() as t, patch('pathlib.Path.home',return_value=Path(t)), patch('shutil.which',return_value='/bin/opencode'), patch('stratagem_dark.desktop.choose',side_effect=['opencode','Cancel']), patch('stratagem_dark.desktop.launch_agent') as launch:
+            self.assertEqual(agents(),0)
+            launch.assert_not_called()
+            self.assertFalse((Path(t)/'.config/stratagem/agent.json').exists())

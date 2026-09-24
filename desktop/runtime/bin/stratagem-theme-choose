@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+selected=$(stratagem-theme-switcher)
+[[ -n $selected ]] || exit 0
+# Only the bundled, reviewed palettes are selectable in this testing release.
+[[ $selected =~ ^[a-z0-9-]+$ && -f $STRATAGEM_DARK_PATH/themes/$selected/colors.toml ]] || exit 1
+export STRATAGEM_DARK_THEME_SKIP_BACKGROUND=1
+exec stratagem-theme-set "$selected"

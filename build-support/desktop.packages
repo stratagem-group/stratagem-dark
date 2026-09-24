@@ -87,3 +87,7 @@ testssl.sh
 binwalk
 foremost
 perl-image-exiftool
+libvips
+python-dbus
+hostapd
+dnsmasq

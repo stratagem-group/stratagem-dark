@@ -38,5 +38,5 @@ def check(action, steps):
         os.close(fd)
         print(transcript.decode(errors='replace'))
 
-check('agents', [('Choose your coding agent',b'\r'),('Workspace directory',b'\r'),('Sign in to a provider',b'\x03')])
+check('agents', [('Choose your default coding agent',b'\r'),('Sign in and start',b'\x03')])
 check('cheatsheet', [('BlackArch tool catalog',b'\r'),('Search tools',b'\x03')])

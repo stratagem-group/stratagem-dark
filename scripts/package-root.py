@@ -77,15 +77,16 @@ write('usr/share/polkit-1/actions/org.stratagem.dark.install-tool.policy','''<?x
 </action></policyconfig>
 ''')
 
-write('usr/share/polkit-1/rules.d/50-stratagem-network.rules','''// Require self-authentication for active local users' own Wi-Fi connections.
-// Routine network control uses upstream policy; avoid authentication on shell startup.
-// System-wide profile modification is deliberately not granted here.
-polkit.addRule(function(action, subject) {
-  var actions = ["org.freedesktop.NetworkManager.settings.modify.own"];
-  if (subject.local && subject.active && actions.indexOf(action.id) >= 0)
-    return polkit.Result.AUTH_SELF;
-});
-''')
+# Native NetworkManager policy allows active local users to modify their own
+# profiles. Do not override it with an extra authentication prompt.
+write('usr/lib/stratagem-dark/connect-wifi', """#!/usr/bin/python3 -I
+import sys
+sys.path.insert(0, '/usr/lib/stratagem-dark/src')
+from stratagem_dark.network import main
+raise SystemExit(main())
+""",0o755)
 
 copy(repo/'tests/check-tools.py','usr/lib/stratagem-dark/check-tools.py')
 copy(repo/'tests/desktop-ui.py','usr/lib/stratagem-dark/desktop-ui-test.py')
+
+copy(repo/'tests/vm/wifi-check.sh','usr/lib/stratagem-dark/wifi-check.sh')

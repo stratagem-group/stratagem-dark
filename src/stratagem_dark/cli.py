@@ -35,11 +35,11 @@ def host_checks():
 
 def main(argv=None, root=None):
     parser = argparse.ArgumentParser(prog='dark', description='STRATAGEM DARK developer CLI')
-    parser.add_argument('--version', action='version', version='STRATAGEM DARK 0.2.0-alpha2')
+    parser.add_argument('--version', action='version', version='STRATAGEM DARK 0.2.0-alpha3')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('about', help='product and attribution')
     desktop = sub.add_parser('desktop', help='interactive setup, agents, tools and help')
-    desktop.add_argument('action', choices=['wifi','welcome','agents','engagement','cheatsheet','tool','network','help','about','reboot','poweroff'])
+    desktop.add_argument('action', choices=['wifi','welcome','agents','agent-setup','engagement','cheatsheet','tool','network','help','about','reboot','poweroff'])
     desktop.add_argument('tool', nargs='?')
     desktop.add_argument('--once', action='store_true')
     setup = sub.add_parser('setup', help='seed missing desktop defaults without overwriting user files')
@@ -75,7 +75,7 @@ def main(argv=None, root=None):
             from .desktop import main as desktop_main
             return desktop_main(args.action, args.tool, args.once, root)
         if args.command == 'about':
-            print('STRATAGEM DARK 0.2.0-alpha2\nOpen security workstation.\nDesktop derived from Omarchy (MIT), copyright David Heinemeier Hansson.\nIncludes separately licensed Arch and selected BlackArch packages.\nhttps://github.com/stratagem-group/stratagem-dark')
+            print('STRATAGEM DARK 0.2.0-alpha3\nOpen security workstation.\nDesktop derived from Omarchy (MIT), copyright David Heinemeier Hansson.\nIncludes separately licensed Arch and selected BlackArch packages.\nhttps://github.com/stratagem-group/stratagem-dark')
             return 0
         if args.command == 'setup':
             print(canonical(setup_user(apply=args.apply)), end='')

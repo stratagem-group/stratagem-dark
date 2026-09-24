@@ -41,7 +41,7 @@ iso_name="stratagem-dark"
 iso_label="STRATAGEM_02A2"
 iso_publisher="STRATAGEM DARK"
 iso_application="STRATAGEM DARK Testing Workstation"
-iso_version="0.2.0-alpha2"
+iso_version="0.2.0-alpha3"
 install_dir="arch"
 buildmodes=('iso')
 bootmodes=('uefi.systemd-boot')
@@ -65,8 +65,8 @@ write('etc/shadow',f'root:!*:20000:0:99999:7:::\nstratagem:{password}:20000:0:99
 write('etc/hostname','stratagem-dark\n')
 write('etc/systemd/system-preset/00-stratagem-dark.preset','disable systemd-networkd*\ndisable sshd*\ndisable iwd*\ndisable cloud-*\ndisable ModemManager*\nenable NetworkManager.service\nenable sddm.service\nenable upower.service\nenable power-profiles-daemon.service\n')
 
-write('etc/os-release','NAME="STRATAGEM DARK"\nPRETTY_NAME="STRATAGEM DARK 0.2.0-alpha2"\nID=stratagem-dark\nID_LIKE=arch\nVERSION_ID=0.2.0-alpha2\nHOME_URL="https://github.com/stratagem-group/stratagem-dark"\n')
-write('etc/issue','STRATAGEM DARK 0.2.0-alpha2 — testing live system\\n\\l\n')
+write('etc/os-release','NAME="STRATAGEM DARK"\nPRETTY_NAME="STRATAGEM DARK 0.2.0-alpha3"\nID=stratagem-dark\nID_LIKE=arch\nVERSION_ID=0.2.0-alpha3\nHOME_URL="https://github.com/stratagem-group/stratagem-dark"\n')
+write('etc/issue','STRATAGEM DARK 0.2.0-alpha3 — testing live system\\n\\l\n')
 write('etc/motd','STRATAGEM DARK — testing release. Local login: stratagem / stratagem. No remote access enabled.\n')
 write('etc/sddm.conf.d/stratagem-dark.conf','[Autologin]\nUser=stratagem\nSession=stratagem-dark.desktop\nRelogin=false\n')
 write('etc/profile.d/stratagem-vm-rendering.sh','export AQ_ALLOW_SOFTWARE_RENDERER=1\n')

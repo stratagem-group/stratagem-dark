@@ -729,8 +729,13 @@ Panel {
   }
 
   function openPasswordPrompt(ssid) {
-    Quickshell.execDetached(["foot", "dark", "desktop", "wifi"])
-    root.close()
+    var network = networkForSsid(ssid)
+    if (network && (network.security === WifiSecurityType.Wpa2Eap || network.security === WifiSecurityType.WpaEap)) {
+      Quickshell.execDetached(["nm-connection-editor"])
+      return
+    }
+    if (passwordSsid !== ssid) { passwordText = ""; identityText = "" }
+    passwordSsid = ssid
   }
 
   function networkForSsid(ssid) {
@@ -798,31 +803,52 @@ Panel {
   }
 
   function connectDirectly(ssid) {
-    Quickshell.execDetached(["foot", "dark", "desktop", "wifi"])
-    root.close()
-  }
-
-  function connectWithPassphrase(ssid, passphrase) {
-    runNetworkAction("connect", networkForSsid(ssid), function(network) { network.connectWithPsk(passphrase) })
-  }
-
-  function connectEnterprise(ssid, identity, passphrase) {
     runNetworkAction("connect", networkForSsid(ssid), function(network) {
-      enterpriseConnect.secret = passphrase
-      enterpriseConnect.command = ["bash", "-c", Model.enterpriseConnectScript, "nmcli-eap", ssid, identity]
-      enterpriseConnect.running = true
+      if (network.known) network.connect()
+      else startPrivateConnection(ssid, "")
     })
   }
 
-  // Creates and activates the 802.1X profile (see Model.enterpriseConnectScript).
-  // The password goes over stdin, never argv.
+  function startPrivateConnection(ssid, passphrase) {
+    privateConnect.request = JSON.stringify({ssid: ssid, password: passphrase})
+    privateConnect.running = true
+  }
+
+  function connectWithPassphrase(ssid, passphrase) {
+    runNetworkAction("connect", networkForSsid(ssid), function(network) {
+      startPrivateConnection(ssid, passphrase)
+    })
+  }
+
+  function connectEnterprise(ssid, identity, passphrase) {
+    // Certificate/identity policy belongs to the network's saved profile.
+    // Never replace it with a minimal hardcoded PEAP configuration.
+    Quickshell.execDetached(["nm-connection-editor"])
+    passwordText = ""
+    root.close()
+  }
+
   Process {
-    id: enterpriseConnect
-    property string secret: ""
+    id: privateConnect
+    property string request: ""
+    command: ["/usr/lib/stratagem-dark/connect-wifi"]
     stdinEnabled: true
     onStarted: {
-      write(secret + "\n")
-      secret = ""
+      write(request + "\n")
+      request = ""
+      root.passwordText = ""
+      stdinEnabled = false
+    }
+    onExited: (code, status) => {
+      stdinEnabled = true
+      if (code !== 0 && root.actionKind === "connect") {
+        root.failureSsid = root.actionSsid
+        root.failureReason = "Could not connect. Check password, signal or advanced settings."
+        actionTimeout.stop()
+        root.actionSsid = ""
+        root.actionKind = ""
+        root.refresh()
+      }
     }
   }
 
@@ -979,7 +1005,7 @@ Panel {
     // PSK fails with WifiAuthTimeout at ~25s, and that failure has to land
     // while the action is still tracked to show "Wrong password" and reopen
     // the passphrase prompt.
-    interval: 30000
+    interval: 50000
     repeat: false
     onTriggered: {
       if (!root.actionKind) return

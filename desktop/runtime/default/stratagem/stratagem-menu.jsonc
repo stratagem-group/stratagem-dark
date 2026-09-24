@@ -22,15 +22,15 @@
   },
   "setup.network": {
     "label": "Connect Wi-Fi / network",
-    "action": "foot dark desktop wifi"
+    "action": "stratagem-shell shell summon stratagem.network"
   },
   "setup.connections": {
     "label": "Advanced network settings",
     "action": "nm-connection-editor"
   },
   "setup.agent": {
-    "label": "Choose coding agent and workspace",
-    "action": "foot dark desktop agents"
+    "label": "Default agent / provider / model",
+    "action": "foot dark desktop agent-setup"
   },
   "setup.audio": {
     "label": "Audio",
@@ -205,5 +205,13 @@
     "icon": "?",
     "label": "Tool cheat sheet / install",
     "action": "foot dark desktop cheatsheet"
+  },
+  "style": {
+    "icon": "*",
+    "label": "Style"
+  },
+  "style.theme": {
+    "label": "Theme",
+    "action": "stratagem-theme-choose"
   }
 }

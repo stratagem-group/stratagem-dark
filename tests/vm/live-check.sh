@@ -114,3 +114,25 @@ APPS
 
 runuser -u stratagem -- python /usr/lib/stratagem-dark/desktop-ui-test.py > /tmp/desktop-ui.log 2>&1 || { cat /tmp/desktop-ui.log; exit 1; }
 cp /tmp/desktop-ui.log /mnt/test-results/desktop-ui.log
+
+# Theme application must update actual terminal and compositor configuration.
+for theme in nord catppuccin-latte phosphor; do
+  runuser -u stratagem --preserve-environment -- env STRATAGEM_DARK_THEME_SKIP_BACKGROUND=1 stratagem-theme-set "$theme"
+  runuser -u stratagem --preserve-environment -- foot --check-config
+  runuser -u stratagem --preserve-environment -- hyprctl configerrors > /tmp/theme-errors
+  test -z "$(tr -d '[:space:]' < /tmp/theme-errors)"
+  test "$(cat /home/stratagem/.local/state/stratagem/current/theme.name)" = "$theme"
+  ! grep -R '{{ ' /home/stratagem/.local/state/stratagem/current/theme/
+done
+runuser -u stratagem --preserve-environment -- timeout 30 stratagem-theme-choose > /tmp/theme-picker.log 2>&1 &
+picker_pid=$!
+sleep 5
+kill -0 "$picker_pid"
+runuser -u stratagem --preserve-environment -- grim /tmp/theme-picker.png
+cp /tmp/theme-picker.png /mnt/test-results/theme-picker.png
+# Exercise the real picker's keyboard acceptance, not a test-only apply API.
+runuser -u stratagem --preserve-environment -- hyprctl dispatch sendshortcut ', Return,'
+wait "$picker_pid"
+cat /tmp/theme-picker.log > /mnt/test-results/theme-picker.log
+
+bash /usr/lib/stratagem-dark/wifi-check.sh > /mnt/test-results/wifi-check.log 2>&1 || { cat /mnt/test-results/wifi-check.log; exit 1; }

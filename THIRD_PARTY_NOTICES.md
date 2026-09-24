@@ -32,3 +32,8 @@ promotion. A testing label does not waive any third-party license obligation.
 See [LEGAL.md](LEGAL.md) for project warranty, liability and responsible-use disclosures.
 
 Alpha2 candidate: OpenCode and additional security packages retain their own upstream licenses. The build manifest and SPDX inventory enumerate actual versions and package license metadata. The expanded selection does not change the outstanding binary/source redistribution review.
+
+Alpha3 candidate restores the attributed Omarchy theme picker, palette resolver,
+application templates and ten data-only palettes from the existing pinned source.
+The generated palette previews are original; upstream wallpapers/logos are not
+shipped. Exact imports remain recorded in `provenance/imports.json`.
