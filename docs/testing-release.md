@@ -23,8 +23,8 @@ builder may pick a newer BlackArch package; installing the same signed bundle ca
 This is a locked binary input set, not a claim of bit-for-bit ISO reproducibility.
 
 Packages retain their upstream signatures. The BlackArch keyring archive is pinned
-by SHA-512 and its detached signature is verified against the upstream published
-fingerprint. The desktop package and release manifest use an ephemeral **testing**
+by the SHA-512 in the inspected upstream package recipe; that pinned keyring supplies
+the key used to verify the detached signature and expected signer fingerprint. The desktop package and release manifest use an ephemeral **testing**
 signing key generated inside the build job. There is no established production
 release key yet. Obtain the 40-character fingerprint from the trusted release/run,
 not solely from inside an untrusted downloaded bundle. A matching bundled key by

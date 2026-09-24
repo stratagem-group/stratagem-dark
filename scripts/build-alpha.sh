@@ -13,7 +13,7 @@ mkdir -p "$out" "$work"
 sed '/^\[blackarch\]/,$d' build-support/pacman.conf > /etc/pacman.conf
 pacman-key --init
 pacman-key --populate archlinux
-pacman -Syu --noconfirm archiso python git gnupg openssl base-devel librsvg
+pacman -Syyuu --noconfirm archiso python git gnupg openssl base-devel librsvg
 scripts/setup-blackarch.sh "$work/trust"
 cp build-support/pacman.conf "$work/pacman.conf"
 # Build only our package; upstream binaries remain signed packages from their repositories.
