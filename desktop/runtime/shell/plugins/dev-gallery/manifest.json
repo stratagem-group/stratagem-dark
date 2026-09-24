@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "stratagem.dev-gallery",
+  "name": "Dev gallery",
+  "version": "1.0.0",
+  "author": "Omarchy",
+  "description": "Visual reference for stratagem-shell common UI components. Summon with: stratagem-shell shell summon stratagem.dev-gallery '{}' (or run: stratagem dev ui-preview).",
+  "kinds": [
+    "panel"
+  ],
+  "entryPoints": {
+    "panel": "GalleryPanel.qml"
+  }
+}

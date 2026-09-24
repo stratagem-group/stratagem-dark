@@ -1,0 +1,5 @@
+o.bind("SUPER + RETURN", "Terminal", "foot")
+o.bind("SUPER + SPACE", "STRATAGEM DARK menu", "stratagem-shell shell toggle stratagem.menu")
+o.bind("SUPER + B", "Browser", "firefox")
+o.bind("SUPER + E", "Files", "thunar")
+o.bind("SUPER + CTRL + L", "Lock session", "hyprlock")

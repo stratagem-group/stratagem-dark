@@ -7,6 +7,6 @@
   "tools": [
     "tcpdump",
     "yara",
-    "zeek"
+    "lynis"
   ]
 }

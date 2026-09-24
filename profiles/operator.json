@@ -5,7 +5,7 @@
     "core"
   ],
   "tools": [
-    "nmap",
-    "tcpdump"
+    "tcpdump",
+    "whatweb"
   ]
 }

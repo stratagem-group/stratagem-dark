@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# stratagem:summary=Enable, disable, toggle, or recover the internal laptop display
+# stratagem:args=<on|off|toggle|recover>
+
+TOGGLE="internal-monitor-disable"
+TOGGLE_FLAG="$HOME/.local/state/stratagem/toggles/hypr/$TOGGLE.lua"
+MIRROR_TOGGLE="internal-monitor-mirror"
+
+INTERNAL=$(stratagem-hyprland-monitor-laptop)
+
+wake() {
+  hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' >/dev/null 2>&1 || true
+}
+
+on() {
+  if stratagem-hyprland-toggle-enabled $TOGGLE; then
+    stratagem-hyprland-toggle $TOGGLE off
+    stratagem-notification-send -g 󰍹 "Laptop display enabled"
+  fi
+
+  wake
+}
+
+off() {
+  if [[ -z $INTERNAL ]]; then
+    stratagem-notification-send -g 󰍹 "No laptop display found"
+    exit 1
+  fi
+
+  # The name is written into generated Lua below, so only a plain connector
+  # name may pass; anything else could execute on the next reload.
+  if [[ ! $INTERNAL =~ ^[A-Za-z0-9._-]+$ ]]; then
+    stratagem-notification-send -g 󰍹 "Refusing unsafe monitor name"
+    exit 1
+  fi
+
+  if ! stratagem-hyprland-monitor-external-active; then
+    stratagem-notification-send -g 󰍹 "Can't disable the only active display"
+    exit 1
+  fi
+
+  if stratagem-hyprland-toggle-disabled $TOGGLE && stratagem-hyprland-toggle-disabled $MIRROR_TOGGLE; then
+    printf 'hl.monitor({ output = "%s", disabled = true })\n' "$INTERNAL" >"$TOGGLE_FLAG"
+    stratagem-notification-send -g 󰍹 "Laptop display disabled"
+    hyprctl reload
+  fi
+}
+
+recover() {
+  # Runs from the clamshell watcher every few seconds, so it must be a no-op
+  # unless it actually re-enables a display: an unconditional wake here undoes
+  # lock-screen blanking and races the resume modeset into a visible flash.
+  stratagem-hyprland-monitor-external-active && return 0
+  stratagem-hyprland-toggle-enabled $TOGGLE || return 0
+
+  stratagem-hyprland-toggle $TOGGLE off
+  wake
+}
+
+toggle() {
+  if stratagem-hyprland-toggle-enabled $TOGGLE; then
+    on
+  else
+    off
+  fi
+}
+
+case "$1" in
+  on) on ;;
+  off) off ;;
+  toggle) toggle ;;
+  recover) recover ;;
+  *)
+    echo "Usage: $(basename "$0") {on|off|toggle|recover}" >&2
+    exit 1
+    ;;
+esac

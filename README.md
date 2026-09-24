@@ -11,11 +11,15 @@ An independent, public open-source security workstation built on Arch Linux.
 Keyboard-first, modular, and upstream-friendly. Original terminal/CRT-inspired
 identity; curated tools for operators, defenders, and researchers.
 
-**Status: initial developer scaffold, not an installable distribution.**
-The CLI validates data, resolves profiles, creates deterministic plans, and stages
-original configuration files into a new directory. It does not install packages,
-alter a running desktop, enable repositories, or build a bootable ISO. Live apply
-fails closed until package locking and Arch VM acceptance tests are implemented.
+**Status: testing-alpha build in progress.** The desktop is now derived from
+Omarchy's MIT-licensed shell/configuration, rebranded as STRATAGEM DARK, with curated
+Arch and BlackArch security tools. Required upstream attribution is preserved.
+
+The release builder produces a signed offline package bundle and a branded UEFI
+live ISO. A real VM test must pass before an artifact is called ready for testing.
+See [testing release](docs/testing-release.md) for trust, installation and limitations.
+The original dry-run/staging commands remain available; live bundle installation
+uses the separate `dark install` command with an explicitly trusted signing fingerprint.
 
 ## Start here
 
@@ -73,4 +77,5 @@ of the optional BlackArch adapter. No AUR helper or unverified remote script run
 
 Original repository code, documentation, and artwork are MIT-licensed. Third-party
 packages retain their own licenses; referring to a package is not a redistribution
-or license clearance. No upstream source code or branding is vendored in this revision.
+or license clearance. The imported MIT desktop source and changes are recorded in `provenance/imports.json`.
+No upstream branding artwork is used.

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "stratagem.system-update",
+  "name": "STRATAGEM DARK update",
+  "version": "1.0.0",
+  "author": "Omarchy",
+  "description": "Indicates available STRATAGEM DARK updates",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "SystemUpdate.qml"
+  },
+  "barWidget": {
+    "displayName": "STRATAGEM DARK update",
+    "description": "Indicates available STRATAGEM DARK updates",
+    "category": "System",
+    "allowMultiple": false
+  }
+}

@@ -67,7 +67,7 @@ class ProjectTests(unittest.TestCase):
             Project(self.root)
 
     def test_cross_repository_conflict_rejected(self):
-        self.edit('catalog/tools.json', lambda c: c['tools'][-1].update(package='python'))
+        self.edit('catalog/tools.json', lambda c: next(t for t in c['tools'] if t['id'] == 'capa').update(package='python'))
         with self.assertRaisesRegex(ValidationError, 'conflicting repositories'):
             Project(self.root)
 
@@ -217,11 +217,14 @@ class CliTests(unittest.TestCase):
         for directory in ('branding', 'desktop', 'config'):
             for path in (ROOT / directory).rglob('*'):
                 if path.is_file():
-                    self.assertNotIn('omarchy', path.read_text().lower(), str(path))
+                    self.assertNotIn('omarchy', path.read_text().replace('"author": "Omarchy"', '').lower(), str(path))
 
     def test_import_register_is_explicit(self):
         data = json.loads((ROOT / 'provenance/imports.json').read_text())
-        self.assertEqual(data['imports'], [])
+        self.assertEqual(data['imports'][0]['license'], 'MIT')
+        self.assertTrue(data['imports'][0]['files'])
+        for entry in data['imports'][0]['files']:
+            self.assertEqual(sha256((ROOT / entry['destination']).read_bytes()), entry['adapted_sha256'])
 
 
 if __name__ == '__main__':

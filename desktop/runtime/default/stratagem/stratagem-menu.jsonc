@@ -1,0 +1,47 @@
+{
+  "terminal": {
+    "icon": ">_",
+    "label": "Terminal",
+    "action": "foot"
+  },
+  "apps": {
+    "icon": "+",
+    "label": "Applications",
+    "provider": "apps"
+  },
+  "tools": {
+    "icon": "#",
+    "label": "Security tools",
+    "action": "foot sh -c 'dark tools; printf \\\"\\\\nPress Enter to close\\\\n\\\"; read answer'"
+  },
+  "files": {
+    "icon": "/",
+    "label": "Files",
+    "action": "thunar"
+  },
+  "browser": {
+    "icon": "@",
+    "label": "Browser",
+    "action": "firefox"
+  },
+  "about": {
+    "icon": "i",
+    "label": "About STRATAGEM DARK",
+    "action": "foot sh -c 'dark about; read answer'"
+  },
+  "lock": {
+    "icon": "*",
+    "label": "Lock session",
+    "action": "hyprlock"
+  },
+  "reboot": {
+    "icon": "↻",
+    "label": "Restart",
+    "action": "systemctl reboot"
+  },
+  "poweroff": {
+    "icon": "⏻",
+    "label": "Power off",
+    "action": "systemctl poweroff"
+  }
+}

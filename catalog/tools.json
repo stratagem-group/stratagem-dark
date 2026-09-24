@@ -107,7 +107,7 @@
       "category": "network",
       "isolation": "authorized-network",
       "upstream": "https://nmap.org/",
-      "license_expression": "NOASSERTION",
+      "license_expression": "LicenseRef-Nmap-Public-Source-License-Version-0.95",
       "license_review": "pending",
       "description": "Network inventory and assessment on authorized systems."
     },
@@ -176,6 +176,28 @@
       "license_expression": "NOASSERTION",
       "license_review": "pending",
       "description": "Network traffic analysis for defensive investigations."
+    },
+    {
+      "id": "whatweb",
+      "repository": "blackarch",
+      "package": "whatweb",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/urbanadventurer/WhatWeb",
+      "license_expression": "GPL-2.0-or-later",
+      "license_review": "pending",
+      "description": "Curated whatweb security analysis tool."
+    },
+    {
+      "id": "lynis",
+      "repository": "arch",
+      "package": "lynis",
+      "category": "analysis",
+      "isolation": "host",
+      "upstream": "https://cisofy.com/lynis/",
+      "license_expression": "GPL-3.0-only",
+      "license_review": "pending",
+      "description": "Curated lynis security analysis tool."
     }
   ]
 }

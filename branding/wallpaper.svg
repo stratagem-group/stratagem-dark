@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<title>STRATAGEM DARK phosphor terminal wallpaper</title>
+<rect width="1920" height="1080" fill="#101512"/>
+<g fill="none" stroke="#1b2d22" stroke-width="1"><path d="M0 270H1920M0 540H1920M0 810H1920M480 0V1080M960 0V1080M1440 0V1080"/></g>
+<path d="M260 340V300H1660V340M260 740V780H1660V740" fill="none" stroke="#547f59" stroke-width="2"/>
+<text x="300" y="525" font-family="monospace" font-size="100" font-weight="bold" fill="#a7f3a0">&gt; STRATAGEM DARK</text>
+<text x="310" y="610" font-family="monospace" font-size="25" letter-spacing="8" fill="#91a396">OPEN SECURITY WORKSTATION</text>
+<text x="310" y="710" font-family="monospace" font-size="18" fill="#ffd28a">SYSTEM READY_</text>
+</svg>

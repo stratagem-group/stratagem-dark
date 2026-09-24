@@ -1,4 +1,1843 @@
 {
   "schema_version": 1,
-  "imports": []
+  "imports": [
+    {
+      "upstream": "https://github.com/omacom/omarchy",
+      "commit": "28ceaae70ebac3a0edcc21f2faa77a90dc6d404c",
+      "license": "MIT",
+      "copyright": "David Heinemeier Hansson",
+      "license_file": "LICENSES/Omarchy-MIT.txt",
+      "changes": [
+        "Namespace omarchy \u2192 stratagem; environment OMARCHY \u2192 STRATAGEM_DARK; visible product name \u2192 STRATAGEM DARK.",
+        "Original menu, theme, logo glyph and autostart policy replace product-specific defaults.",
+        "Subset of desktop helpers only; upstream updater, provisioning, installers, keyrings, artwork and fonts are not imported."
+      ],
+      "files": [
+        {
+          "source": "shell/shell.qml",
+          "source_sha256": "a38bce0b7e1546e1c3c7e17357098c60390a5ed3c65aa29fd7aa0cf8a2ee9406",
+          "destination": "desktop/runtime/shell/shell.qml",
+          "adapted_sha256": "4a0c3a21d213718704d86f00266d953aafba86c8dc8b08b9f81208487a83dabf"
+        },
+        {
+          "source": "shell/Ui/qmldir",
+          "source_sha256": "b1f578a93d7a46350e7f53ac78af55d62ac053698c4ca1a67bb1b20ab78e10c1",
+          "destination": "desktop/runtime/shell/Ui/qmldir",
+          "adapted_sha256": "b1f578a93d7a46350e7f53ac78af55d62ac053698c4ca1a67bb1b20ab78e10c1"
+        },
+        {
+          "source": "shell/Ui/PluginBarApi.qml",
+          "source_sha256": "91964a42b92c58476a4f961df35148d4c94071344ef1a69eab1563d1496705a7",
+          "destination": "desktop/runtime/shell/Ui/PluginBarApi.qml",
+          "adapted_sha256": "91964a42b92c58476a4f961df35148d4c94071344ef1a69eab1563d1496705a7"
+        },
+        {
+          "source": "shell/Ui/BarWidget.qml",
+          "source_sha256": "8be00e2553a486b3dbfcb4f99de976035f323c4061b993dbc1842c75ff8b9022",
+          "destination": "desktop/runtime/shell/Ui/BarWidget.qml",
+          "adapted_sha256": "8be00e2553a486b3dbfcb4f99de976035f323c4061b993dbc1842c75ff8b9022"
+        },
+        {
+          "source": "shell/Ui/NumberField.qml",
+          "source_sha256": "b3584b513ee720f9f3e0f098d19ca1b129a02270c140528455d88fe04e2f2c8b",
+          "destination": "desktop/runtime/shell/Ui/NumberField.qml",
+          "adapted_sha256": "b3584b513ee720f9f3e0f098d19ca1b129a02270c140528455d88fe04e2f2c8b"
+        },
+        {
+          "source": "shell/Ui/PanelKeyCatcher.qml",
+          "source_sha256": "76abaf157317ea260b81591a614460dfbc7173f545963be25558ed5a8cddedb4",
+          "destination": "desktop/runtime/shell/Ui/PanelKeyCatcher.qml",
+          "adapted_sha256": "76abaf157317ea260b81591a614460dfbc7173f545963be25558ed5a8cddedb4"
+        },
+        {
+          "source": "shell/Ui/PanelActionButton.qml",
+          "source_sha256": "6c94ff62997f18d1712a741e8ae24ed98a6fa5c6350b266c631ff92f26cffdc7",
+          "destination": "desktop/runtime/shell/Ui/PanelActionButton.qml",
+          "adapted_sha256": "6c94ff62997f18d1712a741e8ae24ed98a6fa5c6350b266c631ff92f26cffdc7"
+        },
+        {
+          "source": "shell/Ui/PanelToolTip.qml",
+          "source_sha256": "5520685c2d160002cb4bd62c9e5da193003c071fca69b90e6012ebf0c8ee4ca3",
+          "destination": "desktop/runtime/shell/Ui/PanelToolTip.qml",
+          "adapted_sha256": "5520685c2d160002cb4bd62c9e5da193003c071fca69b90e6012ebf0c8ee4ca3"
+        },
+        {
+          "source": "shell/Ui/ScreenMoveRemap.qml",
+          "source_sha256": "ae09782672877502015e517c6f58565cf79b82e0aa1dc56ee5655989863ad8a7",
+          "destination": "desktop/runtime/shell/Ui/ScreenMoveRemap.qml",
+          "adapted_sha256": "ae09782672877502015e517c6f58565cf79b82e0aa1dc56ee5655989863ad8a7"
+        },
+        {
+          "source": "shell/Ui/PointerMoveGate.qml",
+          "source_sha256": "6f494aadb3b7963c35167cf1b07505c237f27ef07e4fd386f7d041ec302af51a",
+          "destination": "desktop/runtime/shell/Ui/PointerMoveGate.qml",
+          "adapted_sha256": "6f494aadb3b7963c35167cf1b07505c237f27ef07e4fd386f7d041ec302af51a"
+        },
+        {
+          "source": "shell/Ui/ConfirmDialog.qml",
+          "source_sha256": "969cafe0580acb66d47947b7b6e9fa5103e1911b3a7dee03b84f2b154afc2762",
+          "destination": "desktop/runtime/shell/Ui/ConfirmDialog.qml",
+          "adapted_sha256": "969cafe0580acb66d47947b7b6e9fa5103e1911b3a7dee03b84f2b154afc2762"
+        },
+        {
+          "source": "shell/Ui/ButtonGroup.qml",
+          "source_sha256": "4af792f394534b7d61b270fcb44203bba8d88ed25f8822e0b90e456e35487542",
+          "destination": "desktop/runtime/shell/Ui/ButtonGroup.qml",
+          "adapted_sha256": "4af792f394534b7d61b270fcb44203bba8d88ed25f8822e0b90e456e35487542"
+        },
+        {
+          "source": "shell/Ui/BorderOverlay.qml",
+          "source_sha256": "c0aaf4f8a080712bf8dce2360d496ba1a63dcacb982a0fd9ed15bc51be333d66",
+          "destination": "desktop/runtime/shell/Ui/BorderOverlay.qml",
+          "adapted_sha256": "c0aaf4f8a080712bf8dce2360d496ba1a63dcacb982a0fd9ed15bc51be333d66"
+        },
+        {
+          "source": "shell/Ui/PanelSectionHeader.qml",
+          "source_sha256": "ede63ff97dd3d4d2198b771cbb33dcd07b7026d64d92f1c624e71465d000115d",
+          "destination": "desktop/runtime/shell/Ui/PanelSectionHeader.qml",
+          "adapted_sha256": "ede63ff97dd3d4d2198b771cbb33dcd07b7026d64d92f1c624e71465d000115d"
+        },
+        {
+          "source": "shell/Ui/KeyboardPanel.qml",
+          "source_sha256": "96245f2da8d38baa0017caa285d596c485bd19a3a4d2cd1675bee9d84ffba42d",
+          "destination": "desktop/runtime/shell/Ui/KeyboardPanel.qml",
+          "adapted_sha256": "b35bf29c43b03bb0f1366a6b507ee8041e589303a557f7103ed7e4f90b538e65"
+        },
+        {
+          "source": "shell/Ui/SearchableDropdown.qml",
+          "source_sha256": "a30cff5297ba595235ead18c956b1268d140b3962375b5ed14d98f6ed0eecc10",
+          "destination": "desktop/runtime/shell/Ui/SearchableDropdown.qml",
+          "adapted_sha256": "a30cff5297ba595235ead18c956b1268d140b3962375b5ed14d98f6ed0eecc10"
+        },
+        {
+          "source": "shell/Ui/MultiSelect.qml",
+          "source_sha256": "ed85c2bf48ca17a059611b582d3d650eb2a1ad37cff2b700ca0c6c441a4c52df",
+          "destination": "desktop/runtime/shell/Ui/MultiSelect.qml",
+          "adapted_sha256": "ed85c2bf48ca17a059611b582d3d650eb2a1ad37cff2b700ca0c6c441a4c52df"
+        },
+        {
+          "source": "shell/Ui/BarIndicator.qml",
+          "source_sha256": "5ed0ecd4be63cbe51a732900ffe7a06ed02f89e176207a42258021d2631e6d4a",
+          "destination": "desktop/runtime/shell/Ui/BarIndicator.qml",
+          "adapted_sha256": "5ed0ecd4be63cbe51a732900ffe7a06ed02f89e176207a42258021d2631e6d4a"
+        },
+        {
+          "source": "shell/Ui/WidgetButton.qml",
+          "source_sha256": "a3cc74adca517b73a176eae0f93e976c24a3ec73b4b5855340b61b1ed2dcd08f",
+          "destination": "desktop/runtime/shell/Ui/WidgetButton.qml",
+          "adapted_sha256": "a3cc74adca517b73a176eae0f93e976c24a3ec73b4b5855340b61b1ed2dcd08f"
+        },
+        {
+          "source": "shell/Ui/PanelController.qml",
+          "source_sha256": "4c08895559a2a7634f6513cb08eda6e05f6ac0bf3d940085229d594b2f383108",
+          "destination": "desktop/runtime/shell/Ui/PanelController.qml",
+          "adapted_sha256": "4c08895559a2a7634f6513cb08eda6e05f6ac0bf3d940085229d594b2f383108"
+        },
+        {
+          "source": "shell/Ui/ToggleSwitch.qml",
+          "source_sha256": "6bfae25396c1d03979efd9a27130e03f11edc2c7062d1f0c0c252b30e60a9898",
+          "destination": "desktop/runtime/shell/Ui/ToggleSwitch.qml",
+          "adapted_sha256": "6bfae25396c1d03979efd9a27130e03f11edc2c7062d1f0c0c252b30e60a9898"
+        },
+        {
+          "source": "shell/Ui/PopupCard.qml",
+          "source_sha256": "b3751c78dba9d3b6383c072c915c3d1ecf5e2227cc8417127323077df1f0af5a",
+          "destination": "desktop/runtime/shell/Ui/PopupCard.qml",
+          "adapted_sha256": "b3751c78dba9d3b6383c072c915c3d1ecf5e2227cc8417127323077df1f0af5a"
+        },
+        {
+          "source": "shell/Ui/PanelHero.qml",
+          "source_sha256": "bf0753e69c91c906b8f1e1a46cfbbd4326228e9d9abde1b4007ee86c0bf78f05",
+          "destination": "desktop/runtime/shell/Ui/PanelHero.qml",
+          "adapted_sha256": "bf0753e69c91c906b8f1e1a46cfbbd4326228e9d9abde1b4007ee86c0bf78f05"
+        },
+        {
+          "source": "shell/Ui/OpticalGlyph.qml",
+          "source_sha256": "293e2863c7ff18998a7aea651fa952a564a860df125bf8900b7e739500b3c352",
+          "destination": "desktop/runtime/shell/Ui/OpticalGlyph.qml",
+          "adapted_sha256": "293e2863c7ff18998a7aea651fa952a564a860df125bf8900b7e739500b3c352"
+        },
+        {
+          "source": "shell/Ui/BorderSurface.qml",
+          "source_sha256": "e17d8150d0b0e60f431bd6df5e661f5d9fe1f5eec9c2e2420f6eff2179a45baf",
+          "destination": "desktop/runtime/shell/Ui/BorderSurface.qml",
+          "adapted_sha256": "23d674d623224afdabc4309bb20a9172156900b36b162d5083420f511b73000c"
+        },
+        {
+          "source": "shell/Ui/Toggle.qml",
+          "source_sha256": "158aaa84cf1fff771b932bb1c79e00be19bee1bfeef2d27bfbd8aa4f1c416e6b",
+          "destination": "desktop/runtime/shell/Ui/Toggle.qml",
+          "adapted_sha256": "158aaa84cf1fff771b932bb1c79e00be19bee1bfeef2d27bfbd8aa4f1c416e6b"
+        },
+        {
+          "source": "shell/Ui/Button.qml",
+          "source_sha256": "fda48672cc11dba109acea1cc98eb4b29746e5ce09f90a47f487b776ff99e799",
+          "destination": "desktop/runtime/shell/Ui/Button.qml",
+          "adapted_sha256": "fda48672cc11dba109acea1cc98eb4b29746e5ce09f90a47f487b776ff99e799"
+        },
+        {
+          "source": "shell/Ui/BarIconButton.qml",
+          "source_sha256": "bae9894d021655105b67d4ae7dec734bcd36ebf3b17a4aaef2c462e0cfa0c874",
+          "destination": "desktop/runtime/shell/Ui/BarIconButton.qml",
+          "adapted_sha256": "7a541570bc35c6158e9a0c0f25747eb1ccc72a9eed0d152e11efc9e39f33f901"
+        },
+        {
+          "source": "shell/Ui/PanelSlider.qml",
+          "source_sha256": "aa8fcf167324ff9eb60a219f037004482adbe2a30369af123d53956a81a93068",
+          "destination": "desktop/runtime/shell/Ui/PanelSlider.qml",
+          "adapted_sha256": "aa8fcf167324ff9eb60a219f037004482adbe2a30369af123d53956a81a93068"
+        },
+        {
+          "source": "shell/Ui/CursorSurface.qml",
+          "source_sha256": "27844a40fbe378e84c0aea35654dd8b396afb7e331c86be80852e1529da4f5b2",
+          "destination": "desktop/runtime/shell/Ui/CursorSurface.qml",
+          "adapted_sha256": "27844a40fbe378e84c0aea35654dd8b396afb7e331c86be80852e1529da4f5b2"
+        },
+        {
+          "source": "shell/Ui/PanelSeparator.qml",
+          "source_sha256": "667cd49e89c5911fbe564904720b3d4073057e0b6fa38f03e55fa5949ccd195c",
+          "destination": "desktop/runtime/shell/Ui/PanelSeparator.qml",
+          "adapted_sha256": "667cd49e89c5911fbe564904720b3d4073057e0b6fa38f03e55fa5949ccd195c"
+        },
+        {
+          "source": "shell/Ui/Panel.qml",
+          "source_sha256": "e6588b3d7c1075d68c6392d028483fcc5d4d2bcb29180758fe265a957cbdc71d",
+          "destination": "desktop/runtime/shell/Ui/Panel.qml",
+          "adapted_sha256": "e6588b3d7c1075d68c6392d028483fcc5d4d2bcb29180758fe265a957cbdc71d"
+        },
+        {
+          "source": "shell/Ui/BackgroundMedia.qml",
+          "source_sha256": "f807fc72481e0c15270ecf22e2e5a9af55e6111bf2fbe01caa99847c2c348a1c",
+          "destination": "desktop/runtime/shell/Ui/BackgroundMedia.qml",
+          "adapted_sha256": "f807fc72481e0c15270ecf22e2e5a9af55e6111bf2fbe01caa99847c2c348a1c"
+        },
+        {
+          "source": "shell/Ui/SpeedTestOverlay.qml",
+          "source_sha256": "f7b37ccf6e641c3a607d91b824f7df15aac6177e5004462718842c686325af48",
+          "destination": "desktop/runtime/shell/Ui/SpeedTestOverlay.qml",
+          "adapted_sha256": "716b2a81a8da8f40b1dbcf832b600d0165c6e7865bafcd780608aeef3deff45a"
+        },
+        {
+          "source": "shell/Ui/Dropdown.qml",
+          "source_sha256": "6e2b847a33f5dedb96f65757d284f40b90073b3b34fd31abb84b2d471814fc5c",
+          "destination": "desktop/runtime/shell/Ui/Dropdown.qml",
+          "adapted_sha256": "6e2b847a33f5dedb96f65757d284f40b90073b3b34fd31abb84b2d471814fc5c"
+        },
+        {
+          "source": "shell/Ui/TextField.qml",
+          "source_sha256": "b3ad72f56f86c2df164e347d64205c099f77c5fb90933fabea3b0f2a9e2b3778",
+          "destination": "desktop/runtime/shell/Ui/TextField.qml",
+          "adapted_sha256": "b3ad72f56f86c2df164e347d64205c099f77c5fb90933fabea3b0f2a9e2b3778"
+        },
+        {
+          "source": "shell/Commons/qmldir",
+          "source_sha256": "5593fa25d33b1e2d3ed8628ca2e0dce5074497608f2bad6652689e390727e5e8",
+          "destination": "desktop/runtime/shell/Commons/qmldir",
+          "adapted_sha256": "5593fa25d33b1e2d3ed8628ca2e0dce5074497608f2bad6652689e390727e5e8"
+        },
+        {
+          "source": "shell/Commons/BorderGeometry.js",
+          "source_sha256": "8b99fb8d32a2f4ccb72f09a1c6421771d7329555c59bff69d181f1218033c85d",
+          "destination": "desktop/runtime/shell/Commons/BorderGeometry.js",
+          "adapted_sha256": "8b99fb8d32a2f4ccb72f09a1c6421771d7329555c59bff69d181f1218033c85d"
+        },
+        {
+          "source": "shell/Commons/Border.qml",
+          "source_sha256": "b98c82530126fc10a287845e8df574ae26fa05b6064d93451d93d0ee9c3f7166",
+          "destination": "desktop/runtime/shell/Commons/Border.qml",
+          "adapted_sha256": "b98c82530126fc10a287845e8df574ae26fa05b6064d93451d93d0ee9c3f7166"
+        },
+        {
+          "source": "shell/Commons/Util.qml",
+          "source_sha256": "20800c11650b37f2c588d4cbfcbf1704cf3b64a92c862e62d2b7fa980e29b944",
+          "destination": "desktop/runtime/shell/Commons/Util.qml",
+          "adapted_sha256": "20800c11650b37f2c588d4cbfcbf1704cf3b64a92c862e62d2b7fa980e29b944"
+        },
+        {
+          "source": "shell/Commons/Style.qml",
+          "source_sha256": "f5901092617ae62645597199270afd4dfb0644d596bdfff16e1834fca6ad7243",
+          "destination": "desktop/runtime/shell/Commons/Style.qml",
+          "adapted_sha256": "ba3df08e2d00e5e1fdcc62ddc57cd3c44f85d9f6e1442efcc25799615fed4c90"
+        },
+        {
+          "source": "shell/Commons/Color.qml",
+          "source_sha256": "cc9b62e2eaf8c307aa02206d9320c3d0ca349cf8feed452a6eddf387adaa5320",
+          "destination": "desktop/runtime/shell/Commons/Color.qml",
+          "adapted_sha256": "10d480ea93c00ac1c4ec3ef5112ae0c753e06ec2221996da8bf4695906cc37b0"
+        },
+        {
+          "source": "shell/services/BarWidgetRegistry.qml",
+          "source_sha256": "e59391d65904febf95399748c3866b6065d2cfceb9a15cc7c28a72eef6356799",
+          "destination": "desktop/runtime/shell/services/BarWidgetRegistry.qml",
+          "adapted_sha256": "e59391d65904febf95399748c3866b6065d2cfceb9a15cc7c28a72eef6356799"
+        },
+        {
+          "source": "shell/services/PluginAppLibraryApi.qml",
+          "source_sha256": "4b1592243c63c0e589e3324f9d596378d0ab1808233dec11d4d68134f3052117",
+          "destination": "desktop/runtime/shell/services/PluginAppLibraryApi.qml",
+          "adapted_sha256": "4b1592243c63c0e589e3324f9d596378d0ab1808233dec11d4d68134f3052117"
+        },
+        {
+          "source": "shell/services/PluginBarStateApi.qml",
+          "source_sha256": "3dfeb7819106378f76912aa3a428ca5fe4212f5f19dc5b7aa851d46feaf7037b",
+          "destination": "desktop/runtime/shell/services/PluginBarStateApi.qml",
+          "adapted_sha256": "3dfeb7819106378f76912aa3a428ca5fe4212f5f19dc5b7aa851d46feaf7037b"
+        },
+        {
+          "source": "shell/services/PluginBarWidgetRegistryApi.qml",
+          "source_sha256": "7afdd10d35f373e35ccaabd5625e1c6eb606467ccc4f4454bd6432486f0b1627",
+          "destination": "desktop/runtime/shell/services/PluginBarWidgetRegistryApi.qml",
+          "adapted_sha256": "7afdd10d35f373e35ccaabd5625e1c6eb606467ccc4f4454bd6432486f0b1627"
+        },
+        {
+          "source": "shell/services/hidden-entries.sh",
+          "source_sha256": "ca3675606d94935c808f6487e967f757be273c4c3b48a99d633c2e70feebd85b",
+          "destination": "desktop/runtime/shell/services/hidden-entries.sh",
+          "adapted_sha256": "ca3675606d94935c808f6487e967f757be273c4c3b48a99d633c2e70feebd85b"
+        },
+        {
+          "source": "shell/services/PluginRegistry.qml",
+          "source_sha256": "8466127c53037b80b582544610b0bdf78a86764e4f037a3b9ce360d107359803",
+          "destination": "desktop/runtime/shell/services/PluginRegistry.qml",
+          "adapted_sha256": "64bd41b14039131974d3604d3ada7d1c1b15574f147857ed9b97a8f84aa43cc7"
+        },
+        {
+          "source": "shell/services/PluginRegistryApi.qml",
+          "source_sha256": "c00fec41303c4b5975a6e7fb00b78c125f5daaf0eb9eecc1dd45b4d155984e91",
+          "destination": "desktop/runtime/shell/services/PluginRegistryApi.qml",
+          "adapted_sha256": "c00fec41303c4b5975a6e7fb00b78c125f5daaf0eb9eecc1dd45b4d155984e91"
+        },
+        {
+          "source": "shell/services/PluginFirstPartyServiceApi.qml",
+          "source_sha256": "bae758ce27a11a84d68b11f6f192d6270f3dd1a6663b408338a92402bd42f5a4",
+          "destination": "desktop/runtime/shell/services/PluginFirstPartyServiceApi.qml",
+          "adapted_sha256": "2ff6578b35f6420c5f6d30a733c4ca76b390cf612a282d96d574feff88fe5149"
+        },
+        {
+          "source": "shell/services/PluginShellApi.qml",
+          "source_sha256": "640f250d49a20e69548e93a589e6f11840e1551e5a1af1d968fe11d6ade22558",
+          "destination": "desktop/runtime/shell/services/PluginShellApi.qml",
+          "adapted_sha256": "640f250d49a20e69548e93a589e6f11840e1551e5a1af1d968fe11d6ade22558"
+        },
+        {
+          "source": "shell/services/AppLibrary.qml",
+          "source_sha256": "68dd83a2141e9a8eda01a9ec5e2fbaaecf5d02d969178512cc6fec118fa23a31",
+          "destination": "desktop/runtime/shell/services/AppLibrary.qml",
+          "adapted_sha256": "348a387074b6634dc1e05fb42584f1b7cb01ac2f4fe974c0da07b6fe83160160"
+        },
+        {
+          "source": "shell/services/AuthServiceStore.js",
+          "source_sha256": "f47026ea2b8a0f23d5d4b3f0a9f47f60e94d7d81d2930b4486334c92575c8ccc",
+          "destination": "desktop/runtime/shell/services/AuthServiceStore.js",
+          "adapted_sha256": "f47026ea2b8a0f23d5d4b3f0a9f47f60e94d7d81d2930b4486334c92575c8ccc"
+        },
+        {
+          "source": "shell/services/AppSearch.js",
+          "source_sha256": "bbc4965f7b46932bd7127b5d921b977679f2a892e6bd9672f29049d340821bd7",
+          "destination": "desktop/runtime/shell/services/AppSearch.js",
+          "adapted_sha256": "bbc4965f7b46932bd7127b5d921b977679f2a892e6bd9672f29049d340821bd7"
+        },
+        {
+          "source": "shell/plugins/background/Background.qml",
+          "source_sha256": "18e956b855b150cf752bb69951920cb035612e0859f67dd9bdecb642503ac4da",
+          "destination": "desktop/runtime/shell/plugins/background/Background.qml",
+          "adapted_sha256": "ed6f4776a2af44cd434a1f14b0a395753eb7950ccfb2f04d8c3079e18d87ab49"
+        },
+        {
+          "source": "shell/plugins/background/manifest.json",
+          "source_sha256": "f1e3eeb5ebd67738bb3a6ed24cfefe831d0fd5785c7d85f8b050c18788b8f265",
+          "destination": "desktop/runtime/shell/plugins/background/manifest.json",
+          "adapted_sha256": "0685e150a1d10a6e7618301962775b8befdba7e4a10043984c1740d0733b58f9"
+        },
+        {
+          "source": "shell/plugins/dev-gallery/GalleryPanel.qml",
+          "source_sha256": "4fa15562d85fd021a7cfe46474e0bdda4b063c3f4f56c6c61dbb5148b6f5aaa8",
+          "destination": "desktop/runtime/shell/plugins/dev-gallery/GalleryPanel.qml",
+          "adapted_sha256": "f7d0b40e955e887a052c5383c6a4f561f61436a5d802d100609d83b0a5edf91d"
+        },
+        {
+          "source": "shell/plugins/dev-gallery/manifest.json",
+          "source_sha256": "5e17304ee1689c76240cf66850981cc6d6411bffc2608cad3b93dbb12135e86a",
+          "destination": "desktop/runtime/shell/plugins/dev-gallery/manifest.json",
+          "adapted_sha256": "3758b1a13b1a1c3257b816fc12f745edae3bb683022639c19bcf752b2e49c4a4"
+        },
+        {
+          "source": "shell/plugins/osd/OsdModel.js",
+          "source_sha256": "ad8cc27c204587a9aac9a7ec0513c72a1a33fe6e83090ee91b4e2c2bfe5fe35c",
+          "destination": "desktop/runtime/shell/plugins/osd/OsdModel.js",
+          "adapted_sha256": "ad8cc27c204587a9aac9a7ec0513c72a1a33fe6e83090ee91b4e2c2bfe5fe35c"
+        },
+        {
+          "source": "shell/plugins/osd/Osd.qml",
+          "source_sha256": "a139b64d45f89a6b55ebcbd1233347f75b541b020e24b4286d6e00a6d5f5c50c",
+          "destination": "desktop/runtime/shell/plugins/osd/Osd.qml",
+          "adapted_sha256": "2a0ee9b5a6872fc84e4ffb067a3e98ca61e8ef4b2720eb6e87fee281edbc6448"
+        },
+        {
+          "source": "shell/plugins/osd/manifest.json",
+          "source_sha256": "a000056d0e7e372b2a46960a24fa578ab39a20cfd620d423688536fe68b40054",
+          "destination": "desktop/runtime/shell/plugins/osd/manifest.json",
+          "adapted_sha256": "50772b58288883c614140b5614aa02c21ce3cfed95bdbcd6b04f5292beb3ae7f"
+        },
+        {
+          "source": "shell/plugins/lock/Service.qml",
+          "source_sha256": "f0693da6429c6ff1f1cdc6354e78f1954a468deff452734373fb2050ac08b7dd",
+          "destination": "desktop/runtime/shell/plugins/lock/Service.qml",
+          "adapted_sha256": "daaf69f1564a67d395b8057f992359966c2c27f1835981279a79bf0647bb27fa"
+        },
+        {
+          "source": "shell/plugins/lock/poster.sh",
+          "source_sha256": "4941c8ae143a0ed0b226a6c54e1f94cbdd5937907cc01d0d0866c0cf34d916df",
+          "destination": "desktop/runtime/shell/plugins/lock/poster.sh",
+          "adapted_sha256": "60ba936b0a28cd385e083f5fac3647adc86357147654256de22642ac19aeaec3"
+        },
+        {
+          "source": "shell/plugins/lock/LockView.qml",
+          "source_sha256": "3797abbb2233455975b69575692d4b875c444e88fc6397b809605a39bfc43922",
+          "destination": "desktop/runtime/shell/plugins/lock/LockView.qml",
+          "adapted_sha256": "3797abbb2233455975b69575692d4b875c444e88fc6397b809605a39bfc43922"
+        },
+        {
+          "source": "shell/plugins/lock/LockFeedSurface.qml",
+          "source_sha256": "f5c4939dcfbe311f5f87d8fd425f0aab8d9c445431718524af466adabd5b5d91",
+          "destination": "desktop/runtime/shell/plugins/lock/LockFeedSurface.qml",
+          "adapted_sha256": "f5c4939dcfbe311f5f87d8fd425f0aab8d9c445431718524af466adabd5b5d91"
+        },
+        {
+          "source": "shell/plugins/lock/manifest.json",
+          "source_sha256": "58af8610a79045dfc09b541a5c2fdfd2e8886624549a49114ba424b4833cc546",
+          "destination": "desktop/runtime/shell/plugins/lock/manifest.json",
+          "adapted_sha256": "8305854d2ba23e2e5d215509818edcdbf5ef7d1e76f895fc09c80a5a8d3b133a"
+        },
+        {
+          "source": "shell/plugins/agents/Agent.qml",
+          "source_sha256": "9fa9a8650ecbc2f2f691b01da7419fa0620b6066c423eea8d50f6253ddf6f4e3",
+          "destination": "desktop/runtime/shell/plugins/agents/Agent.qml",
+          "adapted_sha256": "5505b713d9ac50736b2f854f4914d9282301ed1e386f6b84ee654a3c9ca101ed"
+        },
+        {
+          "source": "shell/plugins/agents/Main.qml",
+          "source_sha256": "fc61e5e06325dd6eb3d100b1f3eead4c6ed8b62b58bda209c70a82084e23f3c7",
+          "destination": "desktop/runtime/shell/plugins/agents/Main.qml",
+          "adapted_sha256": "63163c26262ef4c4865cb6c453cf0a5cc114c75e9caf40276d30ad08830a76be"
+        },
+        {
+          "source": "shell/plugins/agents/manifest.json",
+          "source_sha256": "11bbc83df813fc5862a2ca34399486f19772ebdffe56ee1fe5dde9265a40703f",
+          "destination": "desktop/runtime/shell/plugins/agents/manifest.json",
+          "adapted_sha256": "ccbe15ed6655e9c7f0a59085136944b7d130f71a5594c53dbeda8c3af8b314e7"
+        },
+        {
+          "source": "shell/plugins/agents/Panel.qml",
+          "source_sha256": "0e5ecdb45eaff618963851c16a1f5066307c13195526890d2cbb6ddb5a1aa7c1",
+          "destination": "desktop/runtime/shell/plugins/agents/Panel.qml",
+          "adapted_sha256": "8472da51e651fbe6341e2a82a09ddaf4cb1a15b0e3bb3d310ec3d0baaa8a2d66"
+        },
+        {
+          "source": "shell/plugins/menu/BarWidget.qml",
+          "source_sha256": "ad201156483711ba77ec97303183bc02922248e97ac0c0b8ea30d250e57cd0af",
+          "destination": "desktop/runtime/shell/plugins/menu/BarWidget.qml",
+          "adapted_sha256": "add8b65c14625ccfbaa2553ff65ac20e212c2cc7cee0a88aafa8e95f3e9ddfe8"
+        },
+        {
+          "source": "shell/plugins/menu/manifest.json",
+          "source_sha256": "2cf1fe472ac75116c221a01999864bc2227f567ab42d6b61565b96551a44c060",
+          "destination": "desktop/runtime/shell/plugins/menu/manifest.json",
+          "adapted_sha256": "ba7a0dc689b1dc3784e1ce6a7d8a7f76a581ca36da25108294f6a6b2bbd845cc"
+        },
+        {
+          "source": "shell/plugins/menu/MenuModel.js",
+          "source_sha256": "e75faf23e1c4bdd341689c49f236cdbfa7144267bd9aa65186e339a9240137d1",
+          "destination": "desktop/runtime/shell/plugins/menu/MenuModel.js",
+          "adapted_sha256": "9bb9fa0312a8b3da2d42cc97649b3824b3d4cc198abea9e8af2294480e2f56ec"
+        },
+        {
+          "source": "shell/plugins/menu/Menu.qml",
+          "source_sha256": "343395c8d8e90992cdbd44c1b31a4606e4f04f5b13d0dbd8940ebd10ab506fd6",
+          "destination": "desktop/runtime/shell/plugins/menu/Menu.qml",
+          "adapted_sha256": "5acaf4efc369c1b9436c0d8e926e8460431f7e8c5e4caceddac767d439789516"
+        },
+        {
+          "source": "shell/plugins/image-picker/ImagePicker.qml",
+          "source_sha256": "0bcb5e97a06f5dd14ce8265b16039f01cb5a1e99f64d01165e66786a1aa175e0",
+          "destination": "desktop/runtime/shell/plugins/image-picker/ImagePicker.qml",
+          "adapted_sha256": "8a0c4aee7a91fb3330b732271069cd9f06583e0d0bc905be43e261de474a13af"
+        },
+        {
+          "source": "shell/plugins/image-picker/ImagePickerModel.js",
+          "source_sha256": "2eecf32b70811d0a39981e351ebe9843384aaf97b43dad1216651d2535a9a5da",
+          "destination": "desktop/runtime/shell/plugins/image-picker/ImagePickerModel.js",
+          "adapted_sha256": "2eecf32b70811d0a39981e351ebe9843384aaf97b43dad1216651d2535a9a5da"
+        },
+        {
+          "source": "shell/plugins/image-picker/manifest.json",
+          "source_sha256": "b255a60b42c927b1d6e191ca5a70a30fb537601a1a13b95c4bcc0646f7d6f64b",
+          "destination": "desktop/runtime/shell/plugins/image-picker/manifest.json",
+          "adapted_sha256": "0e28a365830350af3786cf8ac9150fc9c504e96663b2191fa6b93d583b7b3e4f"
+        },
+        {
+          "source": "shell/plugins/image-picker/list.sh",
+          "source_sha256": "255e70e49700c2550fb2987be6bc1e9f5604556bdd58b6340592797ef8ee3854",
+          "destination": "desktop/runtime/shell/plugins/image-picker/list.sh",
+          "adapted_sha256": "bea404188aa20396ffdc79fed59877ead73d3936023871c9fb1fa6c022ed3a89"
+        },
+        {
+          "source": "shell/plugins/emojis/Emojis.qml",
+          "source_sha256": "ff49e2e8174e0c0925d76c9b686f4de1e7297aa256c9dcc7320ed00c39dafeda",
+          "destination": "desktop/runtime/shell/plugins/emojis/Emojis.qml",
+          "adapted_sha256": "7a8006944b1c1a61ec5c26206a267d1dd0225c2ab6f37204c16f58445c81d8dd"
+        },
+        {
+          "source": "shell/plugins/emojis/manifest.json",
+          "source_sha256": "6d4873361e50ff25318f103db4d52d79bdfcb090a705ab71ea3b5c4ae466b7b4",
+          "destination": "desktop/runtime/shell/plugins/emojis/manifest.json",
+          "adapted_sha256": "293a3fc1597b3c4d5c1d915286aa11d61ce4542f6732a04d64b5055859bb915a"
+        },
+        {
+          "source": "shell/plugins/emojis/EmojiSearch.js",
+          "source_sha256": "6d27be1181c3e79f149e0b2b0385826ff3037fe68ed4488160c7ada1b4a77e15",
+          "destination": "desktop/runtime/shell/plugins/emojis/EmojiSearch.js",
+          "adapted_sha256": "6d27be1181c3e79f149e0b2b0385826ff3037fe68ed4488160c7ada1b4a77e15"
+        },
+        {
+          "source": "shell/plugins/emojis/emojis.json",
+          "source_sha256": "48c9e885e2c1b948170d0508e34433fb5d15ad1946d171a12f746005c6f8664f",
+          "destination": "desktop/runtime/shell/plugins/emojis/emojis.json",
+          "adapted_sha256": "48c9e885e2c1b948170d0508e34433fb5d15ad1946d171a12f746005c6f8664f"
+        },
+        {
+          "source": "shell/plugins/bar/BarModel.js",
+          "source_sha256": "908f30edce60dcba46d2039ba3d501fd0faa35fa1f90b7dbda69439288f8a8d0",
+          "destination": "desktop/runtime/shell/plugins/bar/BarModel.js",
+          "adapted_sha256": "dfefda8a8c473f71c5e36d08f41c4ebfaeb6fd161cc651d9a3ecd217bc473730"
+        },
+        {
+          "source": "shell/plugins/bar/Bar.qml",
+          "source_sha256": "9874c0f36271840b43002890ae333c83097df7f4cff0bade81536a41ed83590b",
+          "destination": "desktop/runtime/shell/plugins/bar/Bar.qml",
+          "adapted_sha256": "84d3b801a53158b90ddca79343d109c3ff15651cb246f549c1806ffba7ab26b0"
+        },
+        {
+          "source": "shell/plugins/bar/manifest.json",
+          "source_sha256": "cdb1e824279ff44d8e48d8aea4e17a4dd9c115d6cc8d3ddf5c964fba12b143bb",
+          "destination": "desktop/runtime/shell/plugins/bar/manifest.json",
+          "adapted_sha256": "5a21f3eb57dec0b5b16756d5f0c7d43963a59b4d8c09e0e3407685b73ba33961"
+        },
+        {
+          "source": "shell/plugins/notifications/Service.qml",
+          "source_sha256": "11665542e70df80ccd3c785a6143dee2daefd2082e4f75c740adc2c9947cf7c2",
+          "destination": "desktop/runtime/shell/plugins/notifications/Service.qml",
+          "adapted_sha256": "4655ab600338ddf7f6fcd468b3074070e1b3fb295ba1422838fe2b388d6f0ab8"
+        },
+        {
+          "source": "shell/plugins/notifications/NotificationLogic.js",
+          "source_sha256": "99e82df6524ee1ee1d52673b2a1496f62b14b220288f186c41fd8deed77a69bd",
+          "destination": "desktop/runtime/shell/plugins/notifications/NotificationLogic.js",
+          "adapted_sha256": "29e88c2dc187796370e9b04816c549b4434e018440f5347e2feb7439fa9a9da9"
+        },
+        {
+          "source": "shell/plugins/notifications/manifest.json",
+          "source_sha256": "82ed1a26f0040ddff78dd0ed1f12c5e4b49929ec5d0efc7ea62bedabbf48e910",
+          "destination": "desktop/runtime/shell/plugins/notifications/manifest.json",
+          "adapted_sha256": "88dca3318a725569f7448e903e69f5fb6b2dbfe93a5e56d84cfd9b19122208aa"
+        },
+        {
+          "source": "shell/plugins/reminders/ReminderFlowModel.js",
+          "source_sha256": "fd3135f84e7a549db9ba4d9259336f5ef587ed72d60c7b8e888bf7284604f97a",
+          "destination": "desktop/runtime/shell/plugins/reminders/ReminderFlowModel.js",
+          "adapted_sha256": "fd3135f84e7a549db9ba4d9259336f5ef587ed72d60c7b8e888bf7284604f97a"
+        },
+        {
+          "source": "shell/plugins/reminders/ReminderFlow.qml",
+          "source_sha256": "1ffb380e1b3d85539aae8b9407d271bd9e42ae936d3d853b543afcfd714c3857",
+          "destination": "desktop/runtime/shell/plugins/reminders/ReminderFlow.qml",
+          "adapted_sha256": "49efb464eff1cafbd354c407e4bd92f0e1350dcfc3182719beb6ab1b74823b4a"
+        },
+        {
+          "source": "shell/plugins/reminders/manifest.json",
+          "source_sha256": "b8eba9cd89a59d458516c2e93c5a6fba12312774379a9687dc1038e8d211d376",
+          "destination": "desktop/runtime/shell/plugins/reminders/manifest.json",
+          "adapted_sha256": "c8ceb397e1fb45142d90e1796ed5a30e866322d4a7b84b82d20048c38914bbe8"
+        },
+        {
+          "source": "shell/plugins/polkit/PolkitModel.js",
+          "source_sha256": "29c0b96b25fea18d8dcc1e61912f8906ff75c599b07f9bf8b0f8cc4f6fb985c9",
+          "destination": "desktop/runtime/shell/plugins/polkit/PolkitModel.js",
+          "adapted_sha256": "29c0b96b25fea18d8dcc1e61912f8906ff75c599b07f9bf8b0f8cc4f6fb985c9"
+        },
+        {
+          "source": "shell/plugins/polkit/PolkitAgent.qml",
+          "source_sha256": "dfd8e994bd774b9d6d5375f1380a51db1813ce2c060a37c3519c75f0c089dde6",
+          "destination": "desktop/runtime/shell/plugins/polkit/PolkitAgent.qml",
+          "adapted_sha256": "bfdbf49f4320a2271d292e8902242c07d5ddfdf315aa62f9a812c971238480ab"
+        },
+        {
+          "source": "shell/plugins/polkit/manifest.json",
+          "source_sha256": "fad96d75efce40fc60cb131321daebc91a9268e5709333f19e452b43f43ce8f7",
+          "destination": "desktop/runtime/shell/plugins/polkit/manifest.json",
+          "adapted_sha256": "13c9ce8909ba0227798b91c4e53756333ce1c273469cf1f3d9202c5cfa9ee347"
+        },
+        {
+          "source": "shell/plugins/clipboard/capture.sh",
+          "source_sha256": "513af53f2c89aac4c4dbf96835c9a31b8f2731668524f4cd37862fa3208f598b",
+          "destination": "desktop/runtime/shell/plugins/clipboard/capture.sh",
+          "adapted_sha256": "bb9afd30d1281de42ec2ffd3505fc182d00e507ac9d1f12409a7c71f617f7883"
+        },
+        {
+          "source": "shell/plugins/clipboard/Clipboard.qml",
+          "source_sha256": "913ec7a80c436bea1a93f919541b73ac86b57f48dcd7eccedc072070156184ff",
+          "destination": "desktop/runtime/shell/plugins/clipboard/Clipboard.qml",
+          "adapted_sha256": "866c8c43fed6df0eb045a78226491f093986254903034eca00e36dbbc521efa4"
+        },
+        {
+          "source": "shell/plugins/clipboard/manifest.json",
+          "source_sha256": "13a7a3b174a333a8c0ec91a586b35617fbb70e03e0124f63916c3783fb64ca75",
+          "destination": "desktop/runtime/shell/plugins/clipboard/manifest.json",
+          "adapted_sha256": "bca2eb329537f8acf5e81f93a86f2df4a905ea43dc430e9ade670c142e90ecc6"
+        },
+        {
+          "source": "shell/plugins/clipboard/ClipboardHistory.js",
+          "source_sha256": "57d467477e146f636bb5639dd9badf3bce178eff56bb79acdee8be08b48382c8",
+          "destination": "desktop/runtime/shell/plugins/clipboard/ClipboardHistory.js",
+          "adapted_sha256": "57d467477e146f636bb5639dd9badf3bce178eff56bb79acdee8be08b48382c8"
+        },
+        {
+          "source": "shell/plugins/services/nightlight/Service.qml",
+          "source_sha256": "721cd63d2404859918e28f92420e87369328c26fcef7df821443baa16d0b1897",
+          "destination": "desktop/runtime/shell/plugins/services/nightlight/Service.qml",
+          "adapted_sha256": "8ae507d083ea9b1c1ee67410cb7dc4d1717e37a3215411cf79cb4f9019ad136e"
+        },
+        {
+          "source": "shell/plugins/services/nightlight/NightlightModel.js",
+          "source_sha256": "2273119d8dbc2a0c2b6faf76d5786c521f910b98c06dee6603ec1237737db8e1",
+          "destination": "desktop/runtime/shell/plugins/services/nightlight/NightlightModel.js",
+          "adapted_sha256": "7460a2db82ce1c782322e25616e9dfd5a83031f6c51e89176d8fffefaaef6a0d"
+        },
+        {
+          "source": "shell/plugins/services/nightlight/manifest.json",
+          "source_sha256": "af58d98507b745efc437747f1288670b638d9450c973769722ab5a34b6b2b87e",
+          "destination": "desktop/runtime/shell/plugins/services/nightlight/manifest.json",
+          "adapted_sha256": "215608cea12399d2e759a7075766dd5395e73d0434a93be0b221f70b32a039b0"
+        },
+        {
+          "source": "shell/plugins/services/idle/Service.qml",
+          "source_sha256": "50f5c81e2e94fab32395a5bc3cce982e30a10ab1b3f56cc58f29055951518a51",
+          "destination": "desktop/runtime/shell/plugins/services/idle/Service.qml",
+          "adapted_sha256": "d72696dff52553257b586a308b8193cc904876cf20276ac43db7fddbcb492754"
+        },
+        {
+          "source": "shell/plugins/services/idle/IdleModel.js",
+          "source_sha256": "58226a67d5fc2f33b1a23b55cb32764a8b2091cc94c4d02af1b67f369440b9b8",
+          "destination": "desktop/runtime/shell/plugins/services/idle/IdleModel.js",
+          "adapted_sha256": "58226a67d5fc2f33b1a23b55cb32764a8b2091cc94c4d02af1b67f369440b9b8"
+        },
+        {
+          "source": "shell/plugins/services/idle/manifest.json",
+          "source_sha256": "bb8a5f55257dc49c2b7632304dad19aa12bbc7ad641828f09481909232f30a6f",
+          "destination": "desktop/runtime/shell/plugins/services/idle/manifest.json",
+          "adapted_sha256": "b6a3c948e3655f82fb271147576e78837fa604727d2f1625ad8f0b7818d4fe40"
+        },
+        {
+          "source": "shell/plugins/services/battery/Service.qml",
+          "source_sha256": "9f1a2168453125d2f2659d6a990e31557171b4ac7a90d33c1469c51f1e4d1d67",
+          "destination": "desktop/runtime/shell/plugins/services/battery/Service.qml",
+          "adapted_sha256": "f7dff44542215a05e2eec631b78e9feaf6e475b203ba89bb0b39bcad1be4d2a4"
+        },
+        {
+          "source": "shell/plugins/services/battery/BatteryModel.js",
+          "source_sha256": "f6d8d07487d50fe16d104348c832b17fa0b789c00a5c94288d4971c80e768e57",
+          "destination": "desktop/runtime/shell/plugins/services/battery/BatteryModel.js",
+          "adapted_sha256": "f6d8d07487d50fe16d104348c832b17fa0b789c00a5c94288d4971c80e768e57"
+        },
+        {
+          "source": "shell/plugins/services/battery/manifest.json",
+          "source_sha256": "bf6cc1c9eaca2b6830cff592230677d20a26698a79830f273b11380a59bc2899",
+          "destination": "desktop/runtime/shell/plugins/services/battery/manifest.json",
+          "adapted_sha256": "288af6c367e3363f6e82c5f33b36797b1975938b7dbaf4eda56f5e6c687e1cde"
+        },
+        {
+          "source": "shell/plugins/services/media/Service.qml",
+          "source_sha256": "92237e82b280903dae296d9e876532058083299a65459e2bf3cacce3be644139",
+          "destination": "desktop/runtime/shell/plugins/services/media/Service.qml",
+          "adapted_sha256": "eb52f32bbe216514a74ee3795e1b5911a93d30b946c403b260294722c5e7ded8"
+        },
+        {
+          "source": "shell/plugins/services/media/BarWidget.qml",
+          "source_sha256": "05b9bca8673facb447d7b10b513865c80b5de7dc61828efc41026de4bb960d42",
+          "destination": "desktop/runtime/shell/plugins/services/media/BarWidget.qml",
+          "adapted_sha256": "432f742a2857058d784ec49ebc2ac79704e4168e001096c19bd369eaa9e8c30e"
+        },
+        {
+          "source": "shell/plugins/services/media/MediaModel.js",
+          "source_sha256": "663eeb35c2ecd4488395259a7047d7a12089fa7d9dfaf918e3e15d54ebfdf627",
+          "destination": "desktop/runtime/shell/plugins/services/media/MediaModel.js",
+          "adapted_sha256": "663eeb35c2ecd4488395259a7047d7a12089fa7d9dfaf918e3e15d54ebfdf627"
+        },
+        {
+          "source": "shell/plugins/services/media/manifest.json",
+          "source_sha256": "7d31e2e9cb8476fca4703e44b29e0e5faed4f44ed0565b58ecd7b36a78757cd0",
+          "destination": "desktop/runtime/shell/plugins/services/media/manifest.json",
+          "adapted_sha256": "4dcf06867bc91c5488ed5dec2bbbaebe4a110d3cf77927331849ef5e138f92b8"
+        },
+        {
+          "source": "shell/plugins/notifications/components/NotificationCard.qml",
+          "source_sha256": "e1b5bae943d2e3b495741bc845b4fd981c274be538ea01799c46026f9db0fe49",
+          "destination": "desktop/runtime/shell/plugins/notifications/components/NotificationCard.qml",
+          "adapted_sha256": "dfcd287273884209062e991dd337e537942b3fb84d1b911f5861effed317c787"
+        },
+        {
+          "source": "shell/plugins/bar/indicators/NightLight.qml",
+          "source_sha256": "9a7d5dbbcf5f2b1612d673cef8fba26c53584364e12b43935f1d02a66fb404d2",
+          "destination": "desktop/runtime/shell/plugins/bar/indicators/NightLight.qml",
+          "adapted_sha256": "f79eb0b2b35db2bcd9233b8b19b571c22b02db092bece8c9218b6baf001c56a8"
+        },
+        {
+          "source": "shell/plugins/bar/indicators/ScreenRecording.qml",
+          "source_sha256": "e336f4e14e0875fe56cb0c1008799506eb5023051c80e530b9e1f35fedbce2df",
+          "destination": "desktop/runtime/shell/plugins/bar/indicators/ScreenRecording.qml",
+          "adapted_sha256": "e2d6ef9f8140f1ef47b42c4aee9d16a094acf75cb40b2496c39ec304249b4b2e"
+        },
+        {
+          "source": "shell/plugins/bar/indicators/Dnd.qml",
+          "source_sha256": "ef3dfda58d9a874d304d6c7742508535957d99e388d2140ca90d14f1b29050d1",
+          "destination": "desktop/runtime/shell/plugins/bar/indicators/Dnd.qml",
+          "adapted_sha256": "a487bd34c8b7d8fbe25933313e46d065acae5d68dc347bc142d82e672cd93f8d"
+        },
+        {
+          "source": "shell/plugins/bar/indicators/Reminder.qml",
+          "source_sha256": "51cef554abf4b4b28692cee73add20e2c34bd9883bfed74be10b5334d73f7c7b",
+          "destination": "desktop/runtime/shell/plugins/bar/indicators/Reminder.qml",
+          "adapted_sha256": "dd12a95005f9e6dad17aa9bc69328ee9cd07ff834df35f4e8cbbd9ccbe64e894"
+        },
+        {
+          "source": "shell/plugins/bar/indicators/Dictation.qml",
+          "source_sha256": "581498154ecbfaa64dcc0612dbac417968b8567404c0cabb13fa092f339c7ac6",
+          "destination": "desktop/runtime/shell/plugins/bar/indicators/Dictation.qml",
+          "adapted_sha256": "3ce6a59c196243db2c141e90f1aa3dea330a1e5352e350c51e57b0e5dd00e190"
+        },
+        {
+          "source": "shell/plugins/bar/indicators/StayAwake.qml",
+          "source_sha256": "0701f2231d292af5ab500cb7be574222d0be82a7831eb8188da038f2347bdd13",
+          "destination": "desktop/runtime/shell/plugins/bar/indicators/StayAwake.qml",
+          "adapted_sha256": "bf617befbe28bd35d44a0b139372e4345fa56be5697efd9ab8e0491cdc355787"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/Microphone.qml",
+          "source_sha256": "29b9aa5143074c8cbcaee32bbff291204e5358c8fb07bb2e82f53f84a2568dad",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/Microphone.qml",
+          "adapted_sha256": "0ccf5d6fdc7e335873bbd67306fed76410e33a32c1dbab28bc6e9830d95a602e"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/TrayModel.js",
+          "source_sha256": "925a879daf505071608094664c7c53679eaa77b74c169434be026499ccf6c27e",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/TrayModel.js",
+          "adapted_sha256": "fa6451b850fe46ec23fe91f5d781d77c54f212901631df4401dc7d50fb3c4099"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/ActiveWindow.manifest.json",
+          "source_sha256": "b329d7bbec36086c2f72f904029229b71d4c3ad3afb96ce0ff3cf05b9eda9b80",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/ActiveWindow.manifest.json",
+          "adapted_sha256": "0f49bc338f365a77108b15afffe0c954d583760f5afd5499b5f27c4fc66af7f1"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/Indicators.manifest.json",
+          "source_sha256": "3eea8a52c46d7e2436f8967abb4347d56163f7cef622caf0fe2d69bf6858d59b",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/Indicators.manifest.json",
+          "adapted_sha256": "cf0ffd4d1e5b65cea63b5d8077e115745e956310597270937068938da953c61c"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/SystemUpdate.qml",
+          "source_sha256": "d615dbfb9c9cfd1557f98db1e78a812ba81847209ca87b98dc1f6539aa8fb3de",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/SystemUpdate.qml",
+          "adapted_sha256": "c13b62ba7849190136501752b5a5d38cfeac11c1d20dc05320666524d8d6e853"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/Workspaces.qml",
+          "source_sha256": "d0509e734d76d3c8cb68502a657ebae52e66bcc06988f2930567d67004f28325",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/Workspaces.qml",
+          "adapted_sha256": "9d9d7a9cbedcd4f9611219799ba6af897c3044b264f77bc30021a3f2ba9477f4"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/Spacer.qml",
+          "source_sha256": "85abd1cd06755e57194b86d30df9c31e7521e5c91f5a663d9cd6420b9e91c545",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/Spacer.qml",
+          "adapted_sha256": "b984d3a7b12d313d5fbb6d920a9d6a34ba6397722ef442b1714c887721c05e7c"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/KeyboardLayout.qml",
+          "source_sha256": "54a7e066a1e8002d48fa62110ed6bb57b5660dfc3088b75f9f98b6097ced2035",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/KeyboardLayout.qml",
+          "adapted_sha256": "dd6d14733fb6c15c25e4fcb855504482a23910698e4fd31c377e65c7e68bd4aa"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/Microphone.manifest.json",
+          "source_sha256": "58f9f212d3a840bc4ebe276076ec37ba19977f96808e8a8c2ce00aa2a35b8055",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/Microphone.manifest.json",
+          "adapted_sha256": "ad2a852e2222d4cb7beb2f69a90765d357ec129509425435752226995f78047e"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/Spacer.manifest.json",
+          "source_sha256": "760ef0a8c95587453907b621ca04ec7349311a154fb5d1b86bac9b1fa3a370fa",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/Spacer.manifest.json",
+          "adapted_sha256": "f689570bc650cc30d9b043165677f53cd541db3fff31f9e4ba098ecc23b61a12"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/Tray.qml",
+          "source_sha256": "6566c548c76e56315589a126965eb686a6be812b1106d618045fee01a5095dd0",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/Tray.qml",
+          "adapted_sha256": "b65c3d12b90bf68cbac74e93c1fc111db92619cd7875c56d3255b469da0a3d33"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/SystemUpdate.manifest.json",
+          "source_sha256": "daf0806360b5c8ffd71a0d08d9ef0e0f69048ea85c4b10f45b4a8e30b4601328",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/SystemUpdate.manifest.json",
+          "adapted_sha256": "94f4e8ec68606b1815e569782ecbbefa854bbe1e8b6a11cd2327c3a08a9e2814"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/Workspaces.manifest.json",
+          "source_sha256": "4f381b91cd9e6306870e7ac03ce10ad20248178b45c7cd5d738fda6924df5da3",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/Workspaces.manifest.json",
+          "adapted_sha256": "ac9054e1bf7ba4804e63a44bb137045947746a47e113d0b22f6fb8cd580e5a38"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/Tray.manifest.json",
+          "source_sha256": "ece62a8a728bf5903b344f293711379df62088b94532237ca42f432c84230fb2",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/Tray.manifest.json",
+          "adapted_sha256": "2f1c93c56defc840a0893e8b4a09fdcde1c692d1bca1c767f1dbdfed7884f511"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/KeyboardLayout.manifest.json",
+          "source_sha256": "51613070b3b2774c4b7ab4a7c5b2b52319a030f5350485e95dba62fae819723a",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/KeyboardLayout.manifest.json",
+          "adapted_sha256": "8a8d42927d3a27a1f109068d822f631a285c7046a8bc9ec8ea3f78e8ac4e5a83"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/KeyboardLayoutModel.js",
+          "source_sha256": "722e0e4eeaac0fa01660175d2da7fc6a2ba5f2b01d71843a8c731591979d2c2d",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/KeyboardLayoutModel.js",
+          "adapted_sha256": "722e0e4eeaac0fa01660175d2da7fc6a2ba5f2b01d71843a8c731591979d2c2d"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/ActiveWindow.qml",
+          "source_sha256": "e53bbf968f78a9c4748c1872d6b34e1914070fc170641730bc2f7b4bce4e0173",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/ActiveWindow.qml",
+          "adapted_sha256": "5462483ed427d490db8af78f3130e256564ef809bcda3f6fb0a6ed81f345ecc0"
+        },
+        {
+          "source": "shell/plugins/bar/widgets/Indicators.qml",
+          "source_sha256": "f64fc3a122d71e6cc1f9a8b8284416df29cac070306fa6df55e9f1053fe4cf65",
+          "destination": "desktop/runtime/shell/plugins/bar/widgets/Indicators.qml",
+          "adapted_sha256": "d636a0818f7e4959408242b766a51ab6fbfe88ca5f055d7a1f1fc1b2c9b39635"
+        },
+        {
+          "source": "shell/plugins/agents/assets/claude.svg",
+          "source_sha256": "0df6dad23995f5a76c6db8cc2a4e646ff45bd7a0626ef98662a7025646e5eea1",
+          "destination": "desktop/runtime/shell/plugins/agents/assets/claude.svg",
+          "adapted_sha256": "0df6dad23995f5a76c6db8cc2a4e646ff45bd7a0626ef98662a7025646e5eea1"
+        },
+        {
+          "source": "shell/plugins/agents/assets/fireworks.svg",
+          "source_sha256": "842f35cc7d5f20f8a6f08fddc78f206812a3b9f2c104e09916a5f536058941ed",
+          "destination": "desktop/runtime/shell/plugins/agents/assets/fireworks.svg",
+          "adapted_sha256": "842f35cc7d5f20f8a6f08fddc78f206812a3b9f2c104e09916a5f536058941ed"
+        },
+        {
+          "source": "shell/plugins/agents/assets/codex.svg",
+          "source_sha256": "f1aeeba6d631feca31129bbc06ac7f813078d6bafa3837061e0ead173f36b857",
+          "destination": "desktop/runtime/shell/plugins/agents/assets/codex.svg",
+          "adapted_sha256": "f1aeeba6d631feca31129bbc06ac7f813078d6bafa3837061e0ead173f36b857"
+        },
+        {
+          "source": "shell/plugins/agents/assets/codex-light.svg",
+          "source_sha256": "dc510dda4e7e43c214e6a5a023b9909bc645b45f2fdde537ee6d6b09f1bbc111",
+          "destination": "desktop/runtime/shell/plugins/agents/assets/codex-light.svg",
+          "adapted_sha256": "dc510dda4e7e43c214e6a5a023b9909bc645b45f2fdde537ee6d6b09f1bbc111"
+        },
+        {
+          "source": "shell/plugins/panels/power/manifest.json",
+          "source_sha256": "7e1a3d83a1ffd85f4a9ee2df9ccfd2cb63de794f100c5e2ec11156be7df83bb5",
+          "destination": "desktop/runtime/shell/plugins/panels/power/manifest.json",
+          "adapted_sha256": "0fcd8ec454877d6513f92fc6ad1e65398939ff22682b2c45041c1ebc268d99e1"
+        },
+        {
+          "source": "shell/plugins/panels/power/Model.js",
+          "source_sha256": "5ed21781bcd315742b8eda1aa72f415f72217a38e03c659fe40095ed939f7ed2",
+          "destination": "desktop/runtime/shell/plugins/panels/power/Model.js",
+          "adapted_sha256": "5ed21781bcd315742b8eda1aa72f415f72217a38e03c659fe40095ed939f7ed2"
+        },
+        {
+          "source": "shell/plugins/panels/power/Panel.qml",
+          "source_sha256": "560e17a5144d3e2ea1e0ad36c2aec563909b535551e1e66e061f5fb25f1d4ec0",
+          "destination": "desktop/runtime/shell/plugins/panels/power/Panel.qml",
+          "adapted_sha256": "938504125a6aaddb6e67bec76861a940675011dfea4f9a754b9afb71aa473460"
+        },
+        {
+          "source": "shell/plugins/panels/monitor/manifest.json",
+          "source_sha256": "d79086c49ae4a4bf377421f0d48cb4149b2a86974dae253e2ad8bf8abd0538fa",
+          "destination": "desktop/runtime/shell/plugins/panels/monitor/manifest.json",
+          "adapted_sha256": "70277fbd2c2d31e614b19a6ee56d442fbb64cdc7604a088b83e4fac166e08b5d"
+        },
+        {
+          "source": "shell/plugins/panels/monitor/Model.js",
+          "source_sha256": "9dd9cb7f7dc11f16e571a48bf2a7c51be75ddaef3d4d5f35c511be8f91ecd2ec",
+          "destination": "desktop/runtime/shell/plugins/panels/monitor/Model.js",
+          "adapted_sha256": "9dd9cb7f7dc11f16e571a48bf2a7c51be75ddaef3d4d5f35c511be8f91ecd2ec"
+        },
+        {
+          "source": "shell/plugins/panels/monitor/Panel.qml",
+          "source_sha256": "2f3f95e5fc75af2af1f1af418a65469c37714b2bec38cfd2206bdd3f1f1b0e69",
+          "destination": "desktop/runtime/shell/plugins/panels/monitor/Panel.qml",
+          "adapted_sha256": "02fb6199e9cf306ffcc21a68f29cf71dd4d8052449a6678ac33713a31328c14b"
+        },
+        {
+          "source": "shell/plugins/panels/speedtest/manifest.json",
+          "source_sha256": "9f5840bbac773f7897d20f329ff7f30e55ac3d5cd8834cc7c6b735f5593b6ef8",
+          "destination": "desktop/runtime/shell/plugins/panels/speedtest/manifest.json",
+          "adapted_sha256": "366024a04d47c197d352305f79d45592eddec49011f8d85a3a04e89f91d00810"
+        },
+        {
+          "source": "shell/plugins/panels/speedtest/Panel.qml",
+          "source_sha256": "f1b3ebc595cebe8ecd7d5302a1ae3b8fe2517fd136368a721bd684499f9ad15b",
+          "destination": "desktop/runtime/shell/plugins/panels/speedtest/Panel.qml",
+          "adapted_sha256": "1738fe92361df1450f64ed137d60362c7da15216fa15763899b3590f9720c184"
+        },
+        {
+          "source": "shell/plugins/panels/network/manifest.json",
+          "source_sha256": "cd18affe2e42fb65bf5fe624d78d843876d5bdb3e097ce954ee92dd327fe5419",
+          "destination": "desktop/runtime/shell/plugins/panels/network/manifest.json",
+          "adapted_sha256": "a8eb8b554ff16e0b036a04b0284ace6d2ed2d0757831094e2250ee045df3920d"
+        },
+        {
+          "source": "shell/plugins/panels/network/Model.js",
+          "source_sha256": "8dadeb34154d410bd3909610d7f304a2eed2aac96f565741a1fd1ddd9eca70f7",
+          "destination": "desktop/runtime/shell/plugins/panels/network/Model.js",
+          "adapted_sha256": "8dadeb34154d410bd3909610d7f304a2eed2aac96f565741a1fd1ddd9eca70f7"
+        },
+        {
+          "source": "shell/plugins/panels/network/Panel.qml",
+          "source_sha256": "bbe572efef6ccf876c722cbdb74491004617f9c9701c6117a9e1e42cb457e022",
+          "destination": "desktop/runtime/shell/plugins/panels/network/Panel.qml",
+          "adapted_sha256": "076da57951f0fa7b3eb4f6fcdb0dc1c1a0bf5251536e65611a01255815159352"
+        },
+        {
+          "source": "shell/plugins/panels/disk-speedtest/manifest.json",
+          "source_sha256": "038287260f646ab66b23d17acd4ba68f611b92b076dcfa9df569abdbd1f1891f",
+          "destination": "desktop/runtime/shell/plugins/panels/disk-speedtest/manifest.json",
+          "adapted_sha256": "157240c272d32f7547e51e91582d1eea606297d05f06ecf54caea3badca19bb1"
+        },
+        {
+          "source": "shell/plugins/panels/disk-speedtest/Panel.qml",
+          "source_sha256": "b9cffa6c2036a9d3ca1bc53999e62a19ae2577339602239f44dc462fdecc198c",
+          "destination": "desktop/runtime/shell/plugins/panels/disk-speedtest/Panel.qml",
+          "adapted_sha256": "f1e798cf51956f69e35c62e4cae2ab8c43615029e1e1031cb5ea73e377f9b82f"
+        },
+        {
+          "source": "shell/plugins/panels/wifiqr/manifest.json",
+          "source_sha256": "9d71877a2112500dc1bb7b834bb08f9d75204a11e734c4b46b8b0ce1997cfb78",
+          "destination": "desktop/runtime/shell/plugins/panels/wifiqr/manifest.json",
+          "adapted_sha256": "6262a08cbe35f1abb5a0550d1c772055f79ba8af35c426aa50651bf3536c78b7"
+        },
+        {
+          "source": "shell/plugins/panels/wifiqr/Model.js",
+          "source_sha256": "a5e771a51c034aaa84c46ebf3b6740eb58d5cbf0d14b3ae62dcf73a5f7bde1a1",
+          "destination": "desktop/runtime/shell/plugins/panels/wifiqr/Model.js",
+          "adapted_sha256": "41ea7e3b51c100dac7d4716cb3cde3a02cddf97ae3e8289e68e2d353378dd72c"
+        },
+        {
+          "source": "shell/plugins/panels/wifiqr/Panel.qml",
+          "source_sha256": "5c76a02e2e766260f17edc697b82cc7c055b694f5e181fc9808a72b92a5d5beb",
+          "destination": "desktop/runtime/shell/plugins/panels/wifiqr/Panel.qml",
+          "adapted_sha256": "ef0f2611b95714e6e06d8a5c1b9ddf71b37ff37a7f9b0fc7d7879c1f7a5ae8b4"
+        },
+        {
+          "source": "shell/plugins/panels/audio/manifest.json",
+          "source_sha256": "8322d00019751f81d80c8748be736b380d8cb375721806aa8987ee5200b6e487",
+          "destination": "desktop/runtime/shell/plugins/panels/audio/manifest.json",
+          "adapted_sha256": "9308c2b063497b52fd93b3dab74c5635586155e8cf5f50b8494f7ddd3dc387f8"
+        },
+        {
+          "source": "shell/plugins/panels/audio/Model.js",
+          "source_sha256": "9e15d94b2076b039418339ea4e5f4bd305d80d8129a53fd6d3dfb67d1817e4b0",
+          "destination": "desktop/runtime/shell/plugins/panels/audio/Model.js",
+          "adapted_sha256": "9e15d94b2076b039418339ea4e5f4bd305d80d8129a53fd6d3dfb67d1817e4b0"
+        },
+        {
+          "source": "shell/plugins/panels/audio/Panel.qml",
+          "source_sha256": "831efaa29097d06abed31480a9e54208552e3f4e529a5c4ecca9255b12c5a7b1",
+          "destination": "desktop/runtime/shell/plugins/panels/audio/Panel.qml",
+          "adapted_sha256": "607c027ff139ba496d3bd128355a32cfda37f6ed37430e681b1c0aa68c481242"
+        },
+        {
+          "source": "shell/plugins/panels/bluetooth/manifest.json",
+          "source_sha256": "c15c51ab8a6cb82df8ebe3a5195b8d69c69d2ff9bbd00d748204d81a3ddc1d8a",
+          "destination": "desktop/runtime/shell/plugins/panels/bluetooth/manifest.json",
+          "adapted_sha256": "5c82eb555812a419dd48376618b50903e89c9b5f3b56d2a22612455992f00a4c"
+        },
+        {
+          "source": "shell/plugins/panels/bluetooth/Model.js",
+          "source_sha256": "b34f3259c6553f20ce37619d2f390cd3293303266f89f2a6df0b6810da384417",
+          "destination": "desktop/runtime/shell/plugins/panels/bluetooth/Model.js",
+          "adapted_sha256": "b34f3259c6553f20ce37619d2f390cd3293303266f89f2a6df0b6810da384417"
+        },
+        {
+          "source": "shell/plugins/panels/bluetooth/Panel.qml",
+          "source_sha256": "f51654a00e3bfe5d6ccfd42bbd972d9436f70a27d152baa43ccdcbd8c66e1225",
+          "destination": "desktop/runtime/shell/plugins/panels/bluetooth/Panel.qml",
+          "adapted_sha256": "f4adf25eedbac0f9a18de964017c0d919d6b21fd228cb1b80bb3fe8795c967b3"
+        },
+        {
+          "source": "shell/plugins/panels/tailscale/Service.qml",
+          "source_sha256": "ebf79b1e95c4268de7d40cfd69a25e6fb67306d1caa4c13b1684468668f81d7e",
+          "destination": "desktop/runtime/shell/plugins/panels/tailscale/Service.qml",
+          "adapted_sha256": "be2fec2827ae55bbb1fd87d32098f59a5c62ccb26301abded127ac621d621c26"
+        },
+        {
+          "source": "shell/plugins/panels/tailscale/TailscaleIcon.qml",
+          "source_sha256": "f3e35a849425b3400891726ca06a12681853a17599ccb66da2a788c0e0261beb",
+          "destination": "desktop/runtime/shell/plugins/panels/tailscale/TailscaleIcon.qml",
+          "adapted_sha256": "f3e35a849425b3400891726ca06a12681853a17599ccb66da2a788c0e0261beb"
+        },
+        {
+          "source": "shell/plugins/panels/tailscale/manifest.json",
+          "source_sha256": "523813d1e469f20bdf595900f4a74608375fcd69f48f3dcc971d8cfbb7c8743d",
+          "destination": "desktop/runtime/shell/plugins/panels/tailscale/manifest.json",
+          "adapted_sha256": "557ee86c393ec7fbf27c619228e292020375d979286da48b0bec55d9862e2450"
+        },
+        {
+          "source": "shell/plugins/panels/tailscale/Model.js",
+          "source_sha256": "fa8837858942d32bc5d2a6c28bfaef8003f83fd7d7f58148d2e6d25d7b4bd643",
+          "destination": "desktop/runtime/shell/plugins/panels/tailscale/Model.js",
+          "adapted_sha256": "fa8837858942d32bc5d2a6c28bfaef8003f83fd7d7f58148d2e6d25d7b4bd643"
+        },
+        {
+          "source": "shell/plugins/panels/tailscale/Panel.qml",
+          "source_sha256": "c1f343ba875e49031fd4133bc4bba224980207f08a991b9882f3c3ac8c70f5df",
+          "destination": "desktop/runtime/shell/plugins/panels/tailscale/Panel.qml",
+          "adapted_sha256": "de5bd94c2a75a9e40600771eeb077e93a9af6aecbbcff0800da64f69306f8aee"
+        },
+        {
+          "source": "shell/plugins/panels/dropbox/Service.qml",
+          "source_sha256": "7bfdb9cbedcb374adf150453f918f36468b5ab4c600d0c990f6a61324d6900ae",
+          "destination": "desktop/runtime/shell/plugins/panels/dropbox/Service.qml",
+          "adapted_sha256": "86fa1e12262da90b1e741e02488aa985d7816ea3f440b9a10a4b70ccd555942a"
+        },
+        {
+          "source": "shell/plugins/panels/dropbox/DropboxIcon.qml",
+          "source_sha256": "3367632df6a80998e377a085483deb61175bf572138db81bd8f71423d06ca349",
+          "destination": "desktop/runtime/shell/plugins/panels/dropbox/DropboxIcon.qml",
+          "adapted_sha256": "3367632df6a80998e377a085483deb61175bf572138db81bd8f71423d06ca349"
+        },
+        {
+          "source": "shell/plugins/panels/dropbox/manifest.json",
+          "source_sha256": "03860bd138fd4dc87a2a683444018d506e542b408d43618866ae9010ba32f094",
+          "destination": "desktop/runtime/shell/plugins/panels/dropbox/manifest.json",
+          "adapted_sha256": "d51882e632b88967e486f1d770d7630edde87e44355dc0635e5f78740d927c2c"
+        },
+        {
+          "source": "shell/plugins/panels/dropbox/Model.js",
+          "source_sha256": "3f4eefeafefbd360766069ca7e05cb89bdff9b36322c80178b221163e3d956f8",
+          "destination": "desktop/runtime/shell/plugins/panels/dropbox/Model.js",
+          "adapted_sha256": "3f4eefeafefbd360766069ca7e05cb89bdff9b36322c80178b221163e3d956f8"
+        },
+        {
+          "source": "shell/plugins/panels/dropbox/Panel.qml",
+          "source_sha256": "4bc3b9660fd84e57c170004e0840495aa5d95c6cf1be0f891b9b58e6cc232d7a",
+          "destination": "desktop/runtime/shell/plugins/panels/dropbox/Panel.qml",
+          "adapted_sha256": "0263efbe70b42e3a0c8d8578da91628b3cf0693b28f05e92369f057873609ae8"
+        },
+        {
+          "source": "shell/plugins/panels/dropbox/status.py",
+          "source_sha256": "32a9be54c2149622bb96c2fc0742f490ea75f637bac13f07255c7c0095fcf835",
+          "destination": "desktop/runtime/shell/plugins/panels/dropbox/status.py",
+          "adapted_sha256": "32a9be54c2149622bb96c2fc0742f490ea75f637bac13f07255c7c0095fcf835"
+        },
+        {
+          "source": "shell/plugins/panels/weather/BarWidget.qml",
+          "source_sha256": "ab3e32b97cf37847ff880a44013133eef9b9f04fe7258b692b30e7b24c6de4ca",
+          "destination": "desktop/runtime/shell/plugins/panels/weather/BarWidget.qml",
+          "adapted_sha256": "098930c1ef63a692e9a83b2d2eceafb40118393020abc5c0e4443326777b0803"
+        },
+        {
+          "source": "shell/plugins/panels/weather/manifest.json",
+          "source_sha256": "74a2a679dfab7df793d24d96322bdad8f087385756bd8f1c0cd63aef9243a87c",
+          "destination": "desktop/runtime/shell/plugins/panels/weather/manifest.json",
+          "adapted_sha256": "67b840cb0fa5b6b16fb55733ef6f8f14f1fd1b63e97321791cf6b3376a188196"
+        },
+        {
+          "source": "shell/plugins/panels/weather/Model.js",
+          "source_sha256": "66d2aa5e81bfe12b1b1b53b499a09968bc9ad660d066bc60af9b18102e836d17",
+          "destination": "desktop/runtime/shell/plugins/panels/weather/Model.js",
+          "adapted_sha256": "b8b2c8577bb25013576d473503ccf483772dd6323d8ad85f6b7034127352e447"
+        },
+        {
+          "source": "shell/plugins/panels/weather/Panel.qml",
+          "source_sha256": "47e38b979a578b662428844d11707d29db7f7933fdf60b69bc955429fdf5c201",
+          "destination": "desktop/runtime/shell/plugins/panels/weather/Panel.qml",
+          "adapted_sha256": "1d79dd931928339cdae14974e959832d0629c6730eea3a550797649c2bc18f81"
+        },
+        {
+          "source": "shell/plugins/panels/clock/BarWidget.qml",
+          "source_sha256": "03981cd0a4c94c8e5ef147ae4a7c5fc3b8602f94870449a4a5098b8e5cb6b652",
+          "destination": "desktop/runtime/shell/plugins/panels/clock/BarWidget.qml",
+          "adapted_sha256": "23e1c107a57ddf7c2d144957a16c6992eb070ee03696d9abc3f49d1425496e6e"
+        },
+        {
+          "source": "shell/plugins/panels/clock/manifest.json",
+          "source_sha256": "81d320cae7a86c14f961cf3586dbfeecbe689cd002e0a37a502a01c6da781d26",
+          "destination": "desktop/runtime/shell/plugins/panels/clock/manifest.json",
+          "adapted_sha256": "bab91a01d715affb6d140274ec70f01dea8d91a3b9896113eff06d0c0becb0e5"
+        },
+        {
+          "source": "shell/plugins/panels/clock/Model.js",
+          "source_sha256": "5517a961b76440dc1df92d47dbe030770cb52d1750030dde5e62c599dd0f4258",
+          "destination": "desktop/runtime/shell/plugins/panels/clock/Model.js",
+          "adapted_sha256": "5517a961b76440dc1df92d47dbe030770cb52d1750030dde5e62c599dd0f4258"
+        },
+        {
+          "source": "shell/plugins/panels/clock/Panel.qml",
+          "source_sha256": "396d98c9696a64977166be99d3b70c102ca20ac30f41e073fe1d168fde61de75",
+          "destination": "desktop/runtime/shell/plugins/panels/clock/Panel.qml",
+          "adapted_sha256": "4e3b6f0da4ac5af13b5e641e7757d8170cc664d4b7c6e2bf2414d71bf81c01eb"
+        },
+        {
+          "source": "default/hypr/autostart.lua",
+          "source_sha256": "13f447c272869a66927283fca4ce29c3a9e4e9dbc6b05a9d3c7d4d2373115071",
+          "destination": "desktop/runtime/default/hypr/autostart.lua",
+          "adapted_sha256": "59927b8b7b37b9df525315a3e504b159d9b47af6c8ac1a4cba6130baaf47d702"
+        },
+        {
+          "source": "default/hypr/qconsole.lua",
+          "source_sha256": "6674f3ebe5eadf7190ea0df17e5ea05343d65b68eefed1ee8ce25035af20ae69",
+          "destination": "desktop/runtime/default/hypr/qconsole.lua",
+          "adapted_sha256": "683dabdda613ce5d1e36d71efb981bc0370b06854b6601410aec4acce187ba3d"
+        },
+        {
+          "source": "default/hypr/paths.lua",
+          "source_sha256": "9862b85c515511c55d2430777c7453b781ef0f088380e53bb89684c906445a5d",
+          "destination": "desktop/runtime/default/hypr/paths.lua",
+          "adapted_sha256": "7471207d356dcddfd2f82f25e2c04a5b79703308e18cd4a3bc4160c31fff2bbc"
+        },
+        {
+          "source": "default/hypr/nvidia.lua",
+          "source_sha256": "f6eb54b7149cea1bc9862f6eaeb78391bb90c23c24ec612495c4a9f02269fcec",
+          "destination": "desktop/runtime/default/hypr/nvidia.lua",
+          "adapted_sha256": "86fc89ec95dd898d4dbe752e09c7adf218631d2f3ecac50ddee26ed0e97668b9"
+        },
+        {
+          "source": "default/hypr/apps.lua",
+          "source_sha256": "138a88b27321934e45b0c623821e7a9c4377f2580c91e55aab67ff4da19772a4",
+          "destination": "desktop/runtime/default/hypr/apps.lua",
+          "adapted_sha256": "fed4b775b58c8ac7d849c4954c560762168cdf064b7eec3f3cb5f08c066e19da"
+        },
+        {
+          "source": "default/hypr/bindings.lua",
+          "source_sha256": "7ada30a9a70254c40234efdf41074d1f008c179d92242aacec98f48b132e2dde",
+          "destination": "desktop/runtime/default/hypr/bindings.lua",
+          "adapted_sha256": "b4871ba852e7f39619c6a8b657e751b632329870e3a961e331b6b7f09b2dbc03"
+        },
+        {
+          "source": "default/hypr/disabled-input-device.lua",
+          "source_sha256": "a3316230c17acaba41f672191001821d10c6c0abb049e5170968e77e4c86f6dd",
+          "destination": "desktop/runtime/default/hypr/disabled-input-device.lua",
+          "adapted_sha256": "3137c812c7d270a90680c2900f760ba1aed7ee3e7df3c1a5244bd89dbfa86063"
+        },
+        {
+          "source": "default/hypr/workspace-layouts.lua",
+          "source_sha256": "f27d907ebd79b916f1eb0fe49c2dcf72fae3b78067e69911ec1b3dd003fa0909",
+          "destination": "desktop/runtime/default/hypr/workspace-layouts.lua",
+          "adapted_sha256": "cae34d82e858f42539e5bdce0e9073e512d8726b28042ee856cfb48c66443e24"
+        },
+        {
+          "source": "default/hypr/looknfeel.lua",
+          "source_sha256": "e3873fded9f3796a1aacea88fb8d17b39937449614412aac32a36682bc1f6e8a",
+          "destination": "desktop/runtime/default/hypr/looknfeel.lua",
+          "adapted_sha256": "52c844ca367640a90359c079d4bc7b4d32544d2e69acb3608700fb63da2ed82d"
+        },
+        {
+          "source": "default/hypr/envs.lua",
+          "source_sha256": "ad5eaa24605a12b5ba8b5bffc4f40b1d0d52a4d032321fa6275dc948948c16e7",
+          "destination": "desktop/runtime/default/hypr/envs.lua",
+          "adapted_sha256": "ed9515a99b41ead9b7f857073aad73184fbebd27b50c6437efad71f428100b5f"
+        },
+        {
+          "source": "default/hypr/bootstrap.lua",
+          "source_sha256": "ee16813516877df26984a78baf389f153af302e0d11736582cfbd0e002f2d531",
+          "destination": "desktop/runtime/default/hypr/bootstrap.lua",
+          "adapted_sha256": "9e312002fdac124d5487e8c15d2abbeaa31889eb49f0fa9865fc8d105422d3bd"
+        },
+        {
+          "source": "default/hypr/require_all.lua",
+          "source_sha256": "0b95e2e15465b3f1247868bb3000d348077d1ca42db428c45f888e09bc6ee88f",
+          "destination": "desktop/runtime/default/hypr/require_all.lua",
+          "adapted_sha256": "38812680d98834e86eafaf22b11152b0acf07f44f24c9274898ab6945686a511"
+        },
+        {
+          "source": "default/hypr/input.lua",
+          "source_sha256": "178d803bff27ea9c68470c16f3515b228e5358e0b2ada2daead44fe8518e4bb3",
+          "destination": "desktop/runtime/default/hypr/input.lua",
+          "adapted_sha256": "56ad0b68088ff766bd169f6abfdcc4045aaaf4b84df59b46f1d358b04974413b"
+        },
+        {
+          "source": "default/hypr/require_optional.lua",
+          "source_sha256": "912a4f09fb5bd6ea886edcf2f683ba10f30bc533ec3e99454d06fc69a02c328c",
+          "destination": "desktop/runtime/default/hypr/require_optional.lua",
+          "adapted_sha256": "912a4f09fb5bd6ea886edcf2f683ba10f30bc533ec3e99454d06fc69a02c328c"
+        },
+        {
+          "source": "default/hypr/windows.lua",
+          "source_sha256": "fa35b43154b49a286c2717490a07b542b5868b3e5101e86e3df628b22bc55962",
+          "destination": "desktop/runtime/default/hypr/windows.lua",
+          "adapted_sha256": "fa35b43154b49a286c2717490a07b542b5868b3e5101e86e3df628b22bc55962"
+        },
+        {
+          "source": "default/hypr/helpers.lua",
+          "source_sha256": "d6fbcd58aaf6c6dbf08fee6160cc41cb22e4b093ed442addfe2fb323080b7629",
+          "destination": "desktop/runtime/default/hypr/helpers.lua",
+          "adapted_sha256": "7ef99e2dd23650112a72f74c80c3ab8065a04acdf41a065284e4bc79e678f6f2"
+        },
+        {
+          "source": "default/hypr/omarchy.lua",
+          "source_sha256": "7b8ec4812570d12e15c8a080be90c7129a23721cbee0d187a3f7a902d20002ff",
+          "destination": "desktop/runtime/default/hypr/stratagem.lua",
+          "adapted_sha256": "2b9cc20ed3f694ea109b00b307b4650b3f824352dc0b46e0e383edbb528edc01"
+        },
+        {
+          "source": "default/hypr/toggles.lua",
+          "source_sha256": "b2bd14556de8074308b61514482fb882a76f81c18e8eb314d8d358c1721eca39",
+          "destination": "desktop/runtime/default/hypr/toggles.lua",
+          "adapted_sha256": "bee51a64dd0eb8a6f3d716fa4f77d1f04b0b1cc94fab6423404f9927919335b1"
+        },
+        {
+          "source": "default/hypr/toggles/window-no-gaps.lua",
+          "source_sha256": "22d43e72bf5b38e64b82409961c292329997c314f6c8a418b10b19c2193b1dc8",
+          "destination": "desktop/runtime/default/hypr/toggles/window-no-gaps.lua",
+          "adapted_sha256": "22d43e72bf5b38e64b82409961c292329997c314f6c8a418b10b19c2193b1dc8"
+        },
+        {
+          "source": "default/hypr/toggles/single-window-aspect-ratio.lua",
+          "source_sha256": "c89793cc84bcf450116fa817db4a18b6e5e026cd2e138fd7ae595d0aec34d3bd",
+          "destination": "desktop/runtime/default/hypr/toggles/single-window-aspect-ratio.lua",
+          "adapted_sha256": "c89793cc84bcf450116fa817db4a18b6e5e026cd2e138fd7ae595d0aec34d3bd"
+        },
+        {
+          "source": "default/hypr/toggles/flags.lua",
+          "source_sha256": "a6384f4531f68f2d06f5e0432bee92923e47d8aa22ad2078ef7add8e8a56b40b",
+          "destination": "desktop/runtime/default/hypr/toggles/flags.lua",
+          "adapted_sha256": "a6384f4531f68f2d06f5e0432bee92923e47d8aa22ad2078ef7add8e8a56b40b"
+        },
+        {
+          "source": "default/hypr/bindings/voxtype.lua",
+          "source_sha256": "ff39dcab7a834082abc12a5563c3b37ce434a39a1969a1ecb2f025553b69c446",
+          "destination": "desktop/runtime/default/hypr/bindings/voxtype.lua",
+          "adapted_sha256": "ff39dcab7a834082abc12a5563c3b37ce434a39a1969a1ecb2f025553b69c446"
+        },
+        {
+          "source": "default/hypr/bindings/clipboard.lua",
+          "source_sha256": "ebea72c8bdc6e1534f541095fc334d991fe5428ada75b2cf5a4b6a325093307a",
+          "destination": "desktop/runtime/default/hypr/bindings/clipboard.lua",
+          "adapted_sha256": "db0e2f535080c57ec044c015f946edabea4e681054d0f1b38e419b50dd7c54a0"
+        },
+        {
+          "source": "default/hypr/bindings/tiling.lua",
+          "source_sha256": "9d6e1ea74415c9586c08e7c5b5b4e6f80fa6f84cc8790ec0392368c7e1ea1503",
+          "destination": "desktop/runtime/default/hypr/bindings/tiling.lua",
+          "adapted_sha256": "5361ccc939148430de2bcb25e5d3069ad26e7b5b3cada1bb08008b298e690068"
+        },
+        {
+          "source": "default/hypr/bindings/utilities.lua",
+          "source_sha256": "9afaf666cc70c714fcbc6290140199baad7d26fae2ceec74a9b15d6cf5b3f6ec",
+          "destination": "desktop/runtime/default/hypr/bindings/utilities.lua",
+          "adapted_sha256": "9f898bc4ca50708b0739300e1fb951461020b6222de128479c7cd91ed27eaf9e"
+        },
+        {
+          "source": "default/hypr/bindings/applications.lua",
+          "source_sha256": "6ef93bfe3df6f3b93379e0b194f3ec925cd84cfdb30115c6ece18198f21e0e3e",
+          "destination": "desktop/runtime/default/hypr/bindings/applications.lua",
+          "adapted_sha256": "c2bf42764bb154e3c0628560126dda5cce1882857e2efae3c748b0b84fa1e94e"
+        },
+        {
+          "source": "default/hypr/bindings/media.lua",
+          "source_sha256": "956980e5bc440e51d305f0e40cdee7f791eff6d4692f866b70275036ff82d2c1",
+          "destination": "desktop/runtime/default/hypr/bindings/media.lua",
+          "adapted_sha256": "d453a79f7f59e7c58a791777fb97d51b73f34ffeeb1bba5c8367473382148a78"
+        },
+        {
+          "source": "default/hypr/apps/qemu.lua",
+          "source_sha256": "e0e16b63f9fdd5144de5200a5f852d51b7295b54a9f373bc2e4eb57ea8a618f7",
+          "destination": "desktop/runtime/default/hypr/apps/qemu.lua",
+          "adapted_sha256": "e0e16b63f9fdd5144de5200a5f852d51b7295b54a9f373bc2e4eb57ea8a618f7"
+        },
+        {
+          "source": "default/hypr/apps/telegram.lua",
+          "source_sha256": "7b7cb0be84a5b73b31c6e1004d5082c6ed5e91d3ae74931cf45b13731e4fa698",
+          "destination": "desktop/runtime/default/hypr/apps/telegram.lua",
+          "adapted_sha256": "7b7cb0be84a5b73b31c6e1004d5082c6ed5e91d3ae74931cf45b13731e4fa698"
+        },
+        {
+          "source": "default/hypr/apps/screenshot-selection.lua",
+          "source_sha256": "80f7ee0972520dd3b318d89eba55f9bdd727c852d4ba0d524a8524def3c6bbcc",
+          "destination": "desktop/runtime/default/hypr/apps/screenshot-selection.lua",
+          "adapted_sha256": "80f7ee0972520dd3b318d89eba55f9bdd727c852d4ba0d524a8524def3c6bbcc"
+        },
+        {
+          "source": "default/hypr/apps/moonlight.lua",
+          "source_sha256": "459cbba410e8d3498a1b9e68a779f036f6c39783e7f9dd4f456574abe4de6cae",
+          "destination": "desktop/runtime/default/hypr/apps/moonlight.lua",
+          "adapted_sha256": "459cbba410e8d3498a1b9e68a779f036f6c39783e7f9dd4f456574abe4de6cae"
+        },
+        {
+          "source": "default/hypr/apps/battlenet.lua",
+          "source_sha256": "00b2868e563b8a18311d35295b3c8c70dacd76f338b0401dcd08350540536b1e",
+          "destination": "desktop/runtime/default/hypr/apps/battlenet.lua",
+          "adapted_sha256": "00b2868e563b8a18311d35295b3c8c70dacd76f338b0401dcd08350540536b1e"
+        },
+        {
+          "source": "default/hypr/apps/retroarch.lua",
+          "source_sha256": "fb6601901ea568c3dee927086071ed0d83f1625944f0390032ff908ccf7552e4",
+          "destination": "desktop/runtime/default/hypr/apps/retroarch.lua",
+          "adapted_sha256": "fb6601901ea568c3dee927086071ed0d83f1625944f0390032ff908ccf7552e4"
+        },
+        {
+          "source": "default/hypr/apps/localsend.lua",
+          "source_sha256": "f57d555ede334e6a170f073cf9de3d6c63a3c590cc2104eda16b286145c505fc",
+          "destination": "desktop/runtime/default/hypr/apps/localsend.lua",
+          "adapted_sha256": "f57d555ede334e6a170f073cf9de3d6c63a3c590cc2104eda16b286145c505fc"
+        },
+        {
+          "source": "default/hypr/apps/1password.lua",
+          "source_sha256": "66eee95d7193e80bdfa50b633e130449a9ed2c1908f68e4c0be755a085d07031",
+          "destination": "desktop/runtime/default/hypr/apps/1password.lua",
+          "adapted_sha256": "66eee95d7193e80bdfa50b633e130449a9ed2c1908f68e4c0be755a085d07031"
+        },
+        {
+          "source": "default/hypr/apps/steam.lua",
+          "source_sha256": "e0bb890ad2828ca2006e7a803ca01301094f90f18882598f5dc5fd2f55f62151",
+          "destination": "desktop/runtime/default/hypr/apps/steam.lua",
+          "adapted_sha256": "e0bb890ad2828ca2006e7a803ca01301094f90f18882598f5dc5fd2f55f62151"
+        },
+        {
+          "source": "default/hypr/apps/system.lua",
+          "source_sha256": "dc8e14229ed0db96054bc227b949e17552db23e91f8da6430f81264dbf014cb4",
+          "destination": "desktop/runtime/default/hypr/apps/system.lua",
+          "adapted_sha256": "5d270bc0a83c58b34d4d5c60e5554d66410b43bb61664b66ae2920d745f66f27"
+        },
+        {
+          "source": "default/hypr/apps/windows-vm.lua",
+          "source_sha256": "36cfe35dc090100b8e58416881b8b5ad72e70cab760f4a1de25686d2deb173ad",
+          "destination": "desktop/runtime/default/hypr/apps/windows-vm.lua",
+          "adapted_sha256": "7b9f174e17cc70bdcd3583e5c4c8ebcb7e0ecbcb2789dbb6a0316852efe3d19b"
+        },
+        {
+          "source": "default/hypr/apps/jetbrains.lua",
+          "source_sha256": "f18d1eefdf07802caf8fc261d0d9a2230598885481f7683e94fcfa10a76fd3c2",
+          "destination": "desktop/runtime/default/hypr/apps/jetbrains.lua",
+          "adapted_sha256": "3387e80d52cfa70061c824643612e54cbd3044cfe02597d5f61945acc9311f4a"
+        },
+        {
+          "source": "default/hypr/apps/geforce.lua",
+          "source_sha256": "d9eebb75de9898a71bdcaeba09b2dcd1e81bd0eba1eccb9c28f562704d81bffd",
+          "destination": "desktop/runtime/default/hypr/apps/geforce.lua",
+          "adapted_sha256": "d9eebb75de9898a71bdcaeba09b2dcd1e81bd0eba1eccb9c28f562704d81bffd"
+        },
+        {
+          "source": "default/hypr/apps/webcam-overlay.lua",
+          "source_sha256": "451b88808740c9d2e151a57ac0d256c0965c0c48045bd8a7544cb1f192060b1e",
+          "destination": "desktop/runtime/default/hypr/apps/webcam-overlay.lua",
+          "adapted_sha256": "451b88808740c9d2e151a57ac0d256c0965c0c48045bd8a7544cb1f192060b1e"
+        },
+        {
+          "source": "default/hypr/apps/hermes.lua",
+          "source_sha256": "9d796ac3bc8be34cedeca096434f00bf4ed6d82bcc04486f24fbef289523a67f",
+          "destination": "desktop/runtime/default/hypr/apps/hermes.lua",
+          "adapted_sha256": "9d796ac3bc8be34cedeca096434f00bf4ed6d82bcc04486f24fbef289523a67f"
+        },
+        {
+          "source": "default/hypr/apps/browser.lua",
+          "source_sha256": "8f3e1e43b4b567a241f22bdae4b481dc3273b18f79e0b04dfd9910e7c86c25ea",
+          "destination": "desktop/runtime/default/hypr/apps/browser.lua",
+          "adapted_sha256": "8f3e1e43b4b567a241f22bdae4b481dc3273b18f79e0b04dfd9910e7c86c25ea"
+        },
+        {
+          "source": "default/hypr/apps/terminals.lua",
+          "source_sha256": "442215b0be3afbd0637b6b981c425480bac66aae5e9aa67cfb338f527692e377",
+          "destination": "desktop/runtime/default/hypr/apps/terminals.lua",
+          "adapted_sha256": "99b0d22d6e928a986d8233e7030e9b934aedcc2f731fab6539b9df096001e43e"
+        },
+        {
+          "source": "default/hypr/apps/pip.lua",
+          "source_sha256": "35cbbbc740da2044c2bd1602151d458dbee44f183c947fa48d3d71d3301f73c8",
+          "destination": "desktop/runtime/default/hypr/apps/pip.lua",
+          "adapted_sha256": "35cbbbc740da2044c2bd1602151d458dbee44f183c947fa48d3d71d3301f73c8"
+        },
+        {
+          "source": "default/hypr/apps/davinci-resolve.lua",
+          "source_sha256": "20fba9fa40d97f8727fdee9342fc74749d907c758b63a4b67c89edf1fccf09d8",
+          "destination": "desktop/runtime/default/hypr/apps/davinci-resolve.lua",
+          "adapted_sha256": "20fba9fa40d97f8727fdee9342fc74749d907c758b63a4b67c89edf1fccf09d8"
+        },
+        {
+          "source": "default/hypr/apps/bitwarden.lua",
+          "source_sha256": "b71797223402dae350c1257e9fb19ad6badbbc3c20056dc54421b15f4ae3f9e3",
+          "destination": "desktop/runtime/default/hypr/apps/bitwarden.lua",
+          "adapted_sha256": "b71797223402dae350c1257e9fb19ad6badbbc3c20056dc54421b15f4ae3f9e3"
+        },
+        {
+          "source": "default/hypr/apps/omarchy-shell.lua",
+          "source_sha256": "3f149996711cf60f94138c4ef3a66285be4e46b272adf514a006cbed95685d06",
+          "destination": "desktop/runtime/default/hypr/apps/stratagem-shell.lua",
+          "adapted_sha256": "07d7a8e0e1ddd0ac9812b7210bc57b8f3e56af5763372fcf5e902085089897e4"
+        },
+        {
+          "source": "config/hypr/autostart.lua",
+          "source_sha256": "907eddc68deabc3ecb5c3337bf76ebb90a7603052e203ac35e50235348a5b65d",
+          "destination": "desktop/runtime/config/hypr/autostart.lua",
+          "adapted_sha256": "907eddc68deabc3ecb5c3337bf76ebb90a7603052e203ac35e50235348a5b65d"
+        },
+        {
+          "source": "config/hypr/hyprsunset.conf",
+          "source_sha256": "8674c758b41d2308fd194e08b81957e89ce16ba1839087b9ce4eda5149026e3c",
+          "destination": "desktop/runtime/config/hypr/hyprsunset.conf",
+          "adapted_sha256": "8674c758b41d2308fd194e08b81957e89ce16ba1839087b9ce4eda5149026e3c"
+        },
+        {
+          "source": "config/hypr/hyprland.lua",
+          "source_sha256": "39974ad22f150e7b47f407a808ed60299dbec53a80f7908425e5b153ace3fe8d",
+          "destination": "desktop/runtime/config/hypr/hyprland.lua",
+          "adapted_sha256": "ee6b6136339b53b902ae4720d962f4d11e7f582299bb81ff71aa81427b0e151a"
+        },
+        {
+          "source": "config/hypr/monitors.lua",
+          "source_sha256": "19ca76a4cc211eb99584431da1f0a243c17077559763ae1708ce6c1824019fdc",
+          "destination": "desktop/runtime/config/hypr/monitors.lua",
+          "adapted_sha256": "4642ffa3b59bc6fe69530390688dbf77502a041ba1bd6e6bf9d1bbcce5f82b9f"
+        },
+        {
+          "source": "config/hypr/bindings.lua",
+          "source_sha256": "b7ef36b9edbf91abd6935283498d458f577e28457b56fb54078fe2ecf20dfc5d",
+          "destination": "desktop/runtime/config/hypr/bindings.lua",
+          "adapted_sha256": "c6edcd25ef7a77d25904ed14798c9a9082b7bad289071260ad95c023ea371fed"
+        },
+        {
+          "source": "config/hypr/looknfeel.lua",
+          "source_sha256": "48f0e9b8248c8f19a1cc6c212e22279cb7fa55f4a88e4dcbb6ebd90f613b5ea6",
+          "destination": "desktop/runtime/config/hypr/looknfeel.lua",
+          "adapted_sha256": "361b4583cc74707e1dccc41c5e3f000fec361038d82270cad52f0d4a827e58b9"
+        },
+        {
+          "source": "config/hypr/.luarc.json",
+          "source_sha256": "b43ec8c97504a15e5df594dbb0a833b94c2a5270320c75ece5644db91585d9d6",
+          "destination": "desktop/runtime/config/hypr/.luarc.json",
+          "adapted_sha256": "b43ec8c97504a15e5df594dbb0a833b94c2a5270320c75ece5644db91585d9d6"
+        },
+        {
+          "source": "config/hypr/xdph.conf",
+          "source_sha256": "2fded88a27b89f33cbc2b64a1258117df74b591f39a84c78ec3504a7d3b09136",
+          "destination": "desktop/runtime/config/hypr/xdph.conf",
+          "adapted_sha256": "2fded88a27b89f33cbc2b64a1258117df74b591f39a84c78ec3504a7d3b09136"
+        },
+        {
+          "source": "config/hypr/input.lua",
+          "source_sha256": "db8a6afa8af4bd44024df415050b7841f8beffa95c7585d3ca9284ff95436076",
+          "destination": "desktop/runtime/config/hypr/input.lua",
+          "adapted_sha256": "bdafe5586f33b982d8c42bef20fda58cea24f3e8d5e79861042773f1252d607e"
+        },
+        {
+          "source": "default/themed/hermes.yaml.tpl",
+          "source_sha256": "2f8a06b5c09d72a0bd7ab3a1944071ae9d6b6330bc14695c697cb110aa5835d7",
+          "destination": "desktop/runtime/default/themed/hermes.yaml.tpl",
+          "adapted_sha256": "5b7fdfccc425e24b425f92a94cf06e358bbd00f790b5750dd6f2a69393ab2d15"
+        },
+        {
+          "source": "default/themed/keyboard.rgb.tpl",
+          "source_sha256": "bdb8c6d3fe4df7498bd3e1888347383f490612ba05402d20e0546933fe58f4fd",
+          "destination": "desktop/runtime/default/themed/keyboard.rgb.tpl",
+          "adapted_sha256": "bdb8c6d3fe4df7498bd3e1888347383f490612ba05402d20e0546933fe58f4fd"
+        },
+        {
+          "source": "default/themed/chromium.theme.tpl",
+          "source_sha256": "69ce7344bb3e9b98b589e2a5afe9ed678a5829b95214e49ca89784629e06d672",
+          "destination": "desktop/runtime/default/themed/chromium.theme.tpl",
+          "adapted_sha256": "69ce7344bb3e9b98b589e2a5afe9ed678a5829b95214e49ca89784629e06d672"
+        },
+        {
+          "source": "default/themed/kitty.conf.tpl",
+          "source_sha256": "0570fcafb47cb81b9265bf3faaef028acd0b9aa8b50fc24e3d1b48127fab82a2",
+          "destination": "desktop/runtime/default/themed/kitty.conf.tpl",
+          "adapted_sha256": "0570fcafb47cb81b9265bf3faaef028acd0b9aa8b50fc24e3d1b48127fab82a2"
+        },
+        {
+          "source": "default/themed/alacritty.toml.tpl",
+          "source_sha256": "02489f97737108e8a19d4c04d8251c8f3ee0bc896dbf0660b6ecaded91a61ade",
+          "destination": "desktop/runtime/default/themed/alacritty.toml.tpl",
+          "adapted_sha256": "02489f97737108e8a19d4c04d8251c8f3ee0bc896dbf0660b6ecaded91a61ade"
+        },
+        {
+          "source": "default/themed/obsidian.css.tpl",
+          "source_sha256": "bd5813990f3dbbacd27800a0d69a512cebd28b26c98cf07c6ad3ea08a20322c2",
+          "destination": "desktop/runtime/default/themed/obsidian.css.tpl",
+          "adapted_sha256": "3243682c66e21ab74989948fcdac2e39e4a58b5eae59d25aa6405615bfc651b2"
+        },
+        {
+          "source": "default/themed/shell.toml.tpl",
+          "source_sha256": "bdc8e76a5a9a700adaca0d2fa44a2a340584892fd507e3fcbd4f9a4843765242",
+          "destination": "desktop/runtime/default/themed/shell.toml.tpl",
+          "adapted_sha256": "d227b03c285fb8d498bc5f1172aff2c8f91877974f50453bd93cc305635a9456"
+        },
+        {
+          "source": "default/themed/neovim.lua.tpl",
+          "source_sha256": "5391f827d5acd079658a19e2225d8c2a8509bc487cbdaec8b18cd0c5547bfe70",
+          "destination": "desktop/runtime/default/themed/neovim.lua.tpl",
+          "adapted_sha256": "5391f827d5acd079658a19e2225d8c2a8509bc487cbdaec8b18cd0c5547bfe70"
+        },
+        {
+          "source": "default/themed/helix.toml.tpl",
+          "source_sha256": "232ec1e0f753631d82f87c3b424c2e2092c2afefaf845c1566cd0ff97a1370d6",
+          "destination": "desktop/runtime/default/themed/helix.toml.tpl",
+          "adapted_sha256": "167f7284f33780fdd84819a771038060989397ebc8c4076027b6537f7159d144"
+        },
+        {
+          "source": "default/themed/hyprland-preview-share-picker.css.tpl",
+          "source_sha256": "a478f96f9e6b2504aa44c61349e8fc7941a2943616fb53c61cba8e2986c6ee58",
+          "destination": "desktop/runtime/default/themed/hyprland-preview-share-picker.css.tpl",
+          "adapted_sha256": "a478f96f9e6b2504aa44c61349e8fc7941a2943616fb53c61cba8e2986c6ee58"
+        },
+        {
+          "source": "default/themed/hyprland.lua.tpl",
+          "source_sha256": "dbe746fa74cfdc9a136806852fcb0bb66189426f8f5400b7e8324fbef3887deb",
+          "destination": "desktop/runtime/default/themed/hyprland.lua.tpl",
+          "adapted_sha256": "dbe746fa74cfdc9a136806852fcb0bb66189426f8f5400b7e8324fbef3887deb"
+        },
+        {
+          "source": "default/themed/claude.json.tpl",
+          "source_sha256": "ed4da8adb897511b349466fec31910de744e1ca5927ab11fdba3cfcbb4827e94",
+          "destination": "desktop/runtime/default/themed/claude.json.tpl",
+          "adapted_sha256": "7bcbe9ca7f4d0646dd212ece9be04002dcd9adfc2a831c648fadd80987027120"
+        },
+        {
+          "source": "default/themed/ghostty.conf.tpl",
+          "source_sha256": "8f56c275227a6075f65dafc3040d2f2829b8fb413451c709a9f29f32a795e1b0",
+          "destination": "desktop/runtime/default/themed/ghostty.conf.tpl",
+          "adapted_sha256": "8f56c275227a6075f65dafc3040d2f2829b8fb413451c709a9f29f32a795e1b0"
+        },
+        {
+          "source": "default/themed/vscode-theme.json.tpl",
+          "source_sha256": "1f7adc46e2aca21cb293da0c1c73dd947903048408bb9c5a5208ac4a56cb2cbb",
+          "destination": "desktop/runtime/default/themed/vscode-theme.json.tpl",
+          "adapted_sha256": "1c2fd45df3d35216d2424f6bcd9f63f94a2528d20dfccf025706639f95181db5"
+        },
+        {
+          "source": "default/themed/gum_env.lua.tpl",
+          "source_sha256": "c6b1ed256357cd0a9bb4ec9937306deb936116781967c828a67ef63069754dc8",
+          "destination": "desktop/runtime/default/themed/gum_env.lua.tpl",
+          "adapted_sha256": "c6b1ed256357cd0a9bb4ec9937306deb936116781967c828a67ef63069754dc8"
+        },
+        {
+          "source": "default/themed/pi.json.tpl",
+          "source_sha256": "1f1aaf1334c29190a3f9bf6ec345e67795b80ba2826f435f09be8dd8d5484c86",
+          "destination": "desktop/runtime/default/themed/pi.json.tpl",
+          "adapted_sha256": "b2baeea0f8213e95320476aad1b0ee13385d669ce15e435012c26907cfd5d793"
+        },
+        {
+          "source": "default/themed/btop.theme.tpl",
+          "source_sha256": "88b5057821b674caa8d89a27a6ac912681633b22619927486a76f6ad8a3183a0",
+          "destination": "desktop/runtime/default/themed/btop.theme.tpl",
+          "adapted_sha256": "88b5057821b674caa8d89a27a6ac912681633b22619927486a76f6ad8a3183a0"
+        },
+        {
+          "source": "default/themed/foot.ini.tpl",
+          "source_sha256": "0c719c4efc4e640bc4cb776fc704510f2c0087b45becba083b8eac5b8a43de74",
+          "destination": "desktop/runtime/default/themed/foot.ini.tpl",
+          "adapted_sha256": "0c719c4efc4e640bc4cb776fc704510f2c0087b45becba083b8eac5b8a43de74"
+        },
+        {
+          "source": "default/themed/t3code.json.tpl",
+          "source_sha256": "c68316b0a3d59c8285d51e1420133d935a3aad87becc81e9dfc27bc5dfee0938",
+          "destination": "desktop/runtime/default/themed/t3code.json.tpl",
+          "adapted_sha256": "bee92ef5d009c854154f4574d0c6980a47183c59b8f7e5b0367059594ee1bc1a"
+        },
+        {
+          "source": "bin/omarchy-hyprland-window-close-all",
+          "source_sha256": "697c225a76e61b5312e7d9eb349f01a6f15b6b3493614031ad873cb5fbf5c7d5",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-window-close-all",
+          "adapted_sha256": "44b4ebee8bf3e361219726b2954349a8b7e86196130b1fd6b5783ac8699cbd44"
+        },
+        {
+          "source": "bin/omarchy-audio-input-set-default",
+          "source_sha256": "b5af70650e5f4d50918340c1fa9931300ed1334b5389b1f4e7af4eceeaa6d5de",
+          "destination": "desktop/runtime/bin/stratagem-audio-input-set-default",
+          "adapted_sha256": "51fd6575ddee8c07a55d968db410289264ee47aa5172080a0fa10146bdd59e25"
+        },
+        {
+          "source": "bin/omarchy-shell-config",
+          "source_sha256": "7e8ec1ed47c28ac44a7622765caada68f3531688cbdac366127841f49e17b3b1",
+          "destination": "desktop/runtime/bin/stratagem-shell-config",
+          "adapted_sha256": "e90004ae165c4b45be80e38f3ab16bdcf5e10c7f2c36cf758e0e30246a031142"
+        },
+        {
+          "source": "bin/omarchy-hyprland-monitor-watch",
+          "source_sha256": "124c14fbc0285cf195e529d7cdee6f90baeec2c9a1421f9b9a3cec933024eced",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-monitor-watch",
+          "adapted_sha256": "64f9903cc1d57d835e07727ae5a2452be48d78a32c4c2995e5ef245c063848c1"
+        },
+        {
+          "source": "bin/omarchy-audio-source-switch",
+          "source_sha256": "b60c7c4de324a65f6417a6c775955a2331161a2b6f20f9dd1c0484e38fee20e6",
+          "destination": "desktop/runtime/bin/stratagem-audio-source-switch",
+          "adapted_sha256": "6302f01c1f8d4dda5ae7459392cfc9bc3e0a1b2abe5178475e8b04745bebeb22"
+        },
+        {
+          "source": "bin/omarchy-hyprland-reload-guard",
+          "source_sha256": "d2f830bf0dc0d27b275524f98748dee9363dcb5d12182fd9d82a5988aece35fe",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-reload-guard",
+          "adapted_sha256": "ddf202d725c59100b82ffe732888fae70a04a835cf2d6ad0fd2631059eeb9ed7"
+        },
+        {
+          "source": "bin/omarchy-cmd-present",
+          "source_sha256": "cb9ba1b2bc9c72902be150dad21b16823c8ea9356968c8444681ef545c306684",
+          "destination": "desktop/runtime/bin/stratagem-cmd-present",
+          "adapted_sha256": "d9e6feb105128fd9b5b79deade414add5883e42a03fb8569150dee2106cb6b11"
+        },
+        {
+          "source": "bin/omarchy-hyprland-monitor-modeless",
+          "source_sha256": "81e5c83170ebc87a1e6af2974168c3e463a6fba096023dfc85164101089577d8",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-monitor-modeless",
+          "adapted_sha256": "19c3c53fb521a2773e9e2ad4f73a5f49cf454897ee8ebc1d3f7e3371f4050d0c"
+        },
+        {
+          "source": "bin/omarchy-network-status",
+          "source_sha256": "edb1e1d8ce3e3afbd1d086c1064bff1c6fb0f38e5ba147cdea3aeae0e263773a",
+          "destination": "desktop/runtime/bin/stratagem-network-status",
+          "adapted_sha256": "8554f27f12f3a4f86e36a44a9c77de81173ca7709f93e59be7b617a24c32066b"
+        },
+        {
+          "source": "bin/omarchy-battery-present",
+          "source_sha256": "562f5b5fbf117af2f6f90c698304b4feb1c185b02836eaeae2878ab361c39aeb",
+          "destination": "desktop/runtime/bin/stratagem-battery-present",
+          "adapted_sha256": "938a8b3a712898fd12bc11e4ec82f0aa615417d800e0f68729c582887539e299"
+        },
+        {
+          "source": "bin/omarchy-hyprland-monitor-focused-apple",
+          "source_sha256": "7d513a2b931b2e806f916ba9fca22e5b094725bb2e915979ada28d078c561810",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-monitor-focused-apple",
+          "adapted_sha256": "52c113e6597d63ca944a158e03cf2ac3623994af514f688ccf80408ff490fc0d"
+        },
+        {
+          "source": "bin/omarchy-launch-shell",
+          "source_sha256": "484f3af00ee3d13b8f4e33b118d9b7355c72d254a631fc740a160f5f1d140cff",
+          "destination": "desktop/runtime/bin/stratagem-launch-shell",
+          "adapted_sha256": "7fa430995d4c2d6a503f039ce26a7ed359ac03c520b9a48eafa6bcbb4f49e8d9"
+        },
+        {
+          "source": "bin/omarchy-powerprofiles-set",
+          "source_sha256": "4595bb75e4000e2fc01bd3c7f1e578d07aecfa54e9dcd4e2d32d653c35bc66a9",
+          "destination": "desktop/runtime/bin/stratagem-powerprofiles-set",
+          "adapted_sha256": "fbe46ecd79ec59bea034b7305243912d34fb1eb2f6d5b321b11bed938bbf965d"
+        },
+        {
+          "source": "bin/omarchy-hyprland-monitor-internal",
+          "source_sha256": "0fba8795295803be87bea919ba4c92f35ecb60b65d4a4880d675a9d7f9d3efad",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-monitor-internal",
+          "adapted_sha256": "08fa83a680d59956bc2d7a7a1701ea01161d6ce93e7953528e4f2b7064830ac0"
+        },
+        {
+          "source": "bin/omarchy-hyprland-monitor-external-active",
+          "source_sha256": "3ccc2ec167eff8122163cd809393527c5491b925195b08e075381b389b946456",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-monitor-external-active",
+          "adapted_sha256": "a71a9c16c2fe7736a555739fc7f4911e3951209ceac7b718d59e0e52ecb87e31"
+        },
+        {
+          "source": "bin/omarchy-hyprland-window-gaps-toggle",
+          "source_sha256": "3f880af65a33717a0fa39b6a24c7642cc203c807f28c6e7bd21c508a57dd0699",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-window-gaps-toggle",
+          "adapted_sha256": "66a88c00607f56d9ef33c53bf7d4c23db806d43f1dc6ccd60314a3baeadfcd94"
+        },
+        {
+          "source": "bin/omarchy-hyprland-monitor-internal-mirror",
+          "source_sha256": "d32f6e08fa03d7b1adf1e36e1e3ff9ff366be82707c4d845fbea5e52524911bf",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-monitor-internal-mirror",
+          "adapted_sha256": "91e44ef13fc81cac73c2f189f1ce3269be78466930fe7e1eb1aea617ea71f487"
+        },
+        {
+          "source": "bin/omarchy-powerprofiles-list",
+          "source_sha256": "3d2e4b3d5ad974aa78c97a653d3fe937bd263063369a57f14918748502d1f609",
+          "destination": "desktop/runtime/bin/stratagem-powerprofiles-list",
+          "adapted_sha256": "e94e6d20f80c763876dde405c21febedb682c97eac77f92f41100cc9e76ae592"
+        },
+        {
+          "source": "bin/omarchy-cmd-missing",
+          "source_sha256": "791f70dda4f3b27da47cdfb5d684dadaa1b79b374ec4523ec1316119a6d71814",
+          "destination": "desktop/runtime/bin/stratagem-cmd-missing",
+          "adapted_sha256": "a16e98e8d415bea92605575cb7d7161511927f623c3480213c1275cd54ddc200"
+        },
+        {
+          "source": "bin/omarchy-shell",
+          "source_sha256": "538ece231aba80154c76ab48df8ab013b2f02c5171241d08bddbf08a5fe5ac34",
+          "destination": "desktop/runtime/bin/stratagem-shell",
+          "adapted_sha256": "401146f2b8eca769e65bc84844190588f36665cde2d78ce593526681a9ae58db"
+        },
+        {
+          "source": "bin/omarchy-battery-status",
+          "source_sha256": "10a6b8ea5fb9b7dc8b0d635085eb21eac3ac9cf9def349ad2824a4c6a152ccc9",
+          "destination": "desktop/runtime/bin/stratagem-battery-status",
+          "adapted_sha256": "e8cdd31c30ddad696df422717a6dea7f33783f32802bff650373727e33c77c5c"
+        },
+        {
+          "source": "bin/omarchy-hyprland-toggle-enabled",
+          "source_sha256": "9e00dfd49ffdea12c25ccd1e84654aeb168a2222bb8fb09cb38509d0d937df35",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-toggle-enabled",
+          "adapted_sha256": "14138e84f47c54401b3869129e79ac0a9e01794b0316a6f2227a9cbcf7c6c4b9"
+        },
+        {
+          "source": "bin/omarchy-hyprland-window-tiled-fullscreen-toggle",
+          "source_sha256": "b5bf5e5eab1e220b58b7c5aae0c246141b2d80837d28fdadbd47899f909285d2",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-window-tiled-fullscreen-toggle",
+          "adapted_sha256": "c8948b112583d172ed713de924b1c03c18f8510d79f3b80057024022a7d4446a"
+        },
+        {
+          "source": "bin/omarchy-hyprland-window-pop",
+          "source_sha256": "b5dfad94e9d874f244f778b56ab704ba41c7177fe375ca395d09016ea62f9628",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-window-pop",
+          "adapted_sha256": "97c015d4bbcbe4bded65cf60900988f69733ee820e818dc0511a4c26025f3ecf"
+        },
+        {
+          "source": "bin/omarchy-hyprland-monitor-focused",
+          "source_sha256": "c3f4e85b13ca93d09af97ee8470a8b45f69293ef6d6d3acf07ff13a77e158d26",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-monitor-focused",
+          "adapted_sha256": "6d454546960a4b653f6b08bb1d56e25271ef54f068703f62f82c20347c1ae956"
+        },
+        {
+          "source": "bin/omarchy-hyprland-monitor-scaling",
+          "source_sha256": "6ef14d1224da38f7a9a4780e2b1c7d049411248082f4617004f44d85273fc4b9",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-monitor-scaling",
+          "adapted_sha256": "d5175657639b9e1aa1887d0ffd801629fe39588a15348bb5787b2d96f656cf74"
+        },
+        {
+          "source": "bin/omarchy-audio-tuning",
+          "source_sha256": "dd596e3e4ef30206fb610b708face1b861bab07ca49db5da79a9dc7facbdb162",
+          "destination": "desktop/runtime/bin/stratagem-audio-tuning",
+          "adapted_sha256": "6ced8e607fdfd6bbf1ebbc7576aca4a078a574c02efaf9f62b91716096be7420"
+        },
+        {
+          "source": "bin/omarchy-hyprland-focus-app",
+          "source_sha256": "391d3f4d6b9e791265e1a64031e5a96f18bde29577fa9f09640f51c5c8c20c2c",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-focus-app",
+          "adapted_sha256": "5b56b6efa714b54c1c810f994cda206ab06c45d2e738fd193741ded5f47f4298"
+        },
+        {
+          "source": "bin/omarchy-hyprland-window-width",
+          "source_sha256": "c91911eaea1eaa25674541adb4b3e8faddd7d06b8301ff31ebe232d49de5dc77",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-window-width",
+          "adapted_sha256": "db64d5052b3ab6e755ddade71307ffe8a031b2260b2d2644ce3f73b8793f0a69"
+        },
+        {
+          "source": "bin/omarchy-audio-sink-availability",
+          "source_sha256": "313dacc8fb7c83afcd4e40da37779d6472b23d87052055b19e55af467d53e72b",
+          "destination": "desktop/runtime/bin/stratagem-audio-sink-availability",
+          "adapted_sha256": "4dbad40707b63df80e2aa2db62c896c39e6b4dfaf7ec3a489d7dadd2eef77af0"
+        },
+        {
+          "source": "bin/omarchy-hyprland-window-transparency-toggle",
+          "source_sha256": "ae950ccf958b9a3f89d2743408b0f64166f5e23a471388033c17f149a9c60216",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-window-transparency-toggle",
+          "adapted_sha256": "56304db92b2a7f89469d9d3c6b79f4d9214954b87ab4b60b27d93e6d6370f31d"
+        },
+        {
+          "source": "bin/omarchy-battery-low",
+          "source_sha256": "e00f559489418d42a94dad867f5908d363fcf68794591bd46317a1d3a9df2444",
+          "destination": "desktop/runtime/bin/stratagem-battery-low",
+          "adapted_sha256": "bde39b9d103cd0773657e6ee481a03b50b44f8e653f5ca49791340d79552e8a2"
+        },
+        {
+          "source": "bin/omarchy-audio-output-set-default",
+          "source_sha256": "8ee78da9be1a0a852f35380f311170a031b2b87f914a36bac9528a85542fba53",
+          "destination": "desktop/runtime/bin/stratagem-audio-output-set-default",
+          "adapted_sha256": "2c47b8f2b1deaaffa132d5fda13462a41acff768658538e24c7049724a79a15d"
+        },
+        {
+          "source": "bin/omarchy-audio-output-switch",
+          "source_sha256": "d696d6fc6627338453524560a80c45d00a037b0c2356e43d43673a5bcbf9d165",
+          "destination": "desktop/runtime/bin/stratagem-audio-output-switch",
+          "adapted_sha256": "990ee481a86b311adb9352f9bc47c8be597b2d29f0a61474d05acc5caee0571c"
+        },
+        {
+          "source": "bin/omarchy-cmd-terminal-cwd",
+          "source_sha256": "64ef9d88a1e462f2e44522d1e0c9c436537237de92b360892c9d4ed1e4521f0f",
+          "destination": "desktop/runtime/bin/stratagem-cmd-terminal-cwd",
+          "adapted_sha256": "58261604615eee9d1f22bee7db541e7875fea653d96518820323753e47f9b252"
+        },
+        {
+          "source": "bin/omarchy-powerprofiles-init",
+          "source_sha256": "db4246e18be79cd2a92934db11cff3e7bbf791858122dc185d19d76461a2f401",
+          "destination": "desktop/runtime/bin/stratagem-powerprofiles-init",
+          "adapted_sha256": "22394c50362148d9d993681461b8dbc8987e215f9db0e56fe58f6708f557c289"
+        },
+        {
+          "source": "bin/omarchy-hyprland-window-single-square-aspect-toggle",
+          "source_sha256": "61b4dd6c847a0259544f88cf7029604d7c6a9f55fe26089619a816b369cbac62",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-window-single-square-aspect-toggle",
+          "adapted_sha256": "97e88c65983d7505e52ab9ff5bb6ef77944408aec73a870aa47f88ea87d4aa8f"
+        },
+        {
+          "source": "bin/omarchy-hyprland-toggle",
+          "source_sha256": "32a6ea6bef5529f26f0c0ab836380e1f1ba48b6fb2cbcbea5d0a1a46d37f4f7a",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-toggle",
+          "adapted_sha256": "3ff3ee1550959966f305cea6a3ad57971b558e373ef45c44db69f47a0ff3cc08"
+        },
+        {
+          "source": "bin/omarchy-hyprland-monitor-laptop",
+          "source_sha256": "ba4cab25f4c3a6cb400a2e2efeace5374891a71c553218b126fe4ce5ad871397",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-monitor-laptop",
+          "adapted_sha256": "8b2cf386a54201b6552e7b69d2d3888cacbad33afe46652635ab5936c9c7d0fa"
+        },
+        {
+          "source": "bin/omarchy-hyprland-toggle-disabled",
+          "source_sha256": "9a8559e7d0d0643684f278b1b8def2182e79b3bf9f1929e9cd4991be6c7a60e3",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-toggle-disabled",
+          "adapted_sha256": "16918c779073096354921e1fda1a928bd493356abf326d37bb5155d021d3af44"
+        },
+        {
+          "source": "bin/omarchy-system-stats",
+          "source_sha256": "e1f1d344a83eb681986bbc8fcd577f1a9b26c426f721edfccd11811df967fca9",
+          "destination": "desktop/runtime/bin/stratagem-system-stats",
+          "adapted_sha256": "5e0d300b8c25992f3ee93e64469629a161122324f37fdfd5f2cf3a329d4399f4"
+        },
+        {
+          "source": "bin/omarchy-hyprland-workspace-layout-toggle",
+          "source_sha256": "0e35529ed0391c2a990f5cca02a4a08a6edf471ba65aa1b65c53c3eb1f28244c",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-workspace-layout-toggle",
+          "adapted_sha256": "b6fdd0b34d535663915870398eb4f897233ff718d304430d52d348e7ddbb543a"
+        },
+        {
+          "source": "bin/omarchy-audio-output-sink",
+          "source_sha256": "23c262e236aed45d2b614d5a309ed38bf42e2ec17974f91effce128085bc49a4",
+          "destination": "desktop/runtime/bin/stratagem-audio-output-sink",
+          "adapted_sha256": "cd98c04b2198f4597fdcf300d2527937d1427243fbbabd5b25523ae8ca910a79"
+        },
+        {
+          "source": "bin/omarchy-audio-input-mute",
+          "source_sha256": "6d40373cb79e6639898f125cb147700ff06bf28e74fbcf40062ea3413eea057e",
+          "destination": "desktop/runtime/bin/stratagem-audio-input-mute",
+          "adapted_sha256": "beadd0d5809f77887db9a06e4a38b21c8cf6cd065847f9f438fda2bf004d0098"
+        },
+        {
+          "source": "bin/omarchy-hyprland-monitor-clamshell",
+          "source_sha256": "00f1caf1b1be2794a4dc4405cce5758afbbaeba7d3e21eae0af344d4f05b65b7",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-monitor-clamshell",
+          "adapted_sha256": "aea05d4600ea14078f4a6a8c99dc5b6c859f65c91f8abf8c3e4e7f371e7c7e39"
+        },
+        {
+          "source": "bin/omarchy-audio-output-volume",
+          "source_sha256": "08611ec849c020625b784b360a84aed0bc43b93ba82c7f02616bf5e1917d8c80",
+          "destination": "desktop/runtime/bin/stratagem-audio-output-volume",
+          "adapted_sha256": "6733a36d1abbb4c1467902e36772813ced45ad70872b08e9c109f20586c9090d"
+        },
+        {
+          "source": "bin/omarchy-hyprland-session-locked",
+          "source_sha256": "e5004580e41475932f852d622b36ec07bfb0e98633c4d3c3055071a54d0eda07",
+          "destination": "desktop/runtime/bin/stratagem-hyprland-session-locked",
+          "adapted_sha256": "c15feff2bb4bebbb87b843ab088eb618f64f3faeed00a10ba1b585e734611914"
+        }
+      ]
+    }
+  ]
 }

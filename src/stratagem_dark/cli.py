@@ -7,6 +7,8 @@ from pathlib import Path
 import platform
 import shutil
 import sys
+import subprocess
+from .install import verify_bundle, setup_user, install_bundle
 
 from .core import Project, ValidationError, canonical
 
@@ -33,8 +35,18 @@ def host_checks():
 
 def main(argv=None, root=None):
     parser = argparse.ArgumentParser(prog='dark', description='STRATAGEM DARK developer CLI')
-    parser.add_argument('--version', action='version', version='STRATAGEM DARK 0.1.0-dev')
+    parser.add_argument('--version', action='version', version='STRATAGEM DARK 0.2.0-alpha1')
     sub = parser.add_subparsers(dest='command', required=True)
+    sub.add_parser('about', help='product and attribution')
+    setup = sub.add_parser('setup', help='seed missing desktop defaults without overwriting user files')
+    setup.add_argument('--apply', action='store_true')
+    for action in ('verify-bundle', 'install'):
+        command = sub.add_parser(action, help='verify or install an explicitly trusted offline testing bundle')
+        command.add_argument('--bundle', required=True)
+        command.add_argument('--key-fingerprint', required=True)
+        if action == 'install':
+            command.add_argument('--user', required=True)
+            command.add_argument('--apply', action='store_true')
     sub.add_parser('validate', help='validate catalog and profile graph')
     profile = sub.add_parser('profile', help='inspect profiles')
     profile.add_argument('action', choices=['list', 'show'])
@@ -55,6 +67,19 @@ def main(argv=None, root=None):
             group.add_argument('--apply', action='store_true')
     args = parser.parse_args(argv)
     try:
+        if args.command == 'about':
+            print('STRATAGEM DARK 0.2.0-alpha1\nOpen security workstation.\nDesktop derived from Omarchy (MIT), copyright David Heinemeier Hansson.\nIncludes separately licensed Arch and selected BlackArch packages.\nhttps://github.com/stratagem-group/stratagem-dark')
+            return 0
+        if args.command == 'setup':
+            print(canonical(setup_user(apply=args.apply)), end='')
+            return 0
+        if args.command == 'verify-bundle':
+            _, manifest = verify_bundle(args.bundle, args.key_fingerprint)
+            print(f"Verified STRATAGEM DARK {manifest['version']}: {len(manifest['packages'])} packages")
+            return 0
+        if args.command == 'install':
+            print(canonical(install_bundle(args.bundle, args.key_fingerprint, args.user, args.apply)), end='')
+            return 0
         if args.command == 'bootstrap' and args.apply:
             raise ValidationError('Live apply is not implemented. Use --dry-run or --stage; see docs/bootstrap.md.')
         if args.command == 'doctor':
@@ -93,6 +118,6 @@ def main(argv=None, root=None):
                 if args.command == 'bootstrap' and args.stage:
                     print(f'Staged review files: {args.stage}')
         return 0
-    except (ValidationError, OSError, json.JSONDecodeError) as error:
+    except (ValidationError, OSError, json.JSONDecodeError, subprocess.CalledProcessError, KeyError) as error:
         print(f'dark: {error}', file=sys.stderr)
         return 2

@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "idle": {
+    "screensaver": 0,
+    "lock": 0
+  },
+  "bar": {
+    "position": "top",
+    "transparent": false,
+    "centerAnchor": "stratagem.clock",
+    "layout": {
+      "left": [
+        {
+          "id": "stratagem.menu"
+        },
+        {
+          "id": "stratagem.workspaces"
+        }
+      ],
+      "center": [
+        {
+          "id": "stratagem.clock",
+          "format": "ddd dd MMM \u2022 HH:mm"
+        }
+      ],
+      "right": [
+        {
+          "id": "stratagem.network"
+        },
+        {
+          "id": "stratagem.audio"
+        },
+        {
+          "id": "stratagem.power"
+        }
+      ]
+    }
+  },
+  "plugins": [],
+  "disabledPlugins": [
+    "stratagem.active-window",
+    "stratagem.agents",
+    "stratagem.background",
+    "stratagem.battery",
+    "stratagem.bluetooth",
+    "stratagem.dev-gallery",
+    "stratagem.disk-speedtest",
+    "stratagem.dropbox",
+    "stratagem.emojis",
+    "stratagem.idle",
+    "stratagem.image-picker",
+    "stratagem.indicators",
+    "stratagem.keyboard-layout",
+    "stratagem.lock",
+    "stratagem.media",
+    "stratagem.microphone",
+    "stratagem.monitor",
+    "stratagem.nightlight",
+    "stratagem.osd",
+    "stratagem.reminders",
+    "stratagem.spacer",
+    "stratagem.speedtest",
+    "stratagem.system-update",
+    "stratagem.tailscale",
+    "stratagem.weather",
+    "stratagem.wifiqr"
+  ]
+}

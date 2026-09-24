@@ -1,0 +1,6 @@
+o.bind("XF86AudioRaiseVolume", "Volume up", "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")
+o.bind("XF86AudioLowerVolume", "Volume down", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
+o.bind("XF86AudioMute", "Mute", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
+o.bind("XF86AudioPlay", "Play or pause", "playerctl play-pause")
+o.bind("XF86MonBrightnessUp", "Brightness up", "brightnessctl set +5%")
+o.bind("XF86MonBrightnessDown", "Brightness down", "brightnessctl set 5%-")

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# stratagem:summary=Set the correct power profile on boot based on current AC/battery state.
+
+exec stratagem-powerprofiles-set autodetect

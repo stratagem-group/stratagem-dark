@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "stratagem.menu",
+  "name": "STRATAGEM DARK menu",
+  "version": "1.0.0",
+  "author": "Omarchy",
+  "description": "Quickshell-powered STRATAGEM DARK command menu",
+  "kinds": [
+    "menu",
+    "bar-widget"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "menu": "Menu.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "STRATAGEM DARK menu",
+    "description": "Launches the STRATAGEM DARK menu",
+    "category": "Compositor",
+    "allowMultiple": false
+  }
+}

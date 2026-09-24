@@ -1,0 +1,31 @@
+name: STRATAGEM DARK testing build
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Build pinned Arch packages and ISO
+        run: |
+          mkdir -p dist
+          docker run --rm --privileged -v "$PWD:/src" -e SOURCE_DATE_EPOCH="$(git show -s --format=%ct)" -e GIT_COMMIT="$GITHUB_SHA" "$(cat build-support/builder-image.txt)" bash /src/scripts/build-alpha.sh
+      - name: Boot the actual ISO in a UEFI VM
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system-x86 ovmf
+          sudo tests/vm/boot.sh dist/*.iso dist/vm-results
+      - name: Save testing artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stratagem-dark-testing-x86_64
+          path: dist/
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 14

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "stratagem.disk-speedtest",
+  "name": "Disk speed test",
+  "version": "1.0.0",
+  "author": "Omarchy",
+  "description": "Live disk write and read speed dials. Summon with: stratagem-shell shell summon stratagem.disk-speedtest",
+  "kinds": [
+    "panel"
+  ],
+  "entryPoints": {
+    "panel": "Panel.qml"
+  }
+}
