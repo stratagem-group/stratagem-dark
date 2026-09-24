@@ -77,11 +77,16 @@ cp "$work/bundle/release-key.asc" "$out/RELEASE-KEY.asc"
 repo-add --sign --key "$signer" "$work/bundle/repository/stratagem-dark.db.tar.gz" "$work/bundle/repository/"*.pkg.tar.zst
 STRATAGEM_KEEP_TEST_ROOT=1 unshare --net -- tests/integration-install.sh "$work/bundle" "$signer" "$out/install-results"
 # The optional catalog is a distinct, network-enabled user-requested path.
-# Exercise one signed installation in the disposable target; never on the host.
+# Exercise signed installations in the disposable target; never on the host.
+# Keep it a mount point so pacman CheckSpace sees the correct filesystem.
+mount --bind "$work/install-test" "$work/install-test"
+mount --make-private "$work/install-test"
 arch-chroot "$work/install-test" /usr/lib/stratagem-dark/install-optional-tool socat > "$out/install-results/optional-socat.log" 2>&1 || { cat "$out/install-results/optional-socat.log"; exit 1; }
 arch-chroot "$work/install-test" socat -V > "$out/install-results/optional-socat-version.txt"
 arch-chroot "$work/install-test" /usr/lib/stratagem-dark/install-optional-tool onesixtyone > "$out/install-results/optional-blackarch.log" 2>&1 || { cat "$out/install-results/optional-blackarch.log"; exit 1; }
 arch-chroot "$work/install-test" pacman -Q onesixtyone > "$out/install-results/optional-blackarch-version.txt"
+gpgconf --homedir "$work/install-test/etc/pacman.d/gnupg" --kill all
+umount -Rl "$work/install-test"
 rm -rf "$work/install-test"
 python scripts/assemble-iso.py "$work/bundle" "$work/profile" "$signer"
 unshare --net -- mkarchiso -v -w "$work/iso-work" -o "$out" "$work/profile"
