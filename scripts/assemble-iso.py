@@ -50,6 +50,7 @@ airootfs_image_tool_options=('-comp' 'zstd' '-Xcompression-level' '6' '-b' '1M')
 file_permissions=(
   ["/etc/shadow"]="0:0:400"
   ["/root"]="0:0:700"
+  ["/home/stratagem"]="1000:1000:750"
   ["/usr/local/bin/stratagem-vm-check"]="0:0:755"
 )
 ''')
@@ -58,6 +59,7 @@ password=subprocess.check_output(['openssl','passwd','-6','-salt','stratagem','s
 write('etc/passwd','root:x:0:0:root:/root:/bin/bash\nstratagem:x:1000:1000:STRATAGEM DARK tester:/home/stratagem:/bin/bash\n')
 write('etc/group','root:x:0:\nstratagem:x:1000:\n')
 write('etc/shadow',f'root:!*:20000:0:99999:7:::\nstratagem:{password}:20000:0:99999:7:::\n',0o400)
+(airoot/'home/stratagem').mkdir(parents=True,exist_ok=True)
 write('etc/hostname','stratagem-dark\n')
 write('etc/os-release','NAME="STRATAGEM DARK"\nPRETTY_NAME="STRATAGEM DARK 0.2.0-alpha1"\nID=stratagem-dark\nID_LIKE=arch\nVERSION_ID=0.2.0-alpha1\nHOME_URL="https://github.com/stratagem-group/stratagem-dark"\n')
 write('etc/issue','STRATAGEM DARK 0.2.0-alpha1 — testing live system\\n\\l\n')
@@ -67,7 +69,7 @@ write('etc/profile.d/stratagem-vm-rendering.sh','export AQ_ALLOW_SOFTWARE_RENDER
 write('etc/modules-load.d/stratagem-vm.conf','qemu_fw_cfg\n9p\n9pnet_virtio\n')
 write('etc/systemd/system/stratagem-vm-check.service','''[Unit]
 Description=STRATAGEM DARK explicit QEMU testing harness
-After=systemd-modules-load.service graphical.target
+After=systemd-modules-load.service sddm.service
 ConditionPathExists=/sys/firmware/qemu_fw_cfg/by_name/opt/stratagem/test/raw
 [Service]
 Type=oneshot
