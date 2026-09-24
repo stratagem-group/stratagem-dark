@@ -26,7 +26,8 @@ export STRATAGEM_DARK_PATH=/usr/share/stratagem
 export WAYLAND_DISPLAY=$(basename "$(find "$XDG_RUNTIME_DIR" -maxdepth 1 -type s -name 'wayland-*' | head -n1)")
 export HYPRLAND_INSTANCE_SIGNATURE=$(find "$XDG_RUNTIME_DIR/hypr" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | head -n1)
 runuser -u stratagem --preserve-environment -- hyprctl configerrors | tee /mnt/test-results/hyprland-errors.txt
-test ! -s /mnt/test-results/hyprland-errors.txt
+# hyprctl emits blank lines even when there are no configuration errors.
+test -z "$(tr -d '[:space:]' < /mnt/test-results/hyprland-errors.txt)"
 runuser -u stratagem --preserve-environment -- stratagem-shell shell ping | grep -qx ok
 runuser -u stratagem --preserve-environment -- foot sh -c 'printf "STRATAGEM DARK\nSecurity workstation testing session\n\n"; dark --version; printf "\nBlackArch tools:\n"; capa --version; sleep 120' &
 sleep 5
