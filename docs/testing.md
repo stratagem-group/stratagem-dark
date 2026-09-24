@@ -27,3 +27,16 @@ sequence yet. Installed-disk reboot, physical hardware, every profile combinatio
 audio/portal behavior and interrupted-transaction recovery remain separate work.
 
 The live ISO and clean-Arch bundle paths do not implement a disk-wiping installer.
+
+## Installation evidence
+
+[Testing run 36045711925](https://github.com/stratagem-group/stratagem-dark/actions/runs/36045711925)
+completed two real offline installs into a fresh disposable Arch chroot. Both package
+inventories matched (534 installed packages), the transaction reached `complete`,
+NetworkManager and SDDM were enabled, and a modified Foot configuration was preserved.
+This proves the package transaction and configuration checks, not an installed-disk reboot.
+
+The same run built the ISO and started Hyprland and Quickshell under UEFI QEMU. Its
+VM check stopped at an overly strict empty-output assertion: `hyprctl configerrors`
+returned two newline bytes. The assertion now accepts whitespace-only output while
+still failing on any reported error. Full desktop acceptance remains pending.

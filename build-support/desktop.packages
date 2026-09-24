@@ -63,3 +63,5 @@ lsof
 rsync
 openssl
 librsvg
+rtkit
+wireless-regdb

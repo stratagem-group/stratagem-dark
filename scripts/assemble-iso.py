@@ -23,7 +23,7 @@ for relative in ['etc/systemd/system/getty@tty1.service.d','etc/systemd/system/m
  if p.is_dir() and not p.is_symlink():shutil.rmtree(p)
  elif p.exists() or p.is_symlink():p.unlink()
 for p in (airoot/'etc/systemd/system').rglob('*'):
- if p.is_symlink() and any(x in p.name for x in ['reflector','sshd','cloud-init','cloud-config','cloud-final']):p.unlink()
+ if p.is_symlink() and any(x in p.name for x in ['reflector','sshd','cloud-init','cloud-config','cloud-final','ModemManager','systemd-networkd','network1']):p.unlink()
 packages=json.loads((bundle/'manifest.json').read_text())['packages']
 (profile/'packages.x86_64').write_text('\n'.join(sorted(p['name'] for p in packages))+'\n')
 # Using only the offline repository makes missing dependencies fail instead of drifting.
@@ -61,6 +61,8 @@ write('etc/group','root:x:0:\nstratagem:x:1000:\n')
 write('etc/shadow',f'root:!*:20000:0:99999:7:::\nstratagem:{password}:20000:0:99999:7:::\n',0o400)
 (airoot/'home/stratagem').mkdir(parents=True,exist_ok=True)
 write('etc/hostname','stratagem-dark\n')
+write('etc/systemd/system-preset/00-stratagem-dark.preset','disable systemd-networkd*\ndisable sshd*\ndisable iwd*\ndisable cloud-*\ndisable ModemManager*\nenable NetworkManager.service\nenable sddm.service\nenable upower.service\nenable power-profiles-daemon.service\n')
+
 write('etc/os-release','NAME="STRATAGEM DARK"\nPRETTY_NAME="STRATAGEM DARK 0.2.0-alpha1"\nID=stratagem-dark\nID_LIKE=arch\nVERSION_ID=0.2.0-alpha1\nHOME_URL="https://github.com/stratagem-group/stratagem-dark"\n')
 write('etc/issue','STRATAGEM DARK 0.2.0-alpha1 — testing live system\\n\\l\n')
 write('etc/motd','STRATAGEM DARK — testing release. Local login: stratagem / stratagem. No remote access enabled.\n')
