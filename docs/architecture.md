@@ -5,11 +5,11 @@
 ```text
 Clean Arch x86_64 (systemd, pacman, networking, normal user)
   └─ STRATAGEM DARK release manifest
-      ├─ core workstation → Hyprland + Foot + optional Quickshell surface
+      ├─ core workstation → Hyprland + Foot + adapted Omarchy Quickshell desktop
       ├─ security profiles → explicit catalog IDs → repository/package pairs
       ├─ configuration → packaged defaults + separate user overrides
-      └─ dark CLI → validate → resolve → plan → stage → [future apply]
-Later: archiso frontend → the same release manifest and bootstrap engine
+      └─ dark CLI → validate → resolve → plan / stage / signed bundle install
+Testing ISO: archiso frontend → the same signed package bundle
 ```
 
 Arch owns the kernel, init, package manager, drivers, and base lifecycle. STRATAGEM
@@ -22,18 +22,27 @@ data, never sourced as shell. Profiles form an acyclic graph. The resolver rejec
 unknown references, duplicate IDs and package targets, invalid identifiers, and
 cycles, then returns sorted unique tools. `full` is a curated union.
 
-Core has no BlackArch dependency. Arch packages are preferred where available.
-BlackArch additions are opt-in candidates: their repository, signing trust,
-license evidence, dependency closure, and artifact availability must be reviewed
-before enabling the adapter. No implicit group expansion or repository precedence.
+The core profile has no BlackArch dependency. Arch packages are preferred where
+available. Testing security selections include explicit BlackArch packages with
+verified build inputs; optional installation uses a root-owned catalog and signed
+package transactions. Catalog coverage is not a claim that every tool was tested.
 
 ## Desktop and configuration ownership
 
-Hyprland handles windows and input. Foot is the initial terminal. Quickshell is the
-intended shell layer; its current directory is a prototype contract, not a working
-panel. User home directories are never overwritten. Defaults are staged under
-`/usr/share/stratagem-dark/defaults`; a later migration engine will generate small
-user includes, save backups, and record old/new hashes before changes.
+The desktop is an Omarchy derivative: Hyprland, Foot and its adapted Quickshell
+shell are working components in the testing ISO. Preserve upstream interaction
+patterns and integrate BlackArch through profiles, discovery and agent workflows.
+Keep the local desktop changes small and attributable. Independent STRATAGEM DARK
+branding does not require independently rebuilding every settings screen.
+
+Alpha2 still diverges materially: Wi-Fi redirects into a terminal wizard, agent
+launch repeats setup, and the theme picker is absent. The source comparison and
+pending acceptance requirements are in [Desktop parity review](desktop-parity-review.md).
+This is the governing direction for the next desktop iteration, not a claim those
+gaps have already been fixed.
+
+Defaults are packaged under `/usr/share/stratagem-dark`; user setup preserves
+existing configuration. A complete migration/rollback engine remains outstanding.
 
 Prefer systemd drop-ins and supported upstream configuration interfaces. Services,
 telemetry, remote access, packet-capture capabilities, and container privileges

@@ -73,7 +73,7 @@ of the optional BlackArch adapter. No AUR helper or unverified remote script run
 [Architecture](docs/architecture.md) · [Roadmap](ROADMAP.md) ·
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) ·
 [License strategy](docs/licensing.md) · [Third-party notices](THIRD_PARTY_NOTICES.md) ·
-[Upstream audit](docs/upstream-audit.md)
+[Upstream audit](docs/upstream-audit.md) · [Desktop parity review](docs/desktop-parity-review.md)
 
 Original repository code, documentation, and artwork are MIT-licensed. Third-party
 packages retain their own licenses; referring to a package is not a redistribution
