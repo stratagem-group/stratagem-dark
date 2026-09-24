@@ -3,7 +3,7 @@
 ## 0.1 — public foundation (this scaffold)
 
 - [x] Independent identity, MIT strategy, contribution/security policies.
-- [x] Commit-pinned upstream inspection and explicit zero-import register.
+- [x] Commit-pinned upstream inspection and explicit import register.
 - [x] Validated catalog, five profiles, deterministic plan resolver.
 - [x] Unprivileged filesystem staging and CLI/installer skeleton.
 - [x] Unit/contract tests and CI; disabled ISO structure.
@@ -11,11 +11,12 @@
 
 ## 0.2 — deterministic clean Arch bootstrap (next priority)
 
-- [ ] Select and document a fixed Arch x86_64 baseline and VM image digest.
+- [x] Select and document a fixed Arch x86_64 baseline and builder image digest.
 - [ ] Review candidate package licenses and freeze a full dependency closure.
-- [ ] Signed release locks, immutable package cache, trusted key fingerprints.
+- [x] Signed testing manifests, hash-locked package bundle and explicit key fingerprints.
 - [ ] Transactional package adapter, checkpoints, failure recovery and resume.
-- [ ] Configuration conflict handling, backups and repeat-run convergence.
+- [x] Preserve existing configuration and verify repeat installation in a fresh Arch chroot.
+- [ ] Snapshot/rollback tooling and installed-disk reboot acceptance.
 - [ ] Real Hyprland/Foot session, portal/audio checks; Quickshell prototype.
 - [ ] UEFI VM install/reboot/two-run tests for every profile.
 - [ ] BlackArch adapter opt-in tests with pinned keyring and signed artifacts.
@@ -34,7 +35,7 @@ reproducible operating system.
 
 ## 0.4 — ISO, after bootstrap acceptance
 
-- [ ] Pin archiso and reuse the exact tested bootstrap manifest/engine.
+- [x] Pin archiso and reuse the signed package manifest for ISO composition.
 - [ ] Original boot branding, UEFI VM tests and live-session policy.
 - [ ] Signed ISO/checksums, source artifacts, SBOM and published build recipe.
 - [ ] Installer disk/encryption review before supporting physical installs.
