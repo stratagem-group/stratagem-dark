@@ -9,6 +9,9 @@ if [[ -z $1 ]]; then
   exit 1
 fi
 
+# This candidate keeps its independent wallpaper while palettes change.
+: "${STRATAGEM_DARK_THEME_SKIP_BACKGROUND:=1}"
+
 CURRENT_THEME_PATH="$HOME/.local/state/stratagem/current/theme"
 CURRENT_THEME_NAME_PATH="$HOME/.local/state/stratagem/current/theme.name"
 NEXT_THEME_PATH="$HOME/.local/state/stratagem/current/next-theme"

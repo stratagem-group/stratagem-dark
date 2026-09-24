@@ -1898,7 +1898,7 @@
           "source": "bin/omarchy-theme-set",
           "source_sha256": "0d06b593818bcb9196e8689838679674bda9898add783644eac27c13a6937ab3",
           "destination": "desktop/runtime/bin/stratagem-theme-set",
-          "adapted_sha256": "3e30ec573e34b4b19d2e37b3b245b43771cac55592a05bb59aa8e46161fccf6f"
+          "adapted_sha256": "97f7fef1e8a888c01312fb951313269f56e169447596270f1775dcd80114e189"
         },
         {
           "source": "themes/tokyo-night/colors.toml",
