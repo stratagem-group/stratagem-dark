@@ -33,6 +33,8 @@ arch-chroot "$target" runuser -u tester -- dark setup --apply > "$results/config
 grep -q USER_CUSTOMIZATION_TEST "$target/home/tester/.config/foot/foot.ini"
 arch-chroot "$target" systemctl is-enabled sddm.service NetworkManager.service stratagem-dark-firewall.service > "$results/services.txt"
 arch-chroot "$target" nft --check -f /usr/share/stratagem-dark/firewall.nft
+arch-chroot "$target" python /usr/lib/stratagem-dark/check-tools.py /tmp/tools.json
+cp "$target/tmp/tools.json" "$results/tools.json"
 umount "$target/bundle"
 trap - EXIT
 if [[ ${STRATAGEM_KEEP_TEST_ROOT:-0} != 1 ]]; then rm -rf "$target"; fi

@@ -83,13 +83,14 @@ def main(action, tool=None, once=False, root=None):
         if once and marker.exists(): return 0
         print('STRATAGEM DARK — Welcome\n\n'+HELP)
         selection = choose('Get started', ['Connect Wi-Fi', 'Agent workspace', 'Keyboard shortcuts', 'Finish'])
-        if selection == 'Connect Wi-Fi': subprocess.call(['nmtui'])
+        if selection == 'Connect Wi-Fi': wifi()
         elif selection == 'Agent workspace': agents()
         elif selection == 'Keyboard shortcuts': print(HELP); pause()
         if selection:
             marker.parent.mkdir(parents=True, exist_ok=True)
             marker.touch(mode=0o600)
         return 0
+    if action == 'wifi': return wifi()
     if action == 'cheatsheet': return cheatsheet(root)
     if action == 'engagement': return engagement(root)
     if action == 'agents': return agents()
@@ -215,4 +216,24 @@ def cheatsheet(root):
     # This fixed helper validates the root-owned catalog before requesting a signed package.
     code=subprocess.call(['pkexec','/usr/lib/stratagem-dark/install-optional-tool',name])
     print('Installation complete.' if code==0 else 'Installation did not complete. Review the package-manager message above.')
+    pause();return code
+
+
+
+def wifi():
+    print('Connect a private Wi-Fi profile for your user.\nSystem authentication uses your login password; the next prompt asks for the Wi-Fi password.\nOn the live test image the login password is stratagem.\n')
+    if subprocess.call(['nmcli','--ask','radio','wifi','on']) != 0:
+        pause();return 1
+    scan=subprocess.run(['nmcli','--ask','--terse','--escape','no','--fields','BSSID,SSID,SIGNAL,SECURITY','device','wifi','list'],capture_output=False,check=False)
+    if scan.returncode:pause();return scan.returncode
+    # Retrieve the cache after the interactive scan, without another authorization request.
+    result=subprocess.run(['nmcli','--terse','--escape','no','--fields','BSSID,SSID,SIGNAL,SECURITY','device','wifi','list','--rescan','no'],capture_output=True,text=True,check=True)
+    import re
+    networks={line:line[:17] for line in result.stdout.splitlines() if re.match(r'^[0-9A-Fa-f]{2}(?::[0-9A-Fa-f]{2}){5}:',line)}
+    if not networks:
+        print('No networks found. Use Help > Wi-Fi diagnostics to check firmware and radio blocks.');pause();return 1
+    selected=choose('Choose Wi-Fi: address / name / signal / security',list(networks))
+    if not selected:return 0
+    code=subprocess.call(['nmcli','--ask','device','wifi','connect',networks[selected],'private','yes'])
+    print('Connected.' if code==0 else 'Connection failed. For enterprise Wi-Fi use Advanced network settings with a user-only profile.')
     pause();return code

@@ -729,11 +729,8 @@ Panel {
   }
 
   function openPasswordPrompt(ssid) {
-    if (passwordSsid !== ssid) {
-      passwordText = ""
-      identityText = ""
-    }
-    passwordSsid = ssid
+    Quickshell.execDetached(["foot", "dark", "desktop", "wifi"])
+    root.close()
   }
 
   function networkForSsid(ssid) {
@@ -801,7 +798,8 @@ Panel {
   }
 
   function connectDirectly(ssid) {
-    runNetworkAction("connect", networkForSsid(ssid), function(network) { network.connect() })
+    Quickshell.execDetached(["foot", "dark", "desktop", "wifi"])
+    root.close()
   }
 
   function connectWithPassphrase(ssid, passphrase) {

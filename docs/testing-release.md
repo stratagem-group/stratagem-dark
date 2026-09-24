@@ -111,3 +111,12 @@ All package installation still uses the signed offline bundle.
 A VM cannot establish that the Lenovo wireless hardware works. Retest Wi-Fi on the
 Lenovo after flashing the alpha2 candidate. Direct ISO-to-disk installation and
 installed-disk reboot verification remain separate unfinished requirements.
+
+
+The alpha2 cheat sheet (Super+T) searches the full captured BlackArch package
+catalog, including dependencies, with categories and installation status. Optional
+installs authenticate through a dedicated catalog-only action and verify upstream
+package signatures. They require internet and may fail if rolling BlackArch
+requirements are incompatible with the pinned Arch base; nothing is force-installed.
+Wi-Fi setup uses authenticated per-user profiles; no general sudo or system-wide
+network configuration grant was added. Enterprise Wi-Fi remains a manual setup case.

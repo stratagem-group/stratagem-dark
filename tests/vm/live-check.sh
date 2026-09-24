@@ -91,21 +91,12 @@ python - <<'DESKTOP'
 import json,subprocess
 from pathlib import Path
 bindings=json.load(open('/mnt/test-results/bindings.json'))
-assert any(x.get('key')=='K' and 'desktop help' in x.get('arg','') for x in bindings)
-assert any(x.get('key')=='A' and 'desktop engagement' in x.get('arg','') for x in bindings)
-assert any(x.get('key')=='T' and 'desktop cheatsheet' in x.get('arg','') for x in bindings)
-commands=json.load(open('/usr/lib/stratagem-dark/catalog/launchers.json'))
-report={}
-for name,argv in commands.items():
-    if name=='wireshark':argv=['wireshark','--version']
-    result=subprocess.run(['unshare','--net','--',*argv],capture_output=True,text=True,timeout=30)
-    output=result.stdout+result.stderr
-    assert result.returncode in (0,1), (name,result.returncode,output)
-    assert len(output.strip())>0, (name,output)
-    assert not any(s in output for s in ('error while loading shared libraries','ModuleNotFoundError','Traceback (most recent call last)')), (name,output)
-    report[name]={'returncode':result.returncode,'output':output[:3000]}
-Path('/mnt/test-results/tools.json').write_text(json.dumps(report,indent=2))
+for key,description in [('K','Keyboard shortcuts'),('A','New authorized engagement'),('T','Tool cheat sheet')]:
+    matches=[x for x in bindings if x.get('key')==key and x.get('modmask')==64]
+    assert len(matches)==1 and matches[0].get('description')==description, matches
+
 DESKTOP
+python /usr/lib/stratagem-dark/check-tools.py /mnt/test-results/tools.json
 runuser -u stratagem --preserve-environment -- stratagem-shell shell summon stratagem.menu '{"menu":"apps"}'
 sleep 2
 runuser -u stratagem --preserve-environment -- grim /tmp/stratagem-apps.png

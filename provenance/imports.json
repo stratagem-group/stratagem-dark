@@ -15,7 +15,9 @@
         "Replace application bindings with shipped entry points; desktop onboarding and networking integration are Stratagem-owned.",
         "Deduplicate desktop IDs in application search; route DNS configuration to the installed NetworkManager editor.",
         "Expose read-only application inventory over existing local shell IPC for acceptance testing.",
-        "Add Super+T tool cheat sheet route to Stratagem-owned optional installer."
+        "Add Super+T tool cheat sheet route to Stratagem-owned optional installer.",
+        "Use rebind for explicit user shortcuts to prevent inherited duplicate actions; move floating toggle to Super+Shift+T.",
+        "Route new Wi-Fi connections through authenticated per-user nmcli profiles; no system-wide network privilege grant."
       ],
       "files": [
         {
@@ -922,7 +924,7 @@
           "source": "shell/plugins/panels/network/Panel.qml",
           "source_sha256": "bbe572efef6ccf876c722cbdb74491004617f9c9701c6117a9e1e42cb457e022",
           "destination": "desktop/runtime/shell/plugins/panels/network/Panel.qml",
-          "adapted_sha256": "f58ec79cca4379ad23bf9ef2dfad3bcd40ae25a8c8f16670c8bb56b4fd868837"
+          "adapted_sha256": "1562e85de9805b7290609b5a7f946fd34ce8b34ee52a1bee2ac7d9361b7f7cd3"
         },
         {
           "source": "shell/plugins/panels/disk-speedtest/manifest.json",
@@ -1246,7 +1248,7 @@
           "source": "default/hypr/bindings/tiling.lua",
           "source_sha256": "9d6e1ea74415c9586c08e7c5b5b4e6f80fa6f84cc8790ec0392368c7e1ea1503",
           "destination": "desktop/runtime/default/hypr/bindings/tiling.lua",
-          "adapted_sha256": "5361ccc939148430de2bcb25e5d3069ad26e7b5b3cada1bb08008b298e690068"
+          "adapted_sha256": "a160793f13a062aa10b3e75a46f2d78601854408c52a64a7714a25bbc274cfe1"
         },
         {
           "source": "default/hypr/bindings/utilities.lua",
@@ -1420,7 +1422,7 @@
           "source": "config/hypr/bindings.lua",
           "source_sha256": "b7ef36b9edbf91abd6935283498d458f577e28457b56fb54078fe2ecf20dfc5d",
           "destination": "desktop/runtime/config/hypr/bindings.lua",
-          "adapted_sha256": "ebe9039173268b3a4891f67ae172b9f7944e22726dd598d2e07af9a171b0a404"
+          "adapted_sha256": "3091bc194e01ca2eea89c8918ecb04aa77f1dc29ff3e04e465d6088faf3e2bef"
         },
         {
           "source": "config/hypr/looknfeel.lua",

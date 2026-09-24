@@ -22,7 +22,7 @@
   },
   "setup.network": {
     "label": "Connect Wi-Fi / network",
-    "action": "foot nmtui"
+    "action": "foot dark desktop wifi"
   },
   "setup.connections": {
     "label": "Advanced network settings",
