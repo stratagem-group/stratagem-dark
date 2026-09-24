@@ -24,7 +24,9 @@ includes capa; WhatWeb is deferred pending deterministic offline packaging. The 
 input; no strap script is executed. See the release trust documentation for limitations.
 
 CI uses pinned GitHub Actions and a pinned Arch Linux build image as external build
-dependencies. Source archives and provenance accompany testing artifacts. Broader
-license-compliance review remains required before a production distribution release.
+dependencies. The STRATAGEM DARK source checkout and import provenance accompany testing
+artifacts; this is not a complete corresponding-source archive for every package.
+Version-specific source and notice obligations must be reviewed before release
+promotion. A testing label does not waive any third-party license obligation.
 
 See [LEGAL.md](LEGAL.md) for project warranty, liability and responsible-use disclosures.
