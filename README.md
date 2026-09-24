@@ -1,11 +1,6 @@
 # STRATAGEM DARK
 
-```text
-┌────────────────────────────────────┐
-│ > STRATAGEM DARK_                  │
-│   OPEN SECURITY WORKSTATION        │
-└────────────────────────────────────┘
-```
+![STRATAGEM DARK — Open Security Workstation](branding/wordmark.svg)
 
 An independent, public open-source security workstation built on Arch Linux.
 Keyboard-first, modular, and upstream-friendly. Original terminal/CRT-inspired
