@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
 """Exercise real Gum dialogs in a controlling terminal without provider credentials."""
-import fcntl,os,pty,select,signal,struct,sys,termios,time
+import fcntl,os,pty,re,select,signal,struct,sys,termios,time
 
 def check(action, steps):
     pid,fd=pty.fork()
@@ -14,7 +14,7 @@ def check(action, steps):
         for needle,keys in steps:
             deadline=time.monotonic()+30
             current=b''
-            while needle.encode() not in current:
+            while needle.encode() not in re.sub(rb'\x1b\[[0-?]*[ -/]*[@-~]', b'', current):
                 if time.monotonic()>deadline:raise AssertionError((action,needle,current.decode(errors='replace')[-5000:]))
                 if select.select([fd],[],[],1)[0]:
                     data=os.read(fd,65536)
