@@ -43,7 +43,7 @@
     "-h"
   ],
   "httpx": [
-    "httpx",
+    "httpx-pd",
     "-h"
   ],
   "amass": [
@@ -91,7 +91,7 @@
     "-h"
   ],
   "exiftool": [
-    "exiftool",
+    "/usr/bin/vendor_perl/exiftool",
     "-ver"
   ],
   "lynis": [
