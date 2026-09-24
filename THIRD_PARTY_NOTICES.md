@@ -20,9 +20,11 @@ checksums and declared licenses. Package-provided notices stay in the live files
 
 BlackArch packages are separately licensed software; BlackArch's package repository
 COPYING is BSD-3-Clause and is not a blanket software license. The testing selection
-includes capa and WhatWeb. The BlackArch keyring is retrieved and verified as a build
+includes capa; WhatWeb is deferred pending deterministic offline packaging. The BlackArch keyring is retrieved and verified as a build
 input; no strap script is executed. See the release trust documentation for limitations.
 
 CI uses pinned GitHub Actions and a pinned Arch Linux build image as external build
 dependencies. Source archives and provenance accompany testing artifacts. Broader
 license-compliance review remains required before a production distribution release.
+
+See [LEGAL.md](LEGAL.md) for project warranty, liability and responsible-use disclosures.

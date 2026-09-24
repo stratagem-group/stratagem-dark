@@ -44,7 +44,8 @@ production credential. Root is locked, SSH is disabled and no sudo grant is adde
 - Broader vulnerability coverage for BlackArch, embedded binaries and dependencies;
   the Arch tracker alone is incomplete and may be stale.
 - Stable release-key custody, rotation/revocation and reproducible release procedure.
-- Corresponding-source/license distribution review for the complete binary bundle.
+- Qualified legal review of LEGAL.md, publisher identity and applicable jurisdictions;
+  corresponding-source/license distribution review for the complete binary bundle.
 - Installed-disk reboot, hardware, update and interrupted-transaction recovery tests.
 - Independent reviewer designation and organization/account access/2FA review.
 
