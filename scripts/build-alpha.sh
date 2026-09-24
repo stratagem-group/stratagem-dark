@@ -71,7 +71,12 @@ gpg --batch --yes --armor --detach-sign "$work/bundle/manifest.json"
 cp "$work/bundle/release-key.asc" "$out/RELEASE-KEY.asc"
 # Local repository retains verified upstream package signatures; database gets our test signature.
 repo-add --sign --key "$signer" "$work/bundle/repository/stratagem-dark.db.tar.gz" "$work/bundle/repository/"*.pkg.tar.zst
-unshare --net -- tests/integration-install.sh "$work/bundle" "$signer" "$out/install-results"
+STRATAGEM_KEEP_TEST_ROOT=1 unshare --net -- tests/integration-install.sh "$work/bundle" "$signer" "$out/install-results"
+# The optional catalog is a distinct, network-enabled user-requested path.
+# Exercise one signed installation in the disposable target; never on the host.
+arch-chroot "$work/install-test" /usr/lib/stratagem-dark/install-optional-tool socat > "$out/install-results/optional-socat.log" 2>&1 || { cat "$out/install-results/optional-socat.log"; exit 1; }
+arch-chroot "$work/install-test" socat -V > "$out/install-results/optional-socat-version.txt"
+rm -rf "$work/install-test"
 python scripts/assemble-iso.py "$work/bundle" "$work/profile" "$signer"
 unshare --net -- mkarchiso -v -w "$work/iso-work" -o "$out" "$work/profile"
 # Bundle repository index was generated after the manifest: not part of the installer trust contract.

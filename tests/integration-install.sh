@@ -35,5 +35,5 @@ arch-chroot "$target" systemctl is-enabled sddm.service NetworkManager.service s
 arch-chroot "$target" nft --check -f /usr/share/stratagem-dark/firewall.nft
 umount "$target/bundle"
 trap - EXIT
-rm -rf "$target"
+if [[ ${STRATAGEM_KEEP_TEST_ROOT:-0} != 1 ]]; then rm -rf "$target"; fi
 printf '%s\n' 'STRATAGEM DARK: offline install, repeat install, and user-config preservation passed.' | tee "$results/result.txt"

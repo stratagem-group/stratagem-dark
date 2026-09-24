@@ -11,6 +11,7 @@ HELP = '''STRATAGEM DARK shortcuts
 Super+Enter       Terminal
 Super+Space       Main menu
 Super+K           Keyboard shortcuts
+Super+T           Tool cheat sheet / install
 Super+A           New authorized engagement
 Super+Shift+A     Agent workspace
 Super+B           Browser
@@ -89,6 +90,7 @@ def main(action, tool=None, once=False, root=None):
             marker.parent.mkdir(parents=True, exist_ok=True)
             marker.touch(mode=0o600)
         return 0
+    if action == 'cheatsheet': return cheatsheet(root)
     if action == 'engagement': return engagement(root)
     if action == 'agents': return agents()
     if action == 'tool':
@@ -171,3 +173,28 @@ def describe_bindings(bindings):
         description = binding.get('description') or binding.get('dispatcher', '')
         lines.add('+'.join(keys)+' — '+description)
     return sorted(lines)
+
+
+
+def cheatsheet(root):
+    launchers=json.loads((root/'catalog/launchers.json').read_text())
+    extras=json.loads((root/'catalog/optional-tools.json').read_text())
+    metadata={t['id']:t['description'] for t in json.loads((root/'catalog/tools.json').read_text())['tools']}
+    options={}
+    for name,argv in launchers.items():
+        if shutil.which(argv[0]):
+            options[f"[Installed] {name} — {metadata.get(name, 'Open tool help')}"]=('open',name)
+    for name,tool in extras.items():
+        installed=subprocess.run(['pacman','-Q',tool['package']],capture_output=True).returncode==0
+        state='Installed' if installed else 'Install'
+        options[f"[{state}] {name} — {tool['description']}"]=('present' if installed else 'install',name)
+    print('STRATAGEM DARK tool cheat sheet\nSelect an installed tool to open help, or an available tool to install.\nInstall needs internet, authentication and free space. Live-session installs disappear on reboot.\nOptional packages are not covered by the ISO tool smoke tests.\n')
+    selected=choose('Tool / status / purpose',list(options))
+    if not selected:return 0
+    action,name=options[selected]
+    if action=='open':return main('tool',name,root=root)
+    if action=='present':print(f"{name} is installed. Use its launcher or terminal command.");pause();return 0
+    # Only this fixed helper receives authorization; callers cannot supply pacman flags.
+    code=subprocess.call(['pkexec','/usr/lib/stratagem-dark/install-optional-tool',name])
+    print('Installation complete.' if code==0 else 'Installation did not complete. Review the package-manager message above.')
+    pause();return code

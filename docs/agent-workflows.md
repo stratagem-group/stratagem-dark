@@ -6,6 +6,7 @@ or API credentials are bundled. Codex and Claude can be selected when installed
 separately. The original Omarchy agent usage panel is not yet restored.
 
 - **Super+K**: shortcut help.
+- **Super+T**: installed-tool cheat sheet and optional signed package installation.
 - **Super+A**: create a new authorized engagement.
 - **Super+Shift+A**: choose an installed agent and open an existing workspace.
 - **Super+Space**: applications, setup, security tools and system menu.
@@ -31,3 +32,12 @@ and permission-preserving launch arguments without using paid APIs or credential
 Upstream interface references: [OpenCode CLI](https://opencode.ai/docs/cli/) and
 [permissions](https://opencode.ai/docs/permissions/). Imported Omarchy code keeps
 its MIT notice; engagement scaffolding and launcher integration are Stratagem-owned.
+
+
+Optional installs use the pinned Arch snapshot and system authentication. The narrow
+polkit action permits an active local user to authenticate as themselves for catalog
+installs only; it is not a general sudo grant. On the live image that credential is
+the documented testing password. Changes disappear on live reboot. Installation can
+need significant disk space and downloads. Optional tools are not all exercised by
+the ISO smoke tests, and adding them changes the tested package set. The installer
+uses full package synchronization instead of a partial upgrade; review its output.

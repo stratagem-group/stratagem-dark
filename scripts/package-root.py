@@ -57,3 +57,22 @@ copy(repo/'LEGAL.md','usr/share/doc/stratagem-dark/LEGAL.md')
 write('etc/NetworkManager/conf.d/90-stratagem-dark.conf','[connection]\nconnection.mdns=0\nconnection.llmnr=0\n')
 
 write('usr/share/applications/stratagem-dark-setup.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Setup\nExec=foot dark desktop welcome\nIcon=preferences-system\nCategories=Settings;\n')
+
+write('usr/share/stratagem-dark/optional-pacman.conf','[options]\nArchitecture = x86_64\nCheckSpace\nSigLevel = Required DatabaseOptional\nLocalFileSigLevel = Required\n[core]\nServer = https://archive.archlinux.org/repos/2026/09/23/$repo/os/$arch\n[extra]\nServer = https://archive.archlinux.org/repos/2026/09/23/$repo/os/$arch\n')
+write('usr/lib/stratagem-dark/install-optional-tool','''#!/usr/bin/python3 -I
+import sys
+sys.path.insert(0, '/usr/lib/stratagem-dark/src')
+from stratagem_dark.optional_tools import install
+if len(sys.argv) != 2: raise SystemExit('One catalog tool ID required')
+try: raise SystemExit(install(sys.argv[1]))
+except (ValueError, OSError) as error: raise SystemExit(str(error))
+''',0o755)
+write('usr/share/polkit-1/actions/org.stratagem.dark.install-tool.policy','''<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN" "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig><action id="org.stratagem.dark.install-tool">
+<description>Install a supported STRATAGEM DARK tool</description>
+<message>Authenticate to install this signed tool and its dependencies.</message>
+<defaults><allow_any>no</allow_any><allow_inactive>no</allow_inactive><allow_active>auth_self</allow_active></defaults>
+<annotate key="org.freedesktop.policykit.exec.path">/usr/lib/stratagem-dark/install-optional-tool</annotate>
+</action></policyconfig>
+''')

@@ -39,7 +39,7 @@ def main(argv=None, root=None):
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('about', help='product and attribution')
     desktop = sub.add_parser('desktop', help='interactive setup, agents, tools and help')
-    desktop.add_argument('action', choices=['welcome','agents','engagement','tool','network','help','about','reboot','poweroff'])
+    desktop.add_argument('action', choices=['welcome','agents','engagement','cheatsheet','tool','network','help','about','reboot','poweroff'])
     desktop.add_argument('tool', nargs='?')
     desktop.add_argument('--once', action='store_true')
     setup = sub.add_parser('setup', help='seed missing desktop defaults without overwriting user files')

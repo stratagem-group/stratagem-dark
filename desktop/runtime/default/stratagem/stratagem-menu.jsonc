@@ -200,5 +200,10 @@
     "icon": "A",
     "label": "New authorized engagement",
     "action": "foot dark desktop engagement"
+  },
+  "cheatsheet": {
+    "icon": "?",
+    "label": "Tool cheat sheet / install",
+    "action": "foot dark desktop cheatsheet"
   }
 }

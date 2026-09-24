@@ -14,7 +14,8 @@
         "Restore executable permissions for imported shell helper scripts.",
         "Replace application bindings with shipped entry points; desktop onboarding and networking integration are Stratagem-owned.",
         "Deduplicate desktop IDs in application search; route DNS configuration to the installed NetworkManager editor.",
-        "Expose read-only application inventory over existing local shell IPC for acceptance testing."
+        "Expose read-only application inventory over existing local shell IPC for acceptance testing.",
+        "Add Super+T tool cheat sheet route to Stratagem-owned optional installer."
       ],
       "files": [
         {
@@ -1419,7 +1420,7 @@
           "source": "config/hypr/bindings.lua",
           "source_sha256": "b7ef36b9edbf91abd6935283498d458f577e28457b56fb54078fe2ecf20dfc5d",
           "destination": "desktop/runtime/config/hypr/bindings.lua",
-          "adapted_sha256": "3ad72e9efafd3e175fa5a0a8110680aee293b5f1a0f6648c43cc1dff96e682da"
+          "adapted_sha256": "ebe9039173268b3a4891f67ae172b9f7944e22726dd598d2e07af9a171b0a404"
         },
         {
           "source": "config/hypr/looknfeel.lua",

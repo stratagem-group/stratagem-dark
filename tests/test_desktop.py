@@ -33,3 +33,24 @@ class DesktopTests(unittest.TestCase):
         with patch('os.geteuid',return_value=0),patch('shutil.which',return_value='/bin/opencode'):
             with self.assertRaises(ValueError):launch_agent('opencode','/tmp')
             with self.assertRaises(ValueError):launch_agent('sh','/tmp')
+
+class OptionalInstallerTests(unittest.TestCase):
+    def test_only_catalog_packages_reach_package_manager(self):
+        from stratagem_dark import optional_tools
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);(root/'catalog').mkdir()
+            (root/'catalog/optional-tools.json').write_text(json.dumps({'socat':{'package':'socat'},'bad':{'package':'--config=/tmp/evil'}}))
+            with patch.object(optional_tools,'ROOT',root),patch('os.geteuid',return_value=0),patch('subprocess.call',return_value=0) as call:
+                for name in ['../../bin/sh','--noconfirm','bad']:
+                    with self.assertRaises(ValueError):optional_tools.install(name)
+                call.assert_not_called()
+                optional_tools.install('socat')
+                argv=call.call_args.args[0]
+                self.assertEqual(argv[-1],'extra/socat')
+                self.assertIn('-Syu',argv)
+                self.assertEqual(call.call_args.kwargs['cwd'],'/')
+    def test_nonroot_install_rejected(self):
+        from stratagem_dark import optional_tools
+        with patch('os.geteuid',return_value=1000),patch('subprocess.call') as call:
+            with self.assertRaises(ValueError):optional_tools.install('socat')
+            call.assert_not_called()

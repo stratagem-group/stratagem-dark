@@ -93,6 +93,7 @@ from pathlib import Path
 bindings=json.load(open('/mnt/test-results/bindings.json'))
 assert any(x.get('key')=='K' and 'desktop help' in x.get('arg','') for x in bindings)
 assert any(x.get('key')=='A' and 'desktop engagement' in x.get('arg','') for x in bindings)
+assert any(x.get('key')=='T' and 'desktop cheatsheet' in x.get('arg','') for x in bindings)
 commands=json.load(open('/usr/lib/stratagem-dark/catalog/launchers.json'))
 report={}
 for name,argv in commands.items():

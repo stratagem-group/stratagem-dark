@@ -1,0 +1,92 @@
+{
+  "mitmproxy": {
+    "package": "mitmproxy",
+    "description": "Interactive HTTP inspection proxy",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "zaproxy": {
+    "package": "zaproxy",
+    "description": "Web application testing interface",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "metasploit": {
+    "package": "metasploit",
+    "description": "Authorized exploit validation framework",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "python-scapy": {
+    "package": "python-scapy",
+    "description": "Programmable packet analysis",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "testdisk": {
+    "package": "testdisk",
+    "description": "Partition and file recovery",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "socat": {
+    "package": "socat",
+    "description": "Socket connections and lab relays",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "gitleaks": {
+    "package": "gitleaks",
+    "description": "Find exposed secrets in repositories",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "bettercap": {
+    "package": "bettercap",
+    "description": "Network assessment in authorized labs",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "masscan": {
+    "package": "masscan",
+    "description": "High-speed network inventory; review scope/rate",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "reaver": {
+    "package": "reaver",
+    "description": "Authorized wireless WPS assessment",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "radamsa": {
+    "package": "radamsa",
+    "description": "Test-data mutation and fuzzing",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "nethogs": {
+    "package": "nethogs",
+    "description": "Per-process network usage",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "tcpflow": {
+    "package": "tcpflow",
+    "description": "Reconstruct TCP streams",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "traceroute": {
+    "package": "traceroute",
+    "description": "Inspect network paths",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  },
+  "trivy": {
+    "package": "trivy",
+    "description": "Scan container and dependency inventories",
+    "repository": "arch",
+    "status": "optional-not-in-iso"
+  }
+}
