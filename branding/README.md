@@ -1,8 +1,9 @@
 # STRATAGEM DARK identity
 
 Use STRATAGEM DARK as the full product name. `dark` is the command, not a replacement
-brand. Original terminal frame, prompt and solid cursor are the starting visual
-language. No upstream names or logos appear in product artwork or desktop labels.
+brand. Retro block-letter STRATAGEM with spaced DARK beneath is the primary mark.
+The SVG artwork uses fixed geometry to preserve the terminal lettering on every display;
+`logo.txt` provides the terminal version. No upstream names or logos appear in product artwork or desktop labels.
 
 Palette: near-black #101512, phosphor #A7F3A0, muted #91A396, amber #FFD28A.
 Use monospace system fonts; no font files are bundled. CRT references should come

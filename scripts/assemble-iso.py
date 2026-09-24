@@ -5,10 +5,12 @@ from pathlib import Path
 import json,shutil,subprocess,sys
 bundle=Path(sys.argv[1]); profile=Path(sys.argv[2]); signer=sys.argv[3]
 repo=Path(__file__).resolve().parents[1]
-shutil.copytree('/usr/share/archiso/configs/releng',profile)
+shutil.copytree('/usr/share/archiso/configs/releng',profile,symlinks=True)
 airoot=profile/'airootfs'
 def write(path,text,mode=0o644):
- p=airoot/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text);p.chmod(mode)
+ p=airoot/path;p.parent.mkdir(parents=True,exist_ok=True)
+ if p.is_symlink():p.unlink()
+ p.write_text(text);p.chmod(mode)
 # Keep Arch boot machinery; replace the visible identity and remove its live-root login.
 for p in profile.rglob('*'):
  if p.is_file() and not p.is_symlink():

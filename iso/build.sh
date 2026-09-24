@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: MIT
 set -euo pipefail
-printf '%s
-' 'STRATAGEM DARK ISO is not implemented; complete bootstrap acceptance first.' >&2
+printf '%s\n' 'Build STRATAGEM DARK using the testing-build workflow: gh workflow run build-alpha.yml --repo stratagem-group/stratagem-dark' >&2
 exit 2

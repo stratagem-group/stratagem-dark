@@ -1,7 +1,7 @@
 # License and provenance strategy
 
-Original STRATAGEM DARK code, documentation, schemas, and artwork in this initial
-revision use the root MIT license. Contributor copyright remains with contributors;
+Original STRATAGEM DARK code, documentation, schemas, and artwork use the root MIT
+license. Adapted desktop sources retain the MIT notice in LICENSES/Omarchy-MIT.txt. Contributor copyright remains with contributors;
 there is no assignment requirement. New source files should carry `SPDX-License-Identifier: MIT`.
 
 Dependency packages are not covered by the root license. Verify the actual selected
@@ -24,6 +24,8 @@ registered trademark status or completed name clearance.
 4. Update `THIRD_PARTY_NOTICES.md`; include any binary distribution obligations.
 5. Test the adaptation and explain why a dependency or upstream fix was insufficient.
 
-No third-party source is imported in the scaffold. Package metadata is a curated
-reference, not a copied package recipe or a claim of license clearance. All entries
-start with `license_review: pending`; a release resolver must refuse pending entries.
+The current upstream desktop imports are listed per file in provenance/imports.json.
+The original catalog is a planning candidate list; the testing build uses the explicit
+build-support package manifests and records actual package license metadata in its
+release inventory. A recorded declaration is not a completed legal review. Broader
+package/source redistribution compliance must be reviewed before production promotion.

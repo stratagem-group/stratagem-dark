@@ -57,3 +57,12 @@ Fix generic bugs upstream first. Avoid patching upstream names out of copyright
 notices. An imported file needs a pinned source, full license text, attribution,
 local change record, and tests. Public product identity remains STRATAGEM DARK.
 See the audit for evaluated reuse opportunities and explicit non-reuse decisions.
+
+## Testing-alpha implementation
+
+The current release builder lives in scripts/build-alpha.sh. It packages the adapted
+upstream desktop, freezes a complete package archive/signature set, tests offline
+installation twice in a clean Arch chroot, and composes an archiso live image.
+The workflow then boots the ISO in a UEFI QEMU VM. See docs/testing-release.md for
+the executable commands and verification boundaries; earlier phase descriptions
+in this document are design goals rather than claims that every gate has passed.

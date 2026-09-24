@@ -1,6 +1,7 @@
-# STRATAGEM DARK ISO — placeholder
+# STRATAGEM DARK ISO
 
-Not bootable. `build.sh` deliberately exits nonzero. After clean-Arch bootstrap passes
-VM acceptance, pin archiso, add releng-based profile/boot configuration, feed the same
-signed release lock into the bootstrap engine and verify both live and installed boots.
-Never publish an ISO containing unreviewed catalog entries or unlicensed assets.
+The real testing build is composed by scripts/assemble-iso.py and scripts/build-alpha.sh.
+Use the manual STRATAGEM DARK testing build workflow on GitHub to build and boot-test it.
+The old profile/ directory documents reserved layout; it is not an independent build
+input. The generated profile starts from the pinned archiso package and locks packages
+to the release bundle. See docs/testing-release.md for testing and trust instructions.

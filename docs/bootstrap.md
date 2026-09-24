@@ -52,3 +52,12 @@ Before implementing a usable `--apply`, add a populated signed lock, artifact ca
 privilege boundary, real transaction journal, failure injection and two-run VM tests.
 Tests must also cover mirror failure, bad signatures, missing packages, interrupted
 phases, and user config conflicts. ISO work follows this gate, using the same engine.
+
+## Testing-alpha bundle installer
+
+The separate `dark install` command now implements offline bundle verification,
+explicit signer trust, root-owned input staging, signature-checked pacman transactions,
+exact installed-version verification, user-config preservation and service enablement.
+The release workflow exercises two installs against a fresh Arch chroot before ISO
+creation. `bootstrap --apply` remains disabled to prevent an unlocked online install.
+See docs/testing-release.md for commands, limitations and current acceptance evidence.

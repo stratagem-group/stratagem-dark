@@ -1,4 +1,5 @@
-# Third-party license texts
+# License texts
 
-Currently empty: no source imports or bundled dependencies. Add complete upstream
-license texts here when an import is recorded. The project's MIT text is `../LICENSE`.
+`Omarchy-MIT.txt` preserves the complete upstream desktop copyright and license.
+The root MIT license applies to original STRATAGEM DARK work. External packages
+retain their own licenses and ship their package-provided notices in the filesystem.
