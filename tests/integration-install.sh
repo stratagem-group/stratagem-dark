@@ -31,7 +31,8 @@ cmp "$results/packages-1.txt" "$results/packages-2.txt"
 printf '\n# USER_CUSTOMIZATION_TEST\n' >> "$target/home/tester/.config/foot/foot.ini"
 arch-chroot "$target" runuser -u tester -- dark setup --apply > "$results/config-preservation.json"
 grep -q USER_CUSTOMIZATION_TEST "$target/home/tester/.config/foot/foot.ini"
-arch-chroot "$target" systemctl is-enabled sddm.service NetworkManager.service > "$results/services.txt"
+arch-chroot "$target" systemctl is-enabled sddm.service NetworkManager.service stratagem-dark-firewall.service > "$results/services.txt"
+arch-chroot "$target" nft --check -f /usr/share/stratagem-dark/firewall.nft
 umount "$target/bundle"
 trap - EXIT
 rm -rf "$target"

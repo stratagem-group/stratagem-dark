@@ -149,7 +149,7 @@ def install_bundle(directory, fingerprint, username, apply=False):
             require(all(installed.get(p['name']) == p['version'] for p in manifest['packages']), 'installed version mismatch')
             checkpoint('packages-verified')
             run(['runuser', '-u', username, '--', 'dark', 'setup', '--apply'])
-            run(['systemctl', 'enable', 'NetworkManager.service', 'sddm.service'])
+            run(['systemctl', 'enable', 'NetworkManager.service', 'sddm.service', 'stratagem-dark-firewall.service'])
             checkpoint('complete')
             result['next'] = 'Reboot and select the STRATAGEM DARK session.'
     return result

@@ -34,3 +34,20 @@ dark setup --apply
 exec uwsm start -g -1 -e -D Hyprland hyprland.desktop
 ''',0o755)
 write('usr/share/applications/stratagem-dark-tools.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Tools\nExec=foot dark tools\nIcon=utilities-terminal\nCategories=System;\n')
+
+copy(repo/'config/firewall.nft','usr/share/stratagem-dark/firewall.nft')
+write('etc/systemd/resolved.conf.d/20-stratagem-dark.conf','[Resolve]\nLLMNR=no\nMulticastDNS=no\n')
+write('usr/lib/systemd/system/stratagem-dark-firewall.service','''[Unit]
+Description=STRATAGEM DARK inbound firewall
+DefaultDependencies=no
+Before=network-pre.target
+Wants=network-pre.target
+After=systemd-modules-load.service
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/nft -f /usr/share/stratagem-dark/firewall.nft
+ExecStop=/usr/bin/nft delete table inet stratagem_dark
+[Install]
+WantedBy=multi-user.target
+''')

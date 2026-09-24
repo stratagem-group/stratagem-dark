@@ -29,7 +29,7 @@ pkgdesc='STRATAGEM DARK desktop and security workstation integration'
 arch=('x86_64')
 url='https://github.com/stratagem-group/stratagem-dark'
 license=('MIT')
-depends=('python' 'hyprland' 'quickshell' 'foot' 'uwsm' 'jq' 'swaybg')
+depends=('python' 'hyprland' 'quickshell' 'foot' 'uwsm' 'jq' 'swaybg' 'nftables')
 package() {
   cp -a "$startdir/payload/." "$pkgdir/"
 }

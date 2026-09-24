@@ -8,7 +8,7 @@ establish that the workstation is fully secure or production hardened.
 - Main requires a pull request, current-base checks, resolved review threads and
   linear history. Force pushes and deletion are blocked; no bypass actors exist.
 - Required GitHub Actions checks: validate, Analyze (python), Analyze
-  (javascript-typescript), Analyze (actions). CodeQL uses its extended suite.
+  (javascript-typescript), Analyze (actions). CodeQL uses its extended suite; medium-or-higher security findings and errors block merges.
 - Release tags cannot be rewritten or deleted.
 - Secret scanning and push protection, dependency alerts and automated security
   fixes are enabled. Workflow tokens default to read-only and cannot approve PRs.
@@ -36,7 +36,9 @@ production credential. Root is locked, SSH is disabled and no sudo grant is adde
 
 ## Gates still open
 
-- Complete and inspect the latest ISO/desktop/tool acceptance results.
+- Functional ISO acceptance passed in run 36048967952. Its service audit found
+  multicast discovery listeners; the follow-up hardening candidate disables these
+  and adds a default-drop inbound/forward firewall, with explicit VM assertions.
 - Independent source and installer review, including privileged file operations,
   dependency scriptlets, network listeners and default service policy.
 - Broader vulnerability coverage for BlackArch, embedded binaries and dependencies;
