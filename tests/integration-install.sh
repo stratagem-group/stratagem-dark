@@ -43,8 +43,8 @@ arch-chroot "$target" nft --check -f /usr/share/stratagem-dark/firewall.nft
 # arch-chroot forks a PID namespace after mounting proc. Mount a private proc
 # inside that namespace so tools resolving /proc/<pid>/exe see their own PID.
 status=0
-arch-chroot "$target" unshare --mount --propagation private --mount-proc python /usr/lib/stratagem-dark/check-tools.py /tmp/tools.json || status=$?
-cp "$target/tmp/tools.json" "$results/tools.json"
+arch-chroot "$target" unshare --mount --propagation private --mount-proc python /usr/lib/stratagem-dark/check-tools.py /var/tmp/stratagem-tools.json || status=$?
+cp "$target/var/tmp/stratagem-tools.json" "$results/tools.json"
 (( status == 0 )) || exit "$status"
 umount "$target/bundle"
 umount "$target"
