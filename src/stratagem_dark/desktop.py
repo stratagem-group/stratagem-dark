@@ -109,7 +109,13 @@ def main(action, tool=None, once=False, root=None):
             print('\n'+' '.join(command), flush=True)
             subprocess.run(command, check=False)
         print('\nNo passwords are requested or shown. Device names may identify your hardware.')
-    elif action == 'help': print(HELP)
+    elif action == 'help':
+        print(HELP)
+        if shutil.which('hyprctl'):
+            result = subprocess.run(['hyprctl','-j','binds'],capture_output=True,text=True)
+            if result.returncode == 0:
+                print('All active bindings:')
+                for line in describe_bindings(json.loads(result.stdout)): print(line)
     elif action == 'about': print('STRATAGEM DARK — testing workstation\nMIT desktop components: Omarchy / David Heinemeier Hansson.\nSee /usr/share/doc/stratagem-dark/LEGAL.md.\nLive ISO: no persistent disk installer yet.')
     pause(); return 0
 
@@ -153,3 +159,15 @@ def engagement(root):
     if shutil.which('opencode'):
         return launch_agent('opencode', directory, 'Read SCOPE.md, AGENTS.md and TOOLS.json. Help me plan and carry out this authorized assessment using the installed tools. Clarify missing scope before active testing, obtain command approval, preserve evidence and draft findings.')
     print('OpenCode is missing; the workspace is ready for your chosen agent.');pause();return 1
+
+
+
+def describe_bindings(bindings):
+    lines = set()
+    for binding in bindings:
+        mask = binding.get('modmask', 0)
+        keys = [name for bit,name in ((64,'Super'),(4,'Ctrl'),(8,'Alt'),(1,'Shift')) if mask & bit]
+        keys.append(str(binding.get('key') or binding.get('keycode', '?')))
+        description = binding.get('description') or binding.get('dispatcher', '')
+        lines.add('+'.join(keys)+' — '+description)
+    return sorted(lines)

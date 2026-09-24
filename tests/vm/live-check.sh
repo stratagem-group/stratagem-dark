@@ -109,3 +109,13 @@ runuser -u stratagem --preserve-environment -- stratagem-shell shell summon stra
 sleep 2
 runuser -u stratagem --preserve-environment -- grim /tmp/stratagem-apps.png
 cp /tmp/stratagem-apps.png /mnt/test-results/apps.png
+
+runuser -u stratagem --preserve-environment -- stratagem-shell applications list > /mnt/test-results/applications.json
+python - <<'APPS'
+import json
+rows=json.load(open('/mnt/test-results/applications.json'))
+assert len(rows)>5, rows
+ids=[r['id'].removesuffix('.desktop') for r in rows]
+assert len(ids)==len(set(ids)), rows
+assert sum(r['name'].lower()=='foot' for r in rows)<=1, rows
+APPS

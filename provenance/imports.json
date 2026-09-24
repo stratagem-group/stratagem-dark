@@ -13,7 +13,8 @@
         "Subset of desktop helpers only; upstream updater, provisioning, installers, keyrings, artwork and fonts are not imported.",
         "Restore executable permissions for imported shell helper scripts.",
         "Replace application bindings with shipped entry points; desktop onboarding and networking integration are Stratagem-owned.",
-        "Deduplicate desktop IDs in application search; route DNS configuration to the installed NetworkManager editor."
+        "Deduplicate desktop IDs in application search; route DNS configuration to the installed NetworkManager editor.",
+        "Expose read-only application inventory over existing local shell IPC for acceptance testing."
       ],
       "files": [
         {
@@ -326,7 +327,7 @@
           "source": "shell/services/AppLibrary.qml",
           "source_sha256": "68dd83a2141e9a8eda01a9ec5e2fbaaecf5d02d969178512cc6fec118fa23a31",
           "destination": "desktop/runtime/shell/services/AppLibrary.qml",
-          "adapted_sha256": "348a387074b6634dc1e05fb42584f1b7cb01ac2f4fe974c0da07b6fe83160160"
+          "adapted_sha256": "53f7f8a549641e3537ff1aff2bf0e5ccefb76f4494c55f13a33096c26d680a7f"
         },
         {
           "source": "shell/services/AuthServiceStore.js",
