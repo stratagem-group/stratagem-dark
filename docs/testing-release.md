@@ -80,3 +80,11 @@ captures desktop/menu screenshots, checks representative tools, confirms repeat 
 is idempotent, and records listening sockets and package versions. It is activated
 only by an explicit QEMU firmware testing flag and saves results through a test-only
 9p share. No SSH server or remote testing password is added for the harness.
+
+## Network baseline
+
+The hardening candidate disables LLMNR/mDNS and enables a dedicated nftables table
+that drops unsolicited inbound and forwarded traffic. Loopback, established replies,
+ICMP and DHCP replies are allowed; outbound traffic is allowed. Administrator tables
+are preserved. Labs and tools that need listeners or forwarding require explicit
+firewall rules; this baseline does not create a malware containment boundary.

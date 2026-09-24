@@ -7,6 +7,8 @@ bundle=Path(sys.argv[1]); profile=Path(sys.argv[2]); signer=sys.argv[3]
 repo=Path(__file__).resolve().parents[1]
 shutil.copytree('/usr/share/archiso/configs/releng',profile,symlinks=True)
 airoot=profile/'airootfs'
+# Drop releng's multicast-discovery override; our packaged resolver policy applies.
+shutil.rmtree(airoot/'etc/systemd/resolved.conf.d',ignore_errors=True)
 def write(path,text,mode=0o644):
  p=airoot/path;p.parent.mkdir(parents=True,exist_ok=True)
  if p.is_symlink():p.unlink()
@@ -81,7 +83,7 @@ TimeoutStartSec=300
 WantedBy=graphical.target
 ''')
 copy=airoot/'usr/local/bin/stratagem-vm-check';copy.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(repo/'tests/vm/live-check.sh',copy);copy.chmod(0o755)
-for name,target in {'NetworkManager.service':'/usr/lib/systemd/system/NetworkManager.service','sddm.service':'/usr/lib/systemd/system/sddm.service','stratagem-vm-check.service':'/etc/systemd/system/stratagem-vm-check.service'}.items():
+for name,target in {'stratagem-dark-firewall.service':'/usr/lib/systemd/system/stratagem-dark-firewall.service','NetworkManager.service':'/usr/lib/systemd/system/NetworkManager.service','sddm.service':'/usr/lib/systemd/system/sddm.service','stratagem-vm-check.service':'/etc/systemd/system/stratagem-vm-check.service'}.items():
  p=airoot/'etc/systemd/system/graphical.target.wants'/name;p.parent.mkdir(parents=True,exist_ok=True);p.symlink_to(target)
 p=airoot/'etc/systemd/system/default.target'
 if p.exists() or p.is_symlink():p.unlink()

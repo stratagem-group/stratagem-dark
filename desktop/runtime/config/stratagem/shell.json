@@ -63,6 +63,7 @@
     "stratagem.system-update",
     "stratagem.tailscale",
     "stratagem.weather",
-    "stratagem.wifiqr"
+    "stratagem.wifiqr",
+    "stratagem.clipboard"
   ]
 }

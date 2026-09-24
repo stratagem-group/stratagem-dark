@@ -16,6 +16,11 @@ See [testing release](docs/testing-release.md) for trust, installation and limit
 The original dry-run/staging commands remain available; live bundle installation
 uses the separate `dark install` command with an explicitly trusted signing fingerprint.
 
+**Legal notice:** Intended for lawful education and authorized security work only.
+Provided without warranty; liability is disclaimed to the extent permitted by law.
+Read [legal and responsible-use disclosures](LEGAL.md) before use. MIT and third-party
+license terms remain applicable.
+
 ## Start here
 
 Python 3.11+ and Bash are enough; no runtime Python dependencies. Run as your normal

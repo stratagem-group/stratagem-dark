@@ -20,3 +20,6 @@ third-party notices. Never include credentials, real targets, or sensitive captu
 
 PRs should describe the problem, behavior change, tests, and any upstream relationship.
 Report vulnerabilities using SECURITY.md. Be respectful and focus reviews on the work.
+
+Contributions and examples should follow the [responsible-use notice](LEGAL.md). This
+does not change contributor licensing or third-party license terms.

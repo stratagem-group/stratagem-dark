@@ -10,7 +10,8 @@
       "changes": [
         "Namespace omarchy \u2192 stratagem; environment OMARCHY \u2192 STRATAGEM_DARK; visible product name \u2192 STRATAGEM DARK.",
         "Original menu, theme, logo glyph and autostart policy replace product-specific defaults.",
-        "Subset of desktop helpers only; upstream updater, provisioning, installers, keyrings, artwork and fonts are not imported."
+        "Subset of desktop helpers only; upstream updater, provisioning, installers, keyrings, artwork and fonts are not imported.",
+        "Restore executable permissions for imported shell helper scripts."
       ],
       "files": [
         {
@@ -1836,6 +1837,12 @@
           "source_sha256": "e5004580e41475932f852d622b36ec07bfb0e98633c4d3c3055071a54d0eda07",
           "destination": "desktop/runtime/bin/stratagem-hyprland-session-locked",
           "adapted_sha256": "c15feff2bb4bebbb87b843ab088eb618f64f3faeed00a10ba1b585e734611914"
+        },
+        {
+          "source": "bin/omarchy-network-band",
+          "source_sha256": "89349eb91c7064060d108ba68abdecf887716e2b2da33c9b7682551d3fe95e79",
+          "destination": "desktop/runtime/bin/stratagem-network-band",
+          "adapted_sha256": "719d6e5cd4de9e0f58154dfb006162e4526a6893c1603bd0c8f1b10c7ef4a24e"
         }
       ]
     }

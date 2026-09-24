@@ -15,7 +15,7 @@ copy(repo/'desktop/runtime','usr/share/stratagem')
 for p in (repo/'desktop/runtime/bin').iterdir():copy(p,'usr/bin/'+p.name)
 for directory in ('bin','src','profiles','catalog','schemas','bootstrap','desktop','config','branding'):
  copy(repo/directory,'usr/lib/stratagem-dark/'+directory)
-for name in ('VERSION','LICENSE','THIRD_PARTY_NOTICES.md'):
+for name in ('VERSION','LICENSE','THIRD_PARTY_NOTICES.md','LEGAL.md'):
  copy(repo/name,'usr/lib/stratagem-dark/'+name)
 copy(repo/'branding','usr/share/stratagem-dark/branding')
 copy(repo/'LICENSE','usr/share/licenses/stratagem-dark/LICENSE')
@@ -34,3 +34,24 @@ dark setup --apply
 exec uwsm start -g -1 -e -D Hyprland hyprland.desktop
 ''',0o755)
 write('usr/share/applications/stratagem-dark-tools.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Tools\nExec=foot dark tools\nIcon=utilities-terminal\nCategories=System;\n')
+
+copy(repo/'config/firewall.nft','usr/share/stratagem-dark/firewall.nft')
+write('etc/systemd/resolved.conf.d/90-stratagem-dark.conf','[Resolve]\nLLMNR=no\nMulticastDNS=no\n')
+write('usr/lib/systemd/system/stratagem-dark-firewall.service','''[Unit]
+Description=STRATAGEM DARK inbound firewall
+DefaultDependencies=no
+Before=network-pre.target
+Wants=network-pre.target
+After=systemd-modules-load.service
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/nft -f /usr/share/stratagem-dark/firewall.nft
+ExecStop=/usr/bin/nft delete table inet stratagem_dark
+[Install]
+WantedBy=multi-user.target
+''')
+
+copy(repo/'LEGAL.md','usr/share/doc/stratagem-dark/LEGAL.md')
+
+write('etc/NetworkManager/conf.d/90-stratagem-dark.conf','[connection]\nconnection.mdns=0\nconnection.llmnr=0\n')

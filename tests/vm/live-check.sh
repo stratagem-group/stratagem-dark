@@ -63,3 +63,20 @@ PY
 ! sudo -l -U stratagem 2>/dev/null | grep -q NOPASSWD
 ss -lntup > /mnt/test-results/listeners.txt
 pacman -Q > /mnt/test-results/packages.txt
+
+systemctl is-active stratagem-dark-firewall.service
+nft -j list table inet stratagem_dark > /mnt/test-results/firewall.json
+python - <<'VERIFY'
+import json
+from pathlib import Path
+chains = {item['chain']['name']: item['chain'] for item in json.load(open('/mnt/test-results/firewall.json'))['nftables'] if 'chain' in item}
+assert chains['input']['policy'] == 'drop'
+assert chains['forward']['policy'] == 'drop'
+for line in Path('/mnt/test-results/listeners.txt').read_text().splitlines()[1:]:
+    fields = line.split()
+    endpoint = fields[4]
+    address, port = endpoint.rsplit(':', 1)
+    if fields[0] == 'udp' and port in {'68', '546'}:
+        continue
+    assert address.startswith('127.') or address in {'[::1]', '::1'}, line
+VERIFY
