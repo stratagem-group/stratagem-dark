@@ -12,7 +12,7 @@ mount --bind "$target" "$target"
 mount --make-private "$target"
 cleanup() {
   umount "$target/bundle" 2>/dev/null || true
-  umount "$target" 2>/dev/null || true
+  umount -R "$target" 2>/dev/null || true
 }
 trap cleanup EXIT
 config=/build/install-test-pacman.conf
@@ -47,7 +47,9 @@ arch-chroot "$target" unshare --mount --propagation private --mount-proc python 
 cp "$target/var/tmp/stratagem-tools.json" "$results/tools.json"
 (( status == 0 )) || exit "$status"
 umount "$target/bundle"
-umount "$target"
+# Remove nested mounts left by package hooks before releasing the bind mount.
+findmnt -R "$target" > "$results/test-root-mounts.txt"
+umount -R "$target"
 trap - EXIT
 if [[ ${STRATAGEM_KEEP_TEST_ROOT:-0} != 1 ]]; then rm -rf "$target"; fi
 printf '%s\n' 'STRATAGEM DARK: offline install, repeat install, and user-config preservation passed.' | tee "$results/result.txt"
