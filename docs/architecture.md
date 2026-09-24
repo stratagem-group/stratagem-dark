@@ -38,8 +38,8 @@ branding does not require independently rebuilding every settings screen.
 Alpha2 still diverges materially: Wi-Fi redirects into a terminal wizard, agent
 launch repeats setup, and the theme picker is absent. The source comparison and
 pending acceptance requirements are in [Desktop parity review](desktop-parity-review.md).
-This is the governing direction for the next desktop iteration, not a claim those
-gaps have already been fixed.
+Alpha3 implements the three core corrections; its build acceptance and remaining
+integrations are tracked in that review. Physical hardware verification remains separate.
 
 Defaults are packaged under `/usr/share/stratagem-dark`; user setup preserves
 existing configuration. A complete migration/rollback engine remains outstanding.

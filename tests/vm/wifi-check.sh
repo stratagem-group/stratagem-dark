@@ -14,7 +14,7 @@ cleanup() {
 }
 trap cleanup EXIT
 modprobe mac80211_hwsim radios=2
-mapfile -t radios < <(iw dev | awk '$1=="Interface" {print $2}')
+mapfile -t radios < <(iw dev | awk '$1=="Interface" {print $2}' | sort -V)
 [[ ${#radios[@]} == 2 ]]
 station=${radios[0]}; accesspoint=${radios[1]}
 nmcli device set "$accesspoint" managed no
@@ -29,7 +29,7 @@ channel=1
 wpa=2
 wpa_key_mgmt=WPA-PSK
 rsn_pairwise=CCMP
-wpa_passphrase=TestOnly-Password-927
+wpa_passphrase=92739273
 EOF
 hostapd -B -P "$work/hostapd.pid" "$work/hostapd.conf"
 # A confined DHCP allowance only on the simulated AP interface in this test VM.
@@ -41,13 +41,45 @@ for attempt in $(seq 1 15); do
   if nmcli -t -f SSID device wifi list ifname "$station" | grep -qx STRATAGEM-Test-WiFi; then break; fi
   sleep 2
 done
-# This is the same unprivileged helper used by the inline graphical panel.
-printf '%s\n' '{"ssid":"STRATAGEM-Test-WiFi","password":"TestOnly-Password-927"}' | runuser -u stratagem -- /usr/lib/stratagem-dark/connect-wifi
+# Operate the actual panel from the desktop session. No test-only UI bypass.
+ui() { runuser -u stratagem --preserve-environment -- "$@"; }
+sleep 3
+ui stratagem-shell stratagem.network open
+sleep 3
+ui hyprctl dispatch sendshortcut ', Down,'
+ui hyprctl dispatch sendshortcut ', Return,'
+sleep 1
+ui grim /tmp/wifi-password.png
+cp /tmp/wifi-password.png /mnt/test-results/wifi-password.png
+for digit in 9 2 7 3 9 2 7 3; do
+  ui hyprctl dispatch sendshortcut ", $digit,"
+  sleep 0.1
+done
+ui hyprctl dispatch sendshortcut ', Return,'
+for attempt in $(seq 1 60); do
+  [[ $(nmcli -g GENERAL.STATE device show "$station") == 100* ]] && break
+  sleep 1
+done
+ui grim /tmp/wifi-connected.png
+cp /tmp/wifi-connected.png /mnt/test-results/wifi-connected.png
 [[ $(nmcli -g GENERAL.STATE device show "$station") == 100* ]]
 [[ $(nmcli -g connection.permissions connection show STRATAGEM-Test-WiFi) == user:stratagem* ]]
-# Reconnect with saved credentials and retain exactly one connection profile.
+# Opening the panel must not disrupt an established connection.
+ui stratagem-shell stratagem.network close
+ui stratagem-shell stratagem.network open
+sleep 3
+[[ $(nmcli -g GENERAL.STATE device show "$station") == 100* ]]
+# Reconnect with the native saved-profile path and no second password.
 nmcli device disconnect "$station"
-printf '%s\n' '{"ssid":"STRATAGEM-Test-WiFi"}' | runuser -u stratagem -- /usr/lib/stratagem-dark/connect-wifi
+ui stratagem-shell stratagem.network close
+ui stratagem-shell stratagem.network open
+sleep 2
+ui hyprctl dispatch sendshortcut ', Down,'
+ui hyprctl dispatch sendshortcut ', Return,'
+for attempt in $(seq 1 60); do
+  [[ $(nmcli -g GENERAL.STATE device show "$station") == 100* ]] && break
+  sleep 1
+done
 [[ $(nmcli -g GENERAL.STATE device show "$station") == 100* ]]
 [[ $(nmcli -g NAME connection show | grep -cx STRATAGEM-Test-WiFi) == 1 ]]
-echo 'Private WPA2 creation and saved reconnect passed as normal desktop user.'
+echo 'Graphical private WPA2 creation, scan stability and saved reconnect passed.'

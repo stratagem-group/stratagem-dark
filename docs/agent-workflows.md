@@ -1,14 +1,17 @@
 # Agent-assisted assessments
 
-STRATAGEM DARK's alpha2 candidate includes OpenCode, an interactive agent with
-terminal tools. Super+Shift+A offers provider sign-in, a searchable provider/model picker, and a saved default model for OpenCode; no paid model access
+STRATAGEM DARK's alpha3 candidate includes OpenCode, an interactive agent with
+terminal tools. Super+Shift+A chooses a default client on first use and offers native
+provider sign-in, then opens that client directly on later launches. Setup > Default
+agent / provider / model offers sign-in, a searchable model picker and workspace
+settings without repeating onboarding. No paid model access
 or API credentials are bundled. Codex and Claude can be selected when installed
 separately. The original Omarchy agent usage panel is not yet restored.
 
 - **Super+K**: shortcut help.
 - **Super+T**: installed-tool cheat sheet and optional signed package installation.
 - **Super+A**: create a new authorized engagement.
-- **Super+Shift+A**: choose an installed agent and open an existing workspace.
+- **Super+Shift+A**: launch the saved agent (first use opens onboarding).
 - **Super+Space**: applications, setup, security tools and system menu.
 
 New engagements have a scope document, agent instructions, an inventory of

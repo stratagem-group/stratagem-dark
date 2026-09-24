@@ -129,3 +129,21 @@ not available in the configured repositories. Its optional installation does not
 currently produce a working CLI. DNSenum supplies the bundled DNS enumeration
 launcher for this candidate. Do not bypass package verification or install unpinned
 Python dependencies to work around this limitation.
+
+## Alpha3 desktop correction candidate
+
+- Click the network indicator, select a personal Wi-Fi network and enter its password
+  inline. Profiles belong to the current user; native NetworkManager policy is used
+  without the alpha2 extra login-password prompt. Enterprise configuration stays in
+  Advanced network settings so certificate and identity policy is not replaced.
+- Super+Shift+A launches the saved agent directly. First use selects the agent and
+  opens native provider sign-in. Change settings under Setup > Default agent / provider / model.
+- Style > Theme or Super+Ctrl+Shift+Space opens the upstream visual picker with 11
+  palettes. Shell, terminal, window borders and lock-screen input colors coordinate.
+  Original STRATAGEM DARK wallpaper remains; upstream artwork is not included.
+- VM acceptance now exercises theme application and picker keyboard selection, plus
+  simulated WPA2 Wi-Fi. Report test outcomes per build; this description is not a
+  substitute for a successful run or Lenovo hardware verification.
+
+The upstream agent usage/status panel and full application-theme integrations are
+still pending. No paid provider sign-in is performed in CI. The ISO remains live-only.

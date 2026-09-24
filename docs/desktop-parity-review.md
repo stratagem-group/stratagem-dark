@@ -108,3 +108,22 @@ All items below are pending after this review.
 For each restored feature, track upstream source paths, pinned commit, dependencies,
 local patches and acceptance evidence. Prefer upstream fixes for generic defects.
 An unresolved hardware/provider check must remain visible in release notes.
+
+## Alpha3 correction implementation
+
+The historical gaps above were confirmed against alpha2. The alpha3 candidate now
+implements inline private-profile Wi-Fi connection, saved default-agent launch with
+separate settings, and the restored upstream visual theme picker with ten imported
+palettes plus Phosphor. The picker, palette resolver and theme engine are pinned to
+the existing imported commit, rather than combining an unreviewed newer shell.
+Only bundled palette previews are offered; previews are independently generated.
+Theme hooks target the shipped shell, Foot, Hyprland and lock-screen color include.
+Wallpaper/background switching, agent usage status, additional client installation
+and broader application theming remain outstanding. Normal command approvals remain.
+
+Acceptance adds a real theme picker selection and a simulated WPA2 access point in
+the disposable UEFI VM. Record the build's actual outcomes before calling an ISO
+ready; physical Lenovo testing and authenticated provider execution remain separate.
+Existing user configuration is preserved; this candidate targets a fresh live boot.
+An installed alpha2 user's old Foot config/keybindings require a reviewed migration
+before they can be assumed to have the new includes and shortcut.
