@@ -144,7 +144,7 @@ def install_bundle(directory, fingerprint, username, apply=False):
             checkpoint('packages-started')
             config = trusted / 'offline-pacman.conf'
             config.write_text('[options]\nArchitecture = x86_64\nSigLevel = Required DatabaseOptional\nLocalFileSigLevel = Required\n')
-            run(['pacman', '--config', str(config), '-U', '--needed', '--noconfirm', *archives])
+            run(['unshare', '--net', '--', 'pacman', '--config', str(config), '-U', '--needed', '--noconfirm', *archives])
             installed = dict(line.split(' ', 1) for line in run(['pacman', '-Q'], capture_output=True, text=True).stdout.splitlines())
             require(all(installed.get(p['name']) == p['version'] for p in manifest['packages']), 'installed version mismatch')
             checkpoint('packages-verified')

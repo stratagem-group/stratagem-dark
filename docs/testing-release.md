@@ -11,7 +11,8 @@ This is a derivative of the MIT-licensed Omarchy desktop, with original STRATAGE
 branding, startup policy and menu. It includes its real Quickshell shell and Hyprland
 configuration, not a visual imitation. The inherited updater, installer, provisioning,
 commercial-app defaults, logos, fonts and wallpapers are excluded. Arch provides the
-base system. BlackArch provides a small explicit selection, initially capa and WhatWeb.
+base system. BlackArch provides a small explicit selection, initially capa. WhatWeb remains a catalog candidate: its current package hook
+downloads unpinned Ruby gems and failed the offline acceptance review.
 The broader catalog includes candidates that are not yet part of the binary release.
 
 ## Reproducibility and trust
@@ -60,7 +61,7 @@ sudo ./bundle/source/bin/dark install --bundle ./bundle --key-fingerprint TRUSTE
 
 Replace the placeholders with the release fingerprint and your existing username.
 The apply path re-verifies a root-owned copy, installs the locked package set using
-pacman without online repositories, verifies exact installed versions, seeds missing
+pacman without online repositories and inside a network-isolated namespace, verifies exact installed versions, seeds missing
 user configuration without overwriting existing files, and enables the desktop/login
 services for the next boot. Existing conflicting user files are reported and preserved.
 A transaction journal records progress. This is not an automatic rollback of package

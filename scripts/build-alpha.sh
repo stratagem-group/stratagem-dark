@@ -62,9 +62,9 @@ gpg --batch --yes --armor --detach-sign "$work/bundle/manifest.json"
 cp "$work/bundle/release-key.asc" "$out/RELEASE-KEY.asc"
 # Local repository retains verified upstream package signatures; database gets our test signature.
 repo-add --sign --key "$signer" "$work/bundle/repository/stratagem-dark.db.tar.gz" "$work/bundle/repository/"*.pkg.tar.zst
-tests/integration-install.sh "$work/bundle" "$signer" "$out/install-results"
+unshare --net -- tests/integration-install.sh "$work/bundle" "$signer" "$out/install-results"
 python scripts/assemble-iso.py "$work/bundle" "$work/profile" "$signer"
-mkarchiso -v -w "$work/iso-work" -o "$out" "$work/profile"
+unshare --net -- mkarchiso -v -w "$work/iso-work" -o "$out" "$work/profile"
 # Bundle repository index was generated after the manifest: not part of the installer trust contract.
 # The installer reads only locked package archives, not the mutable repository index.
 tar --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owner -I 'zstd -T0 -6' -cf "$out/stratagem-dark-0.2.0-alpha1-x86_64-bundle.tar.zst" -C "$work" bundle

@@ -29,6 +29,7 @@ runuser -u stratagem --preserve-environment -- hyprctl configerrors | tee /mnt/t
 # hyprctl emits blank lines even when there are no configuration errors.
 test -z "$(tr -d '[:space:]' < /mnt/test-results/hyprland-errors.txt)"
 runuser -u stratagem --preserve-environment -- stratagem-shell shell ping | grep -qx ok
+runuser -u stratagem --preserve-environment -- foot --check-config
 runuser -u stratagem --preserve-environment -- foot sh -c 'printf "STRATAGEM DARK\nSecurity workstation testing session\n\n"; dark --version; printf "\nBlackArch tools:\n"; capa --version; sleep 120' &
 sleep 5
 runuser -u stratagem --preserve-environment -- grim /tmp/stratagem-desktop.png
@@ -38,7 +39,6 @@ sleep 2
 runuser -u stratagem --preserve-environment -- grim /tmp/stratagem-menu.png
 cp /tmp/stratagem-menu.png /mnt/test-results/menu.png
 capa --version
-whatweb --version
 yara --version
 tcpdump --version
 dark validate

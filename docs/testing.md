@@ -40,3 +40,10 @@ The same run built the ISO and started Hyprland and Quickshell under UEFI QEMU. 
 VM check stopped at an overly strict empty-output assertion: `hyprctl configerrors`
 returned two newline bytes. The assertion now accepts whitespace-only output while
 still failing on any reported error. Full desktop acceptance remains pending.
+
+The subsequent VM run exposed WhatWeb's unpinned install-time Ruby downloads and
+runtime failure. WhatWeb was removed from the binary selection pending offline
+packaging; it remains in the candidate catalog. Package transactions, the fresh-Arch
+integration test and ISO composition now run in network-isolated namespaces. Earlier
+chroot success alone did not prove offline operation. Foot defaults were also updated
+for the pinned version, and the VM now explicitly validates its configuration.
