@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="240" viewBox="0 0 1000 240" role="img" aria-labelledby="title desc">
+  <title id="title">STRATAGEM DARK</title>
+  <desc id="desc">Original green terminal frame with a prompt and solid cursor on black.</desc>
+  <rect width="1000" height="240" fill="#101512"/>
+  <rect x="24" y="24" width="952" height="192" rx="6" fill="none" stroke="#A7F3A0" stroke-width="2"/>
+  <text x="56" y="124" fill="#A7F3A0" font-family="monospace" font-size="54" font-weight="bold">&gt; STRATAGEM DARK</text>
+  <rect x="640" y="82" width="24" height="48" fill="#A7F3A0"/>
+  <text x="60" y="175" fill="#91A396" font-family="monospace" font-size="18" letter-spacing="4">OPEN SECURITY WORKSTATION</text>
+</svg>

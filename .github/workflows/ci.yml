@@ -1,0 +1,37 @@
+name: STRATAGEM DARK checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install test dependencies
+        run: |
+          python3 -m venv .venv
+          .venv/bin/python -m pip install -r requirements-dev.txt
+      - name: Validate data and schema
+        run: |
+          ./bin/dark validate
+          .venv/bin/python tests/validate_schemas.py
+      - name: Unit and CLI contracts
+        run: python3 -m unittest discover -s tests -v
+      - name: Shell syntax
+        run: bash -n bootstrap/install.sh iso/build.sh
+      - name: Deterministic plan and staging smoke test
+        run: |
+          mkdir -p build
+          ./bin/dark plan --profile full --json > build/first.json
+          ./bin/dark plan --profile full --json > build/second.json
+          cmp build/first.json build/second.json
+          ./bootstrap/install.sh --profile core --stage build/core-root

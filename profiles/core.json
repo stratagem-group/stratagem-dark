@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "core",
+  "extends": [],
+  "tools": [
+    "python",
+    "git",
+    "jq",
+    "ripgrep",
+    "hyprland",
+    "foot",
+    "pipewire",
+    "wireplumber",
+    "portal-hyprland"
+  ]
+}

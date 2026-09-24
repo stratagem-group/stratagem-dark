@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "id": "research",
+  "extends": [
+    "core"
+  ],
+  "tools": [
+    "gdb",
+    "radare2",
+    "yara",
+    "capa"
+  ]
+}

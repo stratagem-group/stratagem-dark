@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-09-24",
+  "repositories": [
+    {
+      "repository": "BlackArch/blackarch",
+      "commit": "b59e4b919e69b059a051a1c5db0489dd0eafd22c",
+      "branch": "master",
+      "license": {
+        "key": "bsd-3-clause",
+        "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "spdx_id": "BSD-3-Clause",
+        "url": "https://api.github.com/licenses/bsd-3-clause",
+        "node_id": "MDc6TGljZW5zZTU="
+      },
+      "date": "2026-09-24",
+      "inspected_files": [
+        {
+          "path": "COPYING",
+          "sha256": "8c184eeb552c4cd42ab4998d2825302426913391b91d0640c76881f503ac3a33"
+        },
+        {
+          "path": "README.md",
+          "sha256": "27b6d3e89605c02c6fd48a22ed642bc93fedaa7ac3a2d4750fed062a7ab9c7aa"
+        },
+        {
+          "path": "packages/blackarch-keyring/PKGBUILD",
+          "sha256": "d719c2e8557f17c88cecc9841a0e8a05fb6e3089144841ee26cf8c3a98685c9e"
+        },
+        {
+          "path": "scripts/blackman",
+          "sha256": "76e50a952819ba0ec66ebf8ef6dc73433f3914b6043e9a35e03351e5a55086f1"
+        }
+      ],
+      "source_imports": []
+    },
+    {
+      "repository": "BlackArch/blackarch-installer",
+      "commit": "8ec29e00a7236244be434f072b4a2d8ff9ff5b0d",
+      "branch": "master",
+      "license": null,
+      "date": "2026-09-24",
+      "inspected_files": [
+        {
+          "path": "README.md",
+          "sha256": "45324223a01ec0cafc6caaf2d7527866a5a8aeeb7162ded656ebc4233d286426"
+        },
+        {
+          "path": "blackarch-install",
+          "sha256": "4574577873493bc7680f31e2a765672843636accb9a7b17017407988715157aa"
+        }
+      ],
+      "source_imports": []
+    },
+    {
+      "repository": "BlackArch/blackarch-iso",
+      "commit": "55bd41df7b2517fdd38538a90a6ea584bdf9b2b8",
+      "branch": "master",
+      "license": null,
+      "date": "2026-09-24",
+      "inspected_files": [
+        {
+          "path": "README.md",
+          "sha256": "57d07132033044eb784e6bc2d1e1bada446b3fc3a5d5afeaf309a9b8d48c804a"
+        },
+        {
+          "path": "layers/base/profiledef.sh.in",
+          "sha256": "8b77e73769bc607f0266e9eccac492aeb0a658fee291ac1dcdd6339beaf431f3"
+        },
+        {
+          "path": "tools/merge-profile.sh",
+          "sha256": "8315a966876836689b1826b3ed8ca04b04631d4f241d31ceda8e8f82175fdd3d"
+        }
+      ],
+      "source_imports": []
+    },
+    {
+      "repository": "omacom/omarchy",
+      "commit": "28ceaae70ebac3a0edcc21f2faa77a90dc6d404c",
+      "branch": "quattro",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "date": "2026-09-24",
+      "inspected_files": [
+        {
+          "path": "LICENSE",
+          "sha256": "717ba1949502290f8e47688ae2e323acd06c8ca47aec9f7596b15f678c1af4a2"
+        },
+        {
+          "path": "README.md",
+          "sha256": "5bf8370906b45cca994fba5b617fffe804ce2ec6fa46353ab8fdeaa4b061bd98"
+        },
+        {
+          "path": "install/config/all.sh",
+          "sha256": "d0223aac9565b9b8a1590ea74c3197ecb3530e1374b2852d69a3c3b402b119d7"
+        },
+        {
+          "path": "install/helpers/logging.sh",
+          "sha256": "61a13abcc44fd5241e9882f1bcfed833e10e0ed19ad42c34a08efe1973b70d27"
+        },
+        {
+          "path": "install/omarchy-base.packages",
+          "sha256": "22e20edbecf5d77f0b0939524af4a6854a7810ee2f292269e20669436fc8eb0b"
+        },
+        {
+          "path": "install/user/all.sh",
+          "sha256": "32ff1a56bb50ae3ca7a8eeabb24947a6cbdcbf66e112c69894fd6870a0872742"
+        }
+      ],
+      "source_imports": []
+    },
+    {
+      "repository": "omacom/omarchy-iso",
+      "commit": "86c07785cb0f63be78edb1349843d5817b5c0e66",
+      "branch": "quattro",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "date": "2026-09-24",
+      "inspected_files": [
+        {
+          "path": "LICENSE",
+          "sha256": "e2b1e3778a6ada6d6eee5f48c028f885e9797313f4c5705929bdc5b99db569d3"
+        },
+        {
+          "path": "README.md",
+          "sha256": "95a9f912b5592e952149025108a9a4136857bb4088318b4fbb704b6a8fbd4e22"
+        },
+        {
+          "path": "builder/build-iso.sh",
+          "sha256": "c30e89da584e4ae3fa914618f04fb8311584f2355bf524a17dc183358afd588c"
+        },
+        {
+          "path": "builder/build-omarchy-packages.sh",
+          "sha256": "960e7b5db8d964a955e81122433d9a7a1bc87581c7f1465d7820f42c9e1900a2"
+        },
+        {
+          "path": "configs/profiledef.sh",
+          "sha256": "f5a9140fd32e4781d87a3c37295aac04017c416b0d64063d3e3e9ffae7cbf5b5"
+        }
+      ],
+      "source_imports": []
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tools"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "tools": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "repository",
+          "package",
+          "category",
+          "isolation",
+          "upstream",
+          "license_expression",
+          "license_review",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9+._-]*$"
+          },
+          "repository": {
+            "enum": [
+              "arch",
+              "blackarch"
+            ]
+          },
+          "package": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9+._-]*$"
+          },
+          "category": {
+            "enum": [
+              "runtime",
+              "development",
+              "desktop",
+              "analysis",
+              "network"
+            ]
+          },
+          "isolation": {
+            "enum": [
+              "host",
+              "authorized-network",
+              "isolated-vm"
+            ]
+          },
+          "upstream": {
+            "type": "string",
+            "pattern": "^https://[^\\s]+$"
+          },
+          "license_expression": {
+            "type": "string",
+            "minLength": 1
+          },
+          "license_review": {
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

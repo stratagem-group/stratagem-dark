@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "tools": [
+    {
+      "id": "python",
+      "repository": "arch",
+      "package": "python",
+      "category": "runtime",
+      "isolation": "host",
+      "upstream": "https://www.python.org/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Runtime for the STRATAGEM DARK CLI and analysis scripts."
+    },
+    {
+      "id": "git",
+      "repository": "arch",
+      "package": "git",
+      "category": "development",
+      "isolation": "host",
+      "upstream": "https://git-scm.com/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Version control for reproducible investigation and development workflows."
+    },
+    {
+      "id": "jq",
+      "repository": "arch",
+      "package": "jq",
+      "category": "analysis",
+      "isolation": "host",
+      "upstream": "https://jqlang.org/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Structured JSON inspection and transformation."
+    },
+    {
+      "id": "ripgrep",
+      "repository": "arch",
+      "package": "ripgrep",
+      "category": "analysis",
+      "isolation": "host",
+      "upstream": "https://github.com/BurntSushi/ripgrep",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Fast text search across source and investigation artifacts."
+    },
+    {
+      "id": "hyprland",
+      "repository": "arch",
+      "package": "hyprland",
+      "category": "desktop",
+      "isolation": "host",
+      "upstream": "https://hypr.land/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Wayland compositor for the keyboard-driven desktop."
+    },
+    {
+      "id": "foot",
+      "repository": "arch",
+      "package": "foot",
+      "category": "desktop",
+      "isolation": "host",
+      "upstream": "https://codeberg.org/dnkl/foot",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Lightweight Wayland terminal."
+    },
+    {
+      "id": "pipewire",
+      "repository": "arch",
+      "package": "pipewire",
+      "category": "desktop",
+      "isolation": "host",
+      "upstream": "https://pipewire.org/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Desktop audio and media routing."
+    },
+    {
+      "id": "wireplumber",
+      "repository": "arch",
+      "package": "wireplumber",
+      "category": "desktop",
+      "isolation": "host",
+      "upstream": "https://pipewire.pages.freedesktop.org/wireplumber/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Session policy manager for PipeWire."
+    },
+    {
+      "id": "portal-hyprland",
+      "repository": "arch",
+      "package": "xdg-desktop-portal-hyprland",
+      "category": "desktop",
+      "isolation": "host",
+      "upstream": "https://github.com/hyprwm/xdg-desktop-portal-hyprland",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Desktop portal integration for Hyprland."
+    },
+    {
+      "id": "nmap",
+      "repository": "arch",
+      "package": "nmap",
+      "category": "network",
+      "isolation": "authorized-network",
+      "upstream": "https://nmap.org/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Network inventory and assessment on authorized systems."
+    },
+    {
+      "id": "tcpdump",
+      "repository": "arch",
+      "package": "tcpdump",
+      "category": "network",
+      "isolation": "authorized-network",
+      "upstream": "https://www.tcpdump.org/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Packet capture and offline capture inspection."
+    },
+    {
+      "id": "yara",
+      "repository": "arch",
+      "package": "yara",
+      "category": "analysis",
+      "isolation": "isolated-vm",
+      "upstream": "https://virustotal.github.io/yara/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Rule-based classification of files and artifacts."
+    },
+    {
+      "id": "gdb",
+      "repository": "arch",
+      "package": "gdb",
+      "category": "analysis",
+      "isolation": "isolated-vm",
+      "upstream": "https://www.sourceware.org/gdb/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Debugger for controlled binary analysis."
+    },
+    {
+      "id": "radare2",
+      "repository": "arch",
+      "package": "radare2",
+      "category": "analysis",
+      "isolation": "isolated-vm",
+      "upstream": "https://www.radare.org/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Binary inspection and reverse engineering toolkit."
+    },
+    {
+      "id": "capa",
+      "repository": "blackarch",
+      "package": "capa",
+      "category": "analysis",
+      "isolation": "isolated-vm",
+      "upstream": "https://github.com/mandiant/capa",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Identify capabilities in executable files; use an isolated VM."
+    },
+    {
+      "id": "zeek",
+      "repository": "blackarch",
+      "package": "zeek",
+      "category": "network",
+      "isolation": "authorized-network",
+      "upstream": "https://zeek.org/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "Network traffic analysis for defensive investigations."
+    }
+  ]
+}
