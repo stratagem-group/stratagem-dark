@@ -13,7 +13,16 @@ mkdir -p "$out" "$work"
 sed '/^\[blackarch\]/,$d' build-support/pacman.conf > /etc/pacman.conf
 pacman-key --init
 pacman-key --populate archlinux
-pacman -Syyuu --noconfirm archiso python git gnupg openssl base-devel librsvg
+# Retry transient archive transport failures without changing sources or trust.
+retry_download() {
+  local attempt
+  for attempt in 1 2 3; do
+    if "$@"; then return 0; fi
+    if (( attempt < 3 )); then sleep 5; fi
+  done
+  return 1
+}
+retry_download pacman -Syyuu --noconfirm archiso python git gnupg openssl base-devel librsvg
 scripts/setup-blackarch.sh "$work/trust"
 cp build-support/pacman.conf "$work/pacman.conf"
 # Build only our package; upstream binaries remain signed packages from their repositories.
@@ -40,7 +49,7 @@ runuser -u builder -- bash -c 'cd /build/pkg && makepkg --nodeps --noconfirm'
 mkdir -p "$work/bundle/repository" "$work/db/local"
 mapfile -t packages < <(cat build-support/desktop.packages build-support/blackarch.packages | sed '/^#/d; /^$/d' | sort -u)
 # Empty package DB resolves the complete dependency closure, not the builder's installed subset.
-pacman --config "$work/pacman.conf" --dbpath "$work/db" --cachedir "$work/bundle/repository" -Syw --noconfirm "${packages[@]}"
+retry_download pacman --config "$work/pacman.conf" --dbpath "$work/db" --cachedir "$work/bundle/repository" -Syw --noconfirm "${packages[@]}"
 cp "$work/pkg/"*.pkg.tar.zst "$work/bundle/repository/"
 cp -a "$work/trust" "$work/bundle/trust"
 cp build-support/builder-image.txt build-support/snapshot.txt "$work/bundle/"
