@@ -96,7 +96,7 @@ for key,description in [('K','Keyboard shortcuts'),('A','New authorized engageme
     assert len(matches)==1 and matches[0].get('description')==description, matches
 
 DESKTOP
-python /usr/lib/stratagem-dark/check-tools.py /mnt/test-results/tools.json
+python /usr/lib/stratagem-dark/check-tools.py /mnt/test-results/tools.json --user stratagem
 runuser -u stratagem --preserve-environment -- stratagem-shell shell summon stratagem.menu '{"menu":"apps"}'
 sleep 2
 runuser -u stratagem --preserve-environment -- grim /tmp/stratagem-apps.png
