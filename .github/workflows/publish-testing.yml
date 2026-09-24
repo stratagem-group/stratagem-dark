@@ -1,0 +1,60 @@
+name: Publish verified testing candidate
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Successful testing-build run ID from this repository
+        required: true
+        type: string
+permissions:
+  actions: read
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      BUILD_RUN: ${{ inputs.run_id }}
+    steps:
+      - name: Verify source run and download its tested artifacts
+        run: |
+          set -euo pipefail
+          [[ "$BUILD_RUN" =~ ^[0-9]+$ ]]
+          gh api "repos/$GH_REPO/actions/runs/$BUILD_RUN" > run.json
+          jq -e '.conclusion == "success" and .event == "workflow_dispatch" and .path == ".github/workflows/build-alpha.yml"' run.json
+          gh run download "$BUILD_RUN" --name stratagem-dark-testing-x86_64 --dir candidate
+          cd candidate
+          export GNUPGHOME=$(mktemp -d)
+          chmod 700 "$GNUPGHOME"
+          gpg --batch --import RELEASE-KEY.asc
+          actual=$(gpg --with-colons --list-keys | awk -F: '$1=="fpr" {print $10; exit}')
+          test "$actual" = "$(cat RELEASE-KEY-FINGERPRINT.txt)"
+          gpg --batch --verify SHA256SUMS.asc SHA256SUMS
+          sha256sum -c SHA256SUMS
+          grep -q STRATAGEM_DARK_TEST_PASS vm-results/serial.log
+          test "$(jq -r .phase install-results/transaction-2.json)" = complete
+          tar -czf verification-reports.tar.gz install-results vm-results security-report.json
+      - name: Publish testing prerelease
+        run: |
+          set -euo pipefail
+          sha=$(jq -r .head_sha run.json)
+          test "$sha" = "$(jq -r .source_commit candidate/manifest.json)"
+          cat > release-notes.md <<NOTES
+          STRATAGEM DARK testing alpha: attributed upstream desktop, original retro branding, Arch security tools and BlackArch capa.
+
+          Tested source: $sha
+          Successful build and UEFI desktop checks: https://github.com/$GH_REPO/actions/runs/$BUILD_RUN
+          Release signing fingerprint: $(cat candidate/RELEASE-KEY-FINGERPRINT.txt)
+
+          Verify SHA256SUMS.asc using RELEASE-KEY.asc and the fingerprint above, then verify SHA256SUMS before extracting or booting.
+
+          Use a disposable x86_64 UEFI VM. Live local account: stratagem / stratagem. Root is locked; SSH is disabled. This ISO is a live workstation, not a disk installer. The signed bundle installs onto an existing clean Arch system.
+
+          WhatWeb is deferred because its upstream package downloads unpinned dependencies during installation. Physical hardware, Secure Boot, installed-disk reboot and production hardening are not validated. The security report has incomplete coverage and is not a clean bill of health.
+
+          Installation and limitations: https://github.com/$GH_REPO/blob/$sha/docs/testing-release.md
+          NOTES
+          mapfile -d '' assets < <(find candidate -maxdepth 1 -type f -print0)
+          gh release create v0.2.0-alpha.1 --target "$sha" --prerelease --title 'STRATAGEM DARK 0.2.0 Alpha 1' --notes-file release-notes.md "${assets[@]}"
