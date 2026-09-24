@@ -80,6 +80,8 @@ STRATAGEM_KEEP_TEST_ROOT=1 unshare --net -- tests/integration-install.sh "$work/
 # Exercise one signed installation in the disposable target; never on the host.
 arch-chroot "$work/install-test" /usr/lib/stratagem-dark/install-optional-tool socat > "$out/install-results/optional-socat.log" 2>&1 || { cat "$out/install-results/optional-socat.log"; exit 1; }
 arch-chroot "$work/install-test" socat -V > "$out/install-results/optional-socat-version.txt"
+arch-chroot "$work/install-test" /usr/lib/stratagem-dark/install-optional-tool onesixtyone > "$out/install-results/optional-blackarch.log" 2>&1 || { cat "$out/install-results/optional-blackarch.log"; exit 1; }
+arch-chroot "$work/install-test" pacman -Q onesixtyone > "$out/install-results/optional-blackarch-version.txt"
 rm -rf "$work/install-test"
 python scripts/assemble-iso.py "$work/bundle" "$work/profile" "$signer"
 unshare --net -- mkarchiso -v -w "$work/iso-work" -o "$out" "$work/profile"
