@@ -1,7 +1,8 @@
 # Security policy
 
 STRATAGEM DARK is pre-alpha. There are no supported production releases yet.
-The current planner and stager do not execute security tools or install packages.
+The planner and stager do not install packages. The separate `dark install --apply`
+command performs privileged installation from an explicitly trusted signed testing bundle.
 
 Use [private vulnerability reporting](https://github.com/stratagem-group/stratagem-dark/security/advisories/new)
 for sensitive reports. It is enabled for this repository. Do not place exploit
@@ -13,7 +14,7 @@ behavior, impact, and redacted logs. Never test against a third party without pe
 Issues involving upstream tools should also be reported through their upstream policy.
 
 Trust boundaries: catalog data is validated without execution; staging runs unprivileged;
-package installation will require signed artifacts and explicit repository trust;
+package installation requires signed artifacts and an explicit release key fingerprint;
 user configuration is separate from system configuration. No root remote-script piping,
 disabled signature checks, default network listeners, or automatic privilege grants.
 

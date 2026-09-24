@@ -60,10 +60,10 @@ of the optional BlackArch adapter. No AUR helper or unverified remote script run
 - `bin/`, `src/`: `dark` CLI and shared resolver/stager.
 - `bootstrap/`: installer entry point and phase contracts.
 - `profiles/`, `catalog/`, `schemas/`: explicit selections and validated metadata.
-- `desktop/`, `config/`, `branding/`: original desktop defaults and visual tokens.
+- `desktop/`, `config/`, `branding/`: attributed upstream desktop, original integration and visual assets.
 - `integrations/`, `locks/`, `packages/`: repository trust and future release packaging.
 - `tests/`, `.github/`: automated checks and contribution workflow.
-- `iso/`: deliberately disabled archiso placeholder.
+- `iso/`: build entry-point documentation; `scripts/assemble-iso.py` composes the live ISO.
 
 [Architecture](docs/architecture.md) · [Roadmap](ROADMAP.md) ·
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) ·

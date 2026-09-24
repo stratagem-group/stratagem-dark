@@ -69,12 +69,13 @@ initial clean-Arch overlay path.
 
 ## Exact ownership boundary
 
-All implementation, tests, configuration, schemas, documentation prose, and visual
-assets committed here are newly authored for STRATAGEM DARK under MIT. **At the initial scaffold revision, zero upstream files were copied. The subsequent
-desktop build imports the MIT subset recorded in provenance/imports.json.** Package names/URLs and commit
-metadata are reference facts. Arch, Hyprland, Quickshell, Foot and security tools
-remain external upstream software. `provenance/imports.json` tracks any future
-change to this boundary. Required legal attribution is not public product branding.
+The CLI, installer, tests, schemas, documentation and visual assets are authored for
+STRATAGEM DARK under MIT. The desktop contains adapted MIT-licensed upstream files;
+`provenance/imports.json` records each original and adapted file with its hash.
+The initial scaffold imported no files; that historical decision was superseded by
+the derivative implementation below. Arch, Hyprland, Quickshell, Foot and security
+tools retain their upstream ownership and licenses. Required legal attribution is
+separate from product branding.
 
 ## Derivative implementation update
 

@@ -2,30 +2,28 @@
 
 ## Automated checks
 
-`python3 -m unittest discover -s tests -v` runs 30 tests covering graph resolution,
-profile unions, invalid and conflicting metadata, reproducible plans, staged file
-hashes/modes, overwrite and symlink guards, injected write failure cleanup, and CLI
-contracts. Live apply and ISO builds are explicitly tested to fail closed.
+`python3 -m unittest discover -s tests -v` runs 44 tests covering profile resolution,
+metadata validation, reproducible plans, staging guards, imported-source hashes,
+configuration preservation, and signed-bundle verification. Seven signature tests
+require GnuPG and skip when it is unavailable. All 44 passed in
+[Linux CI](https://github.com/stratagem-group/stratagem-dark/actions/runs/36044968271).
+Local macOS checks pass 37 with those seven skipped.
 
-For independent schema checks:
+CI also validates JSON schemas, Bash syntax, deterministic plans and core staging.
+These checks do not establish that the workstation boots successfully.
 
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements-dev.txt
-.venv/bin/python tests/validate_schemas.py
-```
+## Full testing build
 
-CI runs these on Ubuntu 24.04, checks Bash syntax, compares two generated plans,
-and stages a core overlay. GitHub-hosted checks do not prove Arch package installation
-or desktop compatibility. Test fixtures never call a package manager or security tool.
+The manually dispatched testing build verifies upstream package signatures, records
+exact archive hashes and versions, creates a signed offline bundle and composes a
+UEFI live ISO from the pinned Arch snapshot. `tests/integration-install.sh` installs
+that actual bundle twice into a disposable fresh Arch chroot and checks configuration
+preservation. `tests/vm/boot.sh` boots the actual ISO and checks the desktop, shell,
+selected security tools and absence of SSH access; it captures logs and screenshots.
 
-## Evidence for the initial scaffold
+These integration checks are acceptance gates, not claims of completed validation.
+The current build is still being debugged. No ISO has passed the complete acceptance
+sequence yet. Installed-disk reboot, physical hardware, every profile combination,
+audio/portal behavior and interrupted-transaction recovery remain separate work.
 
-Locally verified on macOS with Python 3.14: 30 passing tests, JSON Schema validation,
-and shell syntax checks. This demonstrates the host-independent planning/staging
-contract only. The [initial hosted CI run](https://github.com/stratagem-group/stratagem-dark/actions/runs/36043010829)
-passed on Ubuntu 24.04, including schema validation, all 30 tests and the staging smoke test.
-
-Not yet performed: a real Arch bootstrap, package availability/license review for the
-candidate set, dependency locking, desktop session launch, hardware support, failure
-recovery of a package transaction, or ISO boot. Those are milestone gates in ROADMAP.md.
+The live ISO and clean-Arch bundle paths do not implement a disk-wiping installer.

@@ -22,7 +22,7 @@ mkdir -p "$target/bundle"
 mount --bind "$bundle" "$target/bundle"
 trap 'umount "$target/bundle" 2>/dev/null || true' EXIT
 for attempt in 1 2; do
- arch-chroot "$target" /bundle/source/bin/dark install --bundle /bundle --key-fingerprint "$signer" --user tester --apply > "$results/install-$attempt.log" 2>&1
+ arch-chroot "$target" /bundle/source/bin/dark install --bundle /bundle --key-fingerprint "$signer" --user tester --apply > "$results/install-$attempt.log" 2>&1 || { cat "$results/install-$attempt.log"; exit 1; }
  cp "$target/var/lib/stratagem-dark/transaction.json" "$results/transaction-$attempt.json"
  arch-chroot "$target" pacman -Q > "$results/packages-$attempt.txt"
 done

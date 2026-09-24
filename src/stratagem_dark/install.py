@@ -113,7 +113,8 @@ def install_bundle(directory, fingerprint, username, apply=False):
     require(shutil.disk_usage('/').free > 6 * 1024**3, 'at least 6 GiB free space required')
     # Copy verified inputs to root-owned storage before privileged consumption.
     state = Path('/var/lib/stratagem-dark'); state.mkdir(mode=0o700, exist_ok=True)
-    require(not state.is_symlink() and state.stat().st_uid == 0, 'unsafe state directory')
+    require(not state.is_symlink() and state.stat().st_uid == 0
+            and state.stat().st_mode & 0o077 == 0, 'unsafe state directory')
     with (state / 'install.lock').open('w') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         with tempfile.TemporaryDirectory(prefix='release-', dir=state) as temp:
