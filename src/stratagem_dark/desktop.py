@@ -2,6 +2,7 @@
 """Interactive desktop workflows. No shell interpolation or unattended scans."""
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -26,7 +27,7 @@ This testing ISO is live-only. Changes and agent logins are lost on reboot.
 
 
 def choose(title, options):
-    p = subprocess.run(['gum', 'choose', '--header', title, '--', *options], text=True, capture_output=True)
+    p = subprocess.run(['gum', 'choose', '--header', title, '--', *options], text=True, stdout=subprocess.PIPE)
     return p.stdout.strip() if p.returncode == 0 else ''
 
 
@@ -35,7 +36,7 @@ def pause():
         input('\nPress Enter to close. ')
 
 
-def launch_agent(agent, workspace, prompt=None):
+def launch_agent(agent, workspace, prompt=None, model=None):
     if agent not in AGENTS or not shutil.which(agent):
         raise ValueError('Choose an installed supported agent.')
     if os.geteuid() == 0:
@@ -45,6 +46,9 @@ def launch_agent(agent, workspace, prompt=None):
         raise ValueError('Choose an existing workspace directory.')
     # Preserve each provider\'s normal authentication, workspace trust and approval prompts.
     command = [agent]
+    if model and agent == "opencode":
+        if not valid_model_id(model): raise ValueError("Choose a valid provider/model ID.")
+        command += ["--model", model]
     if prompt and agent == "opencode": command += ["--prompt", prompt]
     return subprocess.call(command, cwd=directory)
 
@@ -63,17 +67,52 @@ def agents():
     if not agent: return 0
     workspace = Path.home() / 'Work'
     workspace.mkdir(exist_ok=True)
-    p = subprocess.run(['gum', 'input', '--header', 'Workspace directory', '--value', settings.get('workspace', str(workspace))], capture_output=True, text=True)
+    p = subprocess.run(['gum', 'input', '--header', 'Workspace directory', '--value', settings.get('workspace', str(workspace))], stdout=subprocess.PIPE, text=True)
     if p.returncode: return 0
     workspace = Path(p.stdout.strip()).expanduser().resolve()
     if not workspace.is_dir(): raise ValueError('Workspace directory does not exist.')
+    models = settings.get('models', {})
+    if not isinstance(models, dict): models = {}
+    while agent == 'opencode':
+        selected_model = models.get(agent) or 'provider default'
+        action = choose('OpenCode — model: '+selected_model,
+                        ['Launch agent', 'Sign in to a provider', 'Choose provider / model', 'Use provider default', 'Cancel'])
+        if action in ('', 'Cancel'): return 0
+        if action == 'Sign in to a provider':
+            subprocess.call(['opencode','auth','login'])
+        elif action == 'Choose provider / model':
+            selected = select_model()
+            if selected: models[agent] = selected
+        elif action == 'Use provider default': models.pop(agent, None)
+        elif action == 'Launch agent': break
     config.parent.mkdir(parents=True, exist_ok=True)
     if config.is_symlink(): raise ValueError('Agent settings must not be a symlink.')
-    config.write_text(json.dumps({'agent': agent, 'workspace': str(workspace)})+'\n')
+    config.write_text(json.dumps({'agent': agent, 'workspace': str(workspace), 'models': models})+'\n')
     config.chmod(0o600)
-    print('Sign in inside the agent when prompted. No keys are stored by STRATAGEM DARK.')
+    print('Provider credentials stay in the agent’s own credential store, not this settings file.')
     print('For security work, describe your authorized scope and review proposed actions.')
-    return launch_agent(agent, workspace)
+    return launch_agent(agent, workspace, model=models.get(agent))
+
+
+def valid_model_id(value):
+    return isinstance(value,str) and re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._:-]*/[A-Za-z0-9][A-Za-z0-9._:/@-]*', value) is not None
+
+
+def select_model():
+    print('Loading the provider/model catalog…', flush=True)
+    try:
+        result = subprocess.run(['opencode','models'],capture_output=True,text=True,timeout=90)
+    except subprocess.TimeoutExpired:
+        print('Model lookup timed out. Check networking and try again.');return None
+    models = sorted({line.strip() for line in result.stdout.splitlines() if valid_model_id(line.strip())})
+    if result.returncode or not models:
+        print('Could not load models. Connect to the internet and configure your provider first.');return None
+    provider = choose('Model provider (access depends on your account)', sorted({m.split('/',1)[0] for m in models}))
+    if not provider:return None
+    candidates = [m for m in models if m.startswith(provider+'/')]
+    result = subprocess.run(['gum','filter','--placeholder','Search models; Enter selects'],input='\n'.join(candidates),stdout=subprocess.PIPE,text=True)
+    selected = result.stdout.strip()
+    return selected if result.returncode==0 and selected in candidates else None
 
 
 def main(action, tool=None, once=False, root=None):
@@ -157,14 +196,17 @@ Respect explicit exclusions and stop conditions. A prompt is guidance, not a net
 def engagement(root):
     base = Path.home()/'Work'
     base.mkdir(exist_ok=True)
-    dest = subprocess.run(['gum','input','--header','New engagement directory (must not exist)','--value',str(base/'engagement')],capture_output=True,text=True)
+    dest = subprocess.run(['gum','input','--header','New engagement directory (must not exist)','--value',str(base/'engagement')],stdout=subprocess.PIPE,text=True)
     if dest.returncode: return 0
-    scope = subprocess.run(['gum','input','--header','Authorized targets, exclusions and authorization reference'],capture_output=True,text=True)
+    scope = subprocess.run(['gum','input','--header','Authorized targets, exclusions and authorization reference'],stdout=subprocess.PIPE,text=True)
     if scope.returncode: return 0
     directory = create_engagement(dest.stdout.strip(), scope.stdout, json.loads((root/'catalog/launchers.json').read_text()), json.loads((root/'catalog/optional-tools.json').read_text()))
     print(f'Workspace created: {directory}\nRead SCOPE.md before active testing. Commands require approval.')
-    if shutil.which('opencode'):
-        return launch_agent('opencode', directory, 'Read SCOPE.md, AGENTS.md and TOOLS.json. Help me plan and carry out this authorized assessment using the installed tools. Clarify missing scope before active testing, obtain command approval, preserve evidence and draft findings.')
+    settings_path=Path.home()/'.config/stratagem/agent.json'
+    settings=json.loads(settings_path.read_text()) if settings_path.exists() else {}
+    agent=settings.get('agent','opencode')
+    if agent in AGENTS and shutil.which(agent):
+        return launch_agent(agent, directory, 'Read SCOPE.md, AGENTS.md and TOOLS.json. Help me plan and carry out this authorized assessment using the installed tools. Clarify missing scope before active testing, obtain command approval, preserve evidence and draft findings.', model=settings.get('models',{}).get(agent))
     print('OpenCode is missing; the workspace is ready for your chosen agent.');pause();return 1
 
 
@@ -201,7 +243,7 @@ def cheatsheet(root):
             description=' '.join(''.join(c for c in tool['description'] if c.isprintable()).split())
             options[f"[{state}] {name} — {description}"]=('present' if present else 'install',name)
     print('Search by name or purpose. Install needs internet, authentication and free space.\nLive-session installs disappear on reboot. Catalog presence is not individual testing.\n')
-    result=subprocess.run(['gum','filter','--placeholder','Search tools; Enter selects'],input='\n'.join(options),capture_output=True,text=True)
+    result=subprocess.run(['gum','filter','--placeholder','Search tools; Enter selects'],input='\n'.join(options),stdout=subprocess.PIPE,text=True)
     if result.returncode:return 0
     selected=result.stdout.strip()
     if selected not in options:return 0

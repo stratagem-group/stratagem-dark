@@ -1,7 +1,7 @@
 # Agent-assisted assessments
 
 STRATAGEM DARK's alpha2 candidate includes OpenCode, an interactive agent with
-terminal tools. Sign in to a model provider inside OpenCode; no paid model access
+terminal tools. Super+Shift+A offers provider sign-in, a searchable provider/model picker, and a saved default model for OpenCode; no paid model access
 or API credentials are bundled. Codex and Claude can be selected when installed
 separately. The original Omarchy agent usage panel is not yet restored.
 
@@ -50,3 +50,5 @@ installs are not reproducible in the same way as the locked base bundle. Depende
 conflicts or missing archives fail without forced overwrites. Package availability
 is not a compatibility, safety or legal certification. Review the installed version
 and resulting package-manager output before using a newly added tool.
+
+The model picker reads OpenCode’s live model catalog rather than hardcoding model names. A listed model may still require provider access, billing, or credentials. New engagements reuse the selected agent and its saved OpenCode model. Codex/Claude model selection remains in their native interface when separately installed.

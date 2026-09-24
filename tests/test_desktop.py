@@ -54,3 +54,16 @@ class OptionalInstallerTests(unittest.TestCase):
         with patch('os.geteuid',return_value=1000),patch('subprocess.call') as call:
             with self.assertRaises(ValueError):optional_tools.install('socat')
             call.assert_not_called()
+
+class ModelSelectionTests(unittest.TestCase):
+    def test_model_is_an_argument_not_a_shell_command(self):
+        from stratagem_dark.desktop import launch_agent
+        with tempfile.TemporaryDirectory() as t,patch('os.geteuid',return_value=1000),patch('shutil.which',return_value='/bin/opencode'),patch('subprocess.call',return_value=0) as call:
+            launch_agent('opencode',t,model='provider/model-v1')
+            self.assertEqual(call.call_args.args[0],['opencode','--model','provider/model-v1'])
+            with self.assertRaises(ValueError):launch_agent('opencode',t,model='provider/model;sh')
+    def test_model_catalog_ignores_logs_and_unknown_selection(self):
+        from stratagem_dark.desktop import select_model
+        from subprocess import CompletedProcess
+        with patch('subprocess.run',side_effect=[CompletedProcess([],0,'INFO loading\nprovider/model-one\nother/model-two\n'),CompletedProcess([],0,'provider/model-one\n')]),patch('stratagem_dark.desktop.choose',return_value='provider'):
+            self.assertEqual(select_model(),'provider/model-one')

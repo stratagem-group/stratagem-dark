@@ -111,3 +111,6 @@ ids=[r['id'].removesuffix('.desktop') for r in rows]
 assert len(ids)==len(set(ids)), rows
 assert sum(r['name'].lower()=='foot' for r in rows)<=1, rows
 APPS
+
+runuser -u stratagem -- python /usr/lib/stratagem-dark/desktop-ui-test.py > /tmp/desktop-ui.log 2>&1 || { cat /tmp/desktop-ui.log; exit 1; }
+cp /tmp/desktop-ui.log /mnt/test-results/desktop-ui.log

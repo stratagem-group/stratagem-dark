@@ -90,3 +90,4 @@ polkit.addRule(function(action, subject) {
 ''')
 
 copy(repo/'tests/check-tools.py','usr/lib/stratagem-dark/check-tools.py')
+copy(repo/'tests/desktop-ui.py','usr/lib/stratagem-dark/desktop-ui-test.py')
