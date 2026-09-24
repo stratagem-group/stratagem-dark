@@ -78,12 +78,10 @@ write('usr/share/polkit-1/actions/org.stratagem.dark.install-tool.policy','''<?x
 ''')
 
 write('usr/share/polkit-1/rules.d/50-stratagem-network.rules','''// Require self-authentication for active local users' own Wi-Fi connections.
+// Routine network control uses upstream policy; avoid authentication on shell startup.
 // System-wide profile modification is deliberately not granted here.
 polkit.addRule(function(action, subject) {
-  var actions = ["org.freedesktop.NetworkManager.network-control",
-    "org.freedesktop.NetworkManager.wifi.scan",
-    "org.freedesktop.NetworkManager.enable-disable-wifi",
-    "org.freedesktop.NetworkManager.settings.modify.own"];
+  var actions = ["org.freedesktop.NetworkManager.settings.modify.own"];
   if (subject.local && subject.active && actions.indexOf(action.id) >= 0)
     return polkit.Result.AUTH_SELF;
 });

@@ -68,6 +68,7 @@
     "stratagem.tailscale",
     "stratagem.weather",
     "stratagem.wifiqr",
-    "stratagem.clipboard"
+    "stratagem.clipboard",
+    "stratagem.polkit"
   ]
 }
