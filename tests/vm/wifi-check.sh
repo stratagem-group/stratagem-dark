@@ -46,16 +46,16 @@ ui() { runuser -u stratagem --preserve-environment -- "$@"; }
 sleep 3
 ui stratagem-shell stratagem.network open
 sleep 3
-ui hyprctl dispatch sendshortcut ', Down,'
-ui hyprctl dispatch sendshortcut ', Return,'
+ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Down"})'
+ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Return"})'
 sleep 1
 ui grim /tmp/wifi-password.png
 cp /tmp/wifi-password.png /mnt/test-results/wifi-password.png
 for digit in 9 2 7 3 9 2 7 3; do
-  ui hyprctl dispatch sendshortcut ", $digit,"
+  ui hyprctl dispatch "hl.dsp.send_shortcut({mods = \"\", key = \"$digit\"})"
   sleep 0.1
 done
-ui hyprctl dispatch sendshortcut ', Return,'
+ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Return"})'
 for attempt in $(seq 1 60); do
   [[ $(nmcli -g GENERAL.STATE device show "$station") == 100* ]] && break
   sleep 1
@@ -74,8 +74,8 @@ nmcli device disconnect "$station"
 ui stratagem-shell stratagem.network close
 ui stratagem-shell stratagem.network open
 sleep 2
-ui hyprctl dispatch sendshortcut ', Down,'
-ui hyprctl dispatch sendshortcut ', Return,'
+ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Down"})'
+ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Return"})'
 for attempt in $(seq 1 60); do
   [[ $(nmcli -g GENERAL.STATE device show "$station") == 100* ]] && break
   sleep 1

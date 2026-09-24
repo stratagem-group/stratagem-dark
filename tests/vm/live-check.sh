@@ -131,7 +131,7 @@ kill -0 "$picker_pid"
 runuser -u stratagem --preserve-environment -- grim /tmp/theme-picker.png
 cp /tmp/theme-picker.png /mnt/test-results/theme-picker.png
 # Exercise the real picker's keyboard acceptance, not a test-only apply API.
-runuser -u stratagem --preserve-environment -- hyprctl dispatch sendshortcut ', Return,'
+runuser -u stratagem --preserve-environment -- hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Return"})'
 wait "$picker_pid"
 cat /tmp/theme-picker.log > /mnt/test-results/theme-picker.log
 
