@@ -23,6 +23,8 @@ Python 3.11+ and Bash are enough; no runtime Python dependencies. Run as your no
 user from a reviewed checkout:
 
 ```sh
+git clone https://github.com/stratagem-group/stratagem-dark.git
+cd stratagem-dark
 ./bin/dark --help
 ./bin/dark validate
 ./bin/dark profile list

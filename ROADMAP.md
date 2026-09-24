@@ -7,7 +7,7 @@
 - [x] Validated catalog, five profiles, deterministic plan resolver.
 - [x] Unprivileged filesystem staging and CLI/installer skeleton.
 - [x] Unit/contract tests and CI; disabled ISO structure.
-- [ ] Public repository publication and verified green hosted CI.
+- [x] Public repository publication and verified green hosted CI.
 
 ## 0.2 — deterministic clean Arch bootstrap (next priority)
 

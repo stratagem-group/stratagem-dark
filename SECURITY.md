@@ -3,11 +3,10 @@
 STRATAGEM DARK is pre-alpha. There are no supported production releases yet.
 The current planner and stager do not execute security tools or install packages.
 
-Use the repository's **Security → Report a vulnerability** private reporting channel
-when it is enabled. Publication maintainers must enable private vulnerability reporting
-before promoting the project. Until then, do not place exploit details, credentials,
-or sensitive logs in public issues; open a minimal request for a private contact path.
-No security email address or response-time guarantee has been established yet.
+Use [private vulnerability reporting](https://github.com/stratagem-group/stratagem-dark/security/advisories/new)
+for sensitive reports. It is enabled for this repository. Do not place exploit
+details, credentials, or sensitive logs in public issues. No security email address
+or response-time guarantee has been established yet.
 
 Include affected commit/version, reproduction in an isolated environment, expected
 behavior, impact, and redacted logs. Never test against a third party without permission.

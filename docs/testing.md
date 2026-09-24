@@ -23,7 +23,8 @@ or desktop compatibility. Test fixtures never call a package manager or security
 
 Locally verified on macOS with Python 3.14: 30 passing tests, JSON Schema validation,
 and shell syntax checks. This demonstrates the host-independent planning/staging
-contract only. See the repository Actions page for the corresponding Linux checks.
+contract only. The [initial hosted CI run](https://github.com/stratagem-group/stratagem-dark/actions/runs/36043010829)
+passed on Ubuntu 24.04, including schema validation, all 30 tests and the staging smoke test.
 
 Not yet performed: a real Arch bootstrap, package availability/license review for the
 candidate set, dependency locking, desktop session launch, hardware support, failure
