@@ -206,7 +206,7 @@ Use the installed command-line tools through your terminal tool. Start with a pl
 Keep commands, timestamps, tool versions and raw results in evidence/; decisions in notes/; findings with evidence, impact and remediation in reports/. Ask before destructive testing, credential attacks, privilege elevation or uploading engagement data. Never disable your approval controls.
 Respect explicit exclusions and stop conditions. A prompt is guidance, not a network isolation boundary. The user remains responsible for authorization.
 ''',
-        'opencode.json': json.dumps({'$schema':'https://opencode.ai/config.json','permission':{'bash':'ask','edit':'ask','read':'allow'}},indent=2)+'\n',
+        'opencode.json': json.dumps({'$schema':'https://opencode.ai/config.json','permission':{'bash':'ask','edit':'ask','external_directory':'ask','read':{'*':'allow','*.env':'deny','*.env.*':'deny','*.env.example':'allow'}}},indent=2)+'\n',
         'reports/README.md': '# Findings\n\nRecord only verified findings, with evidence paths, severity rationale, affected assets and remediation.\n'
     }
     for name, content in files.items():

@@ -22,7 +22,9 @@ scope before active testing. For example, give it an owned lab and ask for an
 inventory and report; no target or authorization is assumed by the distribution.
 
 This is integration with the agent's existing terminal execution, not a separate
-custom MCP service. Approval prompts remain on; no automatic root access, permission
+custom MCP service. Fresh OpenCode defaults explicitly ask before shell commands and file edits, and
+protect environment-secret files. Existing user configuration is preserved. These
+settings are user-changeable guidance, not a sandbox. No automatic root access, permission
 bypass flags or public network agent server are enabled. Agent instructions are not
 a sandbox or technical target allowlist. Tools requiring root, capture permissions,
 wireless monitor support or a GPU need those prerequisites supplied separately.

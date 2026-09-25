@@ -24,7 +24,10 @@ class DesktopTests(unittest.TestCase):
             self.assertEqual(json.loads((p/'TOOLS.json').read_text()),{'nmap':'nmap'})
             self.assertIn('My isolated lab only',(p/'SCOPE.md').read_text())
             self.assertEqual(p.stat().st_mode & 0o777,0o700)
-            self.assertEqual(json.loads((p/'opencode.json').read_text())['permission']['bash'],'ask')
+            policy=json.loads((p/'opencode.json').read_text())['permission']
+            self.assertEqual(policy['bash'],'ask')
+            self.assertEqual(policy['edit'],'ask')
+            self.assertEqual(policy['read']['*.env'],'deny')
     def test_agent_launch_uses_argv_and_retains_permission_prompts(self):
         with tempfile.TemporaryDirectory(prefix='work space ') as t, patch('os.geteuid',return_value=1000), patch('shutil.which',return_value='/bin/opencode'), patch('subprocess.call',return_value=0) as call:
             launch_agent('opencode',t)
@@ -91,3 +94,13 @@ class AgentOnboardingTests(unittest.TestCase):
             self.assertEqual(agents(),0)
             launch.assert_not_called()
             self.assertFalse((Path(t)/'.config/stratagem/agent.json').exists())
+
+class DefaultAgentPolicyTests(unittest.TestCase):
+    def test_plain_workspace_has_approval_and_secret_file_defaults(self):
+        policy=json.loads((ROOT/'desktop/runtime/config/opencode/opencode.json').read_text())['permission']
+        self.assertEqual(policy['bash'],'ask')
+        self.assertEqual(policy['edit'],'ask')
+        self.assertEqual(policy['external_directory'],'ask')
+        self.assertEqual(policy['read']['*.env'],'deny')
+        self.assertEqual(policy['read']['*.env.*'],'deny')
+        self.assertEqual(policy['read']['*.env.example'],'allow')
