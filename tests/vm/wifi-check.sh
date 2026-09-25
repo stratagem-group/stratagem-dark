@@ -47,6 +47,11 @@ ui stratagem-shell shell hide stratagem.menu
 sleep 3
 ui stratagem-shell stratagem.network open
 sleep 3
+ui grim /tmp/wifi-list.png
+cp /tmp/wifi-list.png /mnt/test-results/wifi-list.png
+# Scans may populate after opening, leaving the cursor on DNS. With one AP,
+# a second Down always reaches (or stays on) that Wi-Fi row.
+ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Down"})'
 ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Down"})'
 ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Return"})'
 sleep 1
@@ -75,6 +80,9 @@ nmcli device disconnect "$station"
 ui stratagem-shell stratagem.network close
 ui stratagem-shell stratagem.network open
 sleep 2
+# Scans may populate after opening, leaving the cursor on DNS. With one AP,
+# a second Down always reaches (or stays on) that Wi-Fi row.
+ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Down"})'
 ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Down"})'
 ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Return"})'
 for attempt in $(seq 1 60); do
