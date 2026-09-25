@@ -115,6 +115,10 @@ APPS
 runuser -u stratagem -- python /usr/lib/stratagem-dark/desktop-ui-test.py > /tmp/desktop-ui.log 2>&1 || { cat /tmp/desktop-ui.log; exit 1; }
 cp /tmp/desktop-ui.log /mnt/test-results/desktop-ui.log
 
+# Close the application menu used by the earlier inventory test. Its exclusive
+# keyboard focus must not steal input from the on-demand network panel later.
+runuser -u stratagem --preserve-environment -- stratagem-shell shell hide stratagem.menu
+
 # Theme application must update actual terminal and compositor configuration.
 for theme in nord catppuccin-latte phosphor; do
   runuser -u stratagem --preserve-environment -- env STRATAGEM_DARK_THEME_SKIP_BACKGROUND=1 stratagem-theme-set "$theme"

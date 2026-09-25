@@ -43,6 +43,7 @@ for attempt in $(seq 1 15); do
 done
 # Operate the actual panel from the desktop session. No test-only UI bypass.
 ui() { runuser -u stratagem --preserve-environment -- "$@"; }
+ui stratagem-shell shell hide stratagem.menu
 sleep 3
 ui stratagem-shell stratagem.network open
 sleep 3
