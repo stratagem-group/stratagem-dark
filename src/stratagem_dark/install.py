@@ -76,8 +76,11 @@ def setup_user(runtime=Path('/usr/share/stratagem'), home=None, apply=False):
     for p in sorted((runtime / 'config').rglob('*')):
         if p.is_file():
             targets.append((p, home / '.config' / p.relative_to(runtime / 'config')))
+    selected = home / '.local/state/stratagem/current/theme.name'
+    if (runtime / 'default/theme.name').is_file():
+        targets.append((runtime / 'default/theme.name', selected))
     for p in sorted((runtime / 'themes/phosphor').rglob('*')):
-        if p.is_file():
+        if p.is_file() and not selected.exists():
             targets.append((p, home / '.local/state/stratagem/current/theme' / p.relative_to(runtime / 'themes/phosphor')))
     for source, target in targets:
         require(all(not p.is_symlink() for p in (target, *target.parents)), 'symlink in user configuration path')

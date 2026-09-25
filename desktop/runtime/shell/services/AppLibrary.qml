@@ -36,6 +36,17 @@ Item {
   // entries appeared or vanished, or the hidden-entry filters reloaded.
   signal appsChanged()
 
+  // Read-only local-session diagnostics for launcher acceptance checks.
+  IpcHandler {
+    target: "applications"
+    function list(): string {
+      return JSON.stringify(root.sortedEntries("").map(function(row) {
+        return {id: String(row.entry.id), name: root.entryName(row.entry)}
+      }))
+    }
+  }
+
+
   function entryName(entry) {
     return AppSearch.entryName(entry)
   }

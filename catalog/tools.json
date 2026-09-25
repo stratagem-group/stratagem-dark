@@ -198,6 +198,215 @@
       "license_expression": "GPL-3.0-only",
       "license_review": "pending",
       "description": "Curated lynis security analysis tool."
+    },
+    {
+      "id": "wireshark",
+      "repository": "arch",
+      "package": "wireshark-qt",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://www.wireshark.org/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "wireshark security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "aircrack-ng",
+      "repository": "arch",
+      "package": "aircrack-ng",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://www.aircrack-ng.org",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "aircrack-ng security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "sqlmap",
+      "repository": "arch",
+      "package": "sqlmap",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://sqlmap.org",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "sqlmap security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "gobuster",
+      "repository": "arch",
+      "package": "gobuster",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/OJ/gobuster",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "gobuster security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "nikto",
+      "repository": "arch",
+      "package": "nikto",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/sullo/nikto",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "nikto security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "sslscan",
+      "repository": "arch",
+      "package": "sslscan",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/rbsec/sslscan",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "sslscan security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "testssl",
+      "repository": "arch",
+      "package": "testssl.sh",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/testssl/testssl.sh",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "testssl security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "ffuf",
+      "repository": "blackarch",
+      "package": "ffuf",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/ffuf/ffuf",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "ffuf security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "subfinder",
+      "repository": "blackarch",
+      "package": "subfinder",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/projectdiscovery/subfinder",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "subfinder security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "httpx",
+      "repository": "blackarch",
+      "package": "httpx",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/projectdiscovery/httpx",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "httpx security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "amass",
+      "repository": "blackarch",
+      "package": "amass",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/OWASP/Amass",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "amass security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "feroxbuster",
+      "repository": "blackarch",
+      "package": "feroxbuster",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/epi052/feroxbuster",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "feroxbuster security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "dnsenum",
+      "repository": "blackarch",
+      "package": "dnsenum",
+      "category": "analysis",
+      "isolation": "authorized-network",
+      "upstream": "https://github.com/fwaeytens/dnsenum",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "dnsenum security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "john",
+      "repository": "arch",
+      "package": "john",
+      "category": "analysis",
+      "isolation": "isolated-vm",
+      "upstream": "https://www.openwall.com/john",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "john security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "hashcat",
+      "repository": "arch",
+      "package": "hashcat",
+      "category": "analysis",
+      "isolation": "isolated-vm",
+      "upstream": "https://hashcat.net/hashcat",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "hashcat security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "binwalk",
+      "repository": "arch",
+      "package": "binwalk",
+      "category": "analysis",
+      "isolation": "isolated-vm",
+      "upstream": "https://github.com/ReFirmLabs/binwalk",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "binwalk security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "foremost",
+      "repository": "arch",
+      "package": "foremost",
+      "category": "analysis",
+      "isolation": "isolated-vm",
+      "upstream": "https://foremost.sourceforge.net/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "foremost security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "exiftool",
+      "repository": "arch",
+      "package": "perl-image-exiftool",
+      "category": "analysis",
+      "isolation": "isolated-vm",
+      "upstream": "https://exiftool.org/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "exiftool security analysis; launcher opens help without selecting a target."
+    },
+    {
+      "id": "sleuthkit",
+      "repository": "arch",
+      "package": "sleuthkit",
+      "category": "analysis",
+      "isolation": "isolated-vm",
+      "upstream": "https://www.sleuthkit.org/",
+      "license_expression": "NOASSERTION",
+      "license_review": "pending",
+      "description": "sleuthkit security analysis; launcher opens help without selecting a target."
     }
   ]
 }

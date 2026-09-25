@@ -8,6 +8,8 @@
     "gdb",
     "radare2",
     "yara",
-    "capa"
+    "capa",
+    "binwalk",
+    "foremost"
   ]
 }

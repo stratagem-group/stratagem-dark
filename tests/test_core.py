@@ -217,7 +217,7 @@ class CliTests(unittest.TestCase):
         for directory in ('branding', 'desktop', 'config'):
             for path in (ROOT / directory).rglob('*'):
                 if path.is_file():
-                    self.assertNotIn('omarchy', path.read_text().replace('"author": "Omarchy"', '').lower(), str(path))
+                    self.assertNotIn(b'omarchy', path.read_bytes().replace(b'"author": "Omarchy"', b'').lower(), str(path))
 
     def test_import_register_is_explicit(self):
         data = json.loads((ROOT / 'provenance/imports.json').read_text())

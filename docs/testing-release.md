@@ -11,7 +11,7 @@ This is a derivative of the MIT-licensed Omarchy desktop, with original STRATAGE
 branding, startup policy and menu. It includes its real Quickshell shell and Hyprland
 configuration, not a visual imitation. The inherited updater, installer, provisioning,
 commercial-app defaults, logos, fonts and wallpapers are excluded. Arch provides the
-base system. BlackArch provides a small explicit selection, initially capa. WhatWeb remains a catalog candidate: its current package hook
+base system. BlackArch provides a small explicit selection, capa, ffuf, subfinder, httpx, amass, feroxbuster and dnsenum in the alpha2 candidate. WhatWeb remains a catalog candidate: its current package hook
 downloads unpinned Ruby gems and failed the offline acceptance review.
 The broader catalog includes candidates that are not yet part of the binary release.
 
@@ -88,3 +88,62 @@ that drops unsolicited inbound and forwarded traffic. Loopback, established repl
 ICMP and DHCP replies are allowed; outbound traffic is allowed. Administrator tables
 are preserved. Labs and tools that need listeners or forwarding require explicit
 firewall rules; this baseline does not create a malware containment boundary.
+
+
+## Alpha2 correction candidate
+
+Physical alpha1 testing on a Lenovo X1 exposed missing firmware, missing shortcut
+help, duplicate application entries, absent agent onboarding, and a minimal tool set.
+Alpha2 adds Linux firmware, a polkit session agent, NetworkManager setup, Super+K
+help, Super+A engagement creation and Super+Shift+A agent selection. OpenCode is
+bundled from the pinned Arch snapshot; Codex and Claude are selectable only if the
+user installs them. Provider login and model usage are not included or billed by
+the distribution. Agent permissions remain enabled, and an engagement records its
+scope, installed tools, evidence, notes and reports. This is prompt guidance, not
+technical target enforcement or isolation. No live model calls are made in CI.
+
+The Security tools menu opens installed tools, generally at their help screen;
+there is no automatic target selection or scan. The expanded set includes network,
+web, wireless, password-audit, packet-analysis and forensics tools. GPU acceleration,
+wireless monitoring and privileged capture need appropriate hardware/permissions.
+All package installation still uses the signed offline bundle.
+
+A VM cannot establish that the Lenovo wireless hardware works. Retest Wi-Fi on the
+Lenovo after flashing the alpha2 candidate. Direct ISO-to-disk installation and
+installed-disk reboot verification remain separate unfinished requirements.
+
+
+The alpha2 cheat sheet (Super+T) searches the full captured BlackArch package
+catalog, including dependencies, with categories and installation status. Optional
+installs authenticate through a dedicated catalog-only action and verify upstream
+package signatures. They require internet and may fail if rolling BlackArch
+requirements are incompatible with the pinned Arch base; nothing is force-installed.
+Wi-Fi setup uses authenticated per-user profiles; no general sudo or system-wide
+network configuration grant was added. Enterprise Wi-Fi remains a manual setup case.
+
+### Excluded broken upstream package
+
+DNSRecon 2:1.6.3-1 remains discoverable in the upstream catalog but is not bundled:
+its package omits required Python HTTPX and Stamina dependencies, and Stamina is
+not available in the configured repositories. Its optional installation does not
+currently produce a working CLI. DNSenum supplies the bundled DNS enumeration
+launcher for this candidate. Do not bypass package verification or install unpinned
+Python dependencies to work around this limitation.
+
+## Alpha3 desktop correction candidate
+
+- Click the network indicator, select a personal Wi-Fi network and enter its password
+  inline. Profiles belong to the current user; native NetworkManager policy is used
+  without the alpha2 extra login-password prompt. Enterprise configuration stays in
+  Advanced network settings so certificate and identity policy is not replaced.
+- Super+Shift+A launches the saved agent directly. First use selects the agent and
+  opens native provider sign-in. Change settings under Setup > Default agent.
+- Style > Theme or Super+Ctrl+Shift+Space opens the upstream visual picker with 11
+  palettes. Shell, terminal, window borders and lock-screen input colors coordinate.
+  Original STRATAGEM DARK wallpaper remains; upstream artwork is not included.
+- VM acceptance now exercises theme application and picker keyboard selection, plus
+  simulated WPA2 Wi-Fi. Report test outcomes per build; this description is not a
+  substitute for a successful run or Lenovo hardware verification.
+
+The upstream agent usage/status panel and full application-theme integrations are
+still pending. No paid provider sign-in is performed in CI. The ISO remains live-only.

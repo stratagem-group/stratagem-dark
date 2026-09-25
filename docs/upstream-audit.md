@@ -1,5 +1,10 @@
 # Upstream review — 2026-09-24
 
+The initial decisions below are historical. The [desktop parity review](desktop-parity-review.md)
+records the subsequent stable/current source comparison and the user-selected
+Omarchy-first desktop direction. `provenance/imports.json` remains authoritative
+for files actually imported; reviewed sources are not automatically shipped.
+
 This review preceded implementation. GitHub default branches were resolved to the
 immutable commits below; repository trees, root notices/READMEs and selected
 installer/packaging files were inspected. This is a scoped reuse review, not a full

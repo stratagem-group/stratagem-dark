@@ -27,18 +27,23 @@ scripts/setup-blackarch.sh "$work/trust"
 cp build-support/pacman.conf "$work/pacman.conf"
 # Build only our package; upstream binaries remain signed packages from their repositories.
 python scripts/package-root.py "$work/payload"
+mkdir -p "$work/payload/usr/share/pacman/keyrings"
+cp "$work/trust/keyrings/blackarch.gpg" "$work/payload/usr/share/pacman/keyrings/stratagem-blackarch.gpg"
+cp "$work/trust/keyrings/blackarch-trusted" "$work/payload/usr/share/pacman/keyrings/stratagem-blackarch-trusted"
+cp "$work/trust/keyrings/blackarch-revoked" "$work/payload/usr/share/pacman/keyrings/stratagem-blackarch-revoked"
 rsvg-convert -w 1920 -h 1080 branding/wallpaper.svg -o "$work/payload/usr/share/stratagem-dark/branding/wallpaper.png"
+rsvg-convert -w 800 branding/wordmark.svg -o "$work/payload/usr/share/plymouth/themes/stratagem-dark/logo.png"
 mkdir -p "$work/pkg"
 cp -a "$work/payload" "$work/pkg/payload"
 cat > "$work/pkg/PKGBUILD" <<'PKG'
 pkgname=stratagem-dark-desktop
-pkgver=0.2.0alpha1
+pkgver=0.2.0alpha4
 pkgrel=1
 pkgdesc='STRATAGEM DARK desktop and security workstation integration'
 arch=('x86_64')
 url='https://github.com/stratagem-group/stratagem-dark'
 license=('MIT')
-depends=('python' 'hyprland' 'quickshell' 'foot' 'uwsm' 'jq' 'swaybg' 'nftables' 'inotify-tools' 'iw')
+depends=('python' 'hyprland' 'quickshell' 'foot' 'uwsm' 'jq' 'swaybg' 'nftables' 'inotify-tools' 'iw' 'libvips' 'python-dbus')
 package() {
   cp -a "$startdir/payload/." "$pkgdir/"
 }
@@ -71,12 +76,24 @@ gpg --batch --yes --armor --detach-sign "$work/bundle/manifest.json"
 cp "$work/bundle/release-key.asc" "$out/RELEASE-KEY.asc"
 # Local repository retains verified upstream package signatures; database gets our test signature.
 repo-add --sign --key "$signer" "$work/bundle/repository/stratagem-dark.db.tar.gz" "$work/bundle/repository/"*.pkg.tar.zst
-unshare --net -- tests/integration-install.sh "$work/bundle" "$signer" "$out/install-results"
+STRATAGEM_KEEP_TEST_ROOT=1 unshare --net -- tests/integration-install.sh "$work/bundle" "$signer" "$out/install-results"
+# The optional catalog is a distinct, network-enabled user-requested path.
+# Exercise signed installations in the disposable target; never on the host.
+# Keep it a mount point so pacman CheckSpace sees the correct filesystem.
+mount --bind "$work/install-test" "$work/install-test"
+mount --make-private "$work/install-test"
+arch-chroot "$work/install-test" /usr/lib/stratagem-dark/install-optional-tool socat > "$out/install-results/optional-socat.log" 2>&1 || { cat "$out/install-results/optional-socat.log"; exit 1; }
+arch-chroot "$work/install-test" socat -V > "$out/install-results/optional-socat-version.txt"
+arch-chroot "$work/install-test" /usr/lib/stratagem-dark/install-optional-tool onesixtyone > "$out/install-results/optional-blackarch.log" 2>&1 || { cat "$out/install-results/optional-blackarch.log"; exit 1; }
+arch-chroot "$work/install-test" pacman -Q onesixtyone > "$out/install-results/optional-blackarch-version.txt"
+gpgconf --homedir "$work/install-test/etc/pacman.d/gnupg" --kill all
+umount -Rl "$work/install-test"
+rm -rf "$work/install-test"
 python scripts/assemble-iso.py "$work/bundle" "$work/profile" "$signer"
 unshare --net -- mkarchiso -v -w "$work/iso-work" -o "$out" "$work/profile"
 # Bundle repository index was generated after the manifest: not part of the installer trust contract.
 # The installer reads only locked package archives, not the mutable repository index.
-tar --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owner -I 'zstd -T0 -6' -cf "$out/stratagem-dark-0.2.0-alpha1-x86_64-bundle.tar.zst" -C "$work" bundle
+tar --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owner -I 'zstd -T0 -6' -cf "$out/stratagem-dark-0.2.0-alpha4-x86_64-bundle.tar.zst" -C "$work" bundle
 cp "$work/bundle/manifest.json" "$work/bundle/manifest.json.asc" "$work/bundle/sbom.spdx.json" "$out/"
 python scripts/vulnerability-report.py "$work/bundle/manifest.json" "$out/security-report.json"
 cd "$out"

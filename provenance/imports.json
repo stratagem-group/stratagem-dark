@@ -11,7 +11,15 @@
         "Namespace omarchy \u2192 stratagem; environment OMARCHY \u2192 STRATAGEM_DARK; visible product name \u2192 STRATAGEM DARK.",
         "Original menu, theme, logo glyph and autostart policy replace product-specific defaults.",
         "Subset of desktop helpers only; upstream updater, provisioning, installers, keyrings, artwork and fonts are not imported.",
-        "Restore executable permissions for imported shell helper scripts."
+        "Restore executable permissions for imported shell helper scripts.",
+        "Replace application bindings with shipped entry points; desktop onboarding and networking integration are Stratagem-owned.",
+        "Deduplicate desktop IDs in application search; route DNS configuration to the installed NetworkManager editor.",
+        "Expose read-only application inventory over existing local shell IPC for acceptance testing.",
+        "Add Super+T tool cheat sheet route to Stratagem-owned optional installer.",
+        "Use rebind for explicit user shortcuts to prevent inherited duplicate actions; move floating toggle to Super+Shift+T.",
+        "Route new Wi-Fi connections through authenticated per-user nmcli profiles; no system-wide network privilege grant.",
+        "Restore upstream theme picker and data palettes; original palette previews; adapt theme hooks to shipped applications only.",
+        "Native wireless panel uses normal-user private NetworkManager profiles; retain inline upstream password UI."
       ],
       "files": [
         {
@@ -324,7 +332,7 @@
           "source": "shell/services/AppLibrary.qml",
           "source_sha256": "68dd83a2141e9a8eda01a9ec5e2fbaaecf5d02d969178512cc6fec118fa23a31",
           "destination": "desktop/runtime/shell/services/AppLibrary.qml",
-          "adapted_sha256": "348a387074b6634dc1e05fb42584f1b7cb01ac2f4fe974c0da07b6fe83160160"
+          "adapted_sha256": "53f7f8a549641e3537ff1aff2bf0e5ccefb76f4494c55f13a33096c26d680a7f"
         },
         {
           "source": "shell/services/AuthServiceStore.js",
@@ -336,7 +344,7 @@
           "source": "shell/services/AppSearch.js",
           "source_sha256": "bbc4965f7b46932bd7127b5d921b977679f2a892e6bd9672f29049d340821bd7",
           "destination": "desktop/runtime/shell/services/AppSearch.js",
-          "adapted_sha256": "bbc4965f7b46932bd7127b5d921b977679f2a892e6bd9672f29049d340821bd7"
+          "adapted_sha256": "861662bd2e8adffbe26ed88c27ec2d28b260f4041cef6af92f84edb332d062b0"
         },
         {
           "source": "shell/plugins/background/Background.qml",
@@ -918,7 +926,7 @@
           "source": "shell/plugins/panels/network/Panel.qml",
           "source_sha256": "bbe572efef6ccf876c722cbdb74491004617f9c9701c6117a9e1e42cb457e022",
           "destination": "desktop/runtime/shell/plugins/panels/network/Panel.qml",
-          "adapted_sha256": "076da57951f0fa7b3eb4f6fcdb0dc1c1a0bf5251536e65611a01255815159352"
+          "adapted_sha256": "0429561f4f66c3a201b7cc31e4da596477c09f9bfbe17b5d3ae960002f3067d9"
         },
         {
           "source": "shell/plugins/panels/disk-speedtest/manifest.json",
@@ -1104,7 +1112,7 @@
           "source": "default/hypr/autostart.lua",
           "source_sha256": "13f447c272869a66927283fca4ce29c3a9e4e9dbc6b05a9d3c7d4d2373115071",
           "destination": "desktop/runtime/default/hypr/autostart.lua",
-          "adapted_sha256": "59927b8b7b37b9df525315a3e504b159d9b47af6c8ac1a4cba6130baaf47d702"
+          "adapted_sha256": "14913a50a0c649b4d0061fa299ccd2966de5529ceec9acd2291eb71ce77497cd"
         },
         {
           "source": "default/hypr/qconsole.lua",
@@ -1242,7 +1250,7 @@
           "source": "default/hypr/bindings/tiling.lua",
           "source_sha256": "9d6e1ea74415c9586c08e7c5b5b4e6f80fa6f84cc8790ec0392368c7e1ea1503",
           "destination": "desktop/runtime/default/hypr/bindings/tiling.lua",
-          "adapted_sha256": "5361ccc939148430de2bcb25e5d3069ad26e7b5b3cada1bb08008b298e690068"
+          "adapted_sha256": "a160793f13a062aa10b3e75a46f2d78601854408c52a64a7714a25bbc274cfe1"
         },
         {
           "source": "default/hypr/bindings/utilities.lua",
@@ -1254,7 +1262,7 @@
           "source": "default/hypr/bindings/applications.lua",
           "source_sha256": "6ef93bfe3df6f3b93379e0b194f3ec925cd84cfdb30115c6ece18198f21e0e3e",
           "destination": "desktop/runtime/default/hypr/bindings/applications.lua",
-          "adapted_sha256": "c2bf42764bb154e3c0628560126dda5cce1882857e2efae3c748b0b84fa1e94e"
+          "adapted_sha256": "b50d2560ce239940a293efdd14534bc80ed4778dd381c8415a4c46e83484d660"
         },
         {
           "source": "default/hypr/bindings/media.lua",
@@ -1416,7 +1424,7 @@
           "source": "config/hypr/bindings.lua",
           "source_sha256": "b7ef36b9edbf91abd6935283498d458f577e28457b56fb54078fe2ecf20dfc5d",
           "destination": "desktop/runtime/config/hypr/bindings.lua",
-          "adapted_sha256": "c6edcd25ef7a77d25904ed14798c9a9082b7bad289071260ad95c023ea371fed"
+          "adapted_sha256": "8c0b180d1ca39f3d566a85558533052e92c84271e6084d02c534e116f88571b9"
         },
         {
           "source": "config/hypr/looknfeel.lua",
@@ -1843,6 +1851,114 @@
           "source_sha256": "89349eb91c7064060d108ba68abdecf887716e2b2da33c9b7682551d3fe95e79",
           "destination": "desktop/runtime/bin/stratagem-network-band",
           "adapted_sha256": "719d6e5cd4de9e0f58154dfb006162e4526a6893c1603bd0c8f1b10c7ef4a24e"
+        },
+        {
+          "source": "bin/omarchy-theme-color",
+          "source_sha256": "a429ed1b18114ff3e784fc4479c6b829e9effb64c0f9d22d3b15eda4c62d86b5",
+          "destination": "desktop/runtime/bin/stratagem-theme-color",
+          "adapted_sha256": "010812d9db9ee36137459397295396fcf06acc173cd853da799bfd0c797b3a71"
+        },
+        {
+          "source": "bin/omarchy-theme-set-templates",
+          "source_sha256": "add9154d012c12b5628128d71efcf216ed62024cef2370e3c5c470378c06d45f",
+          "destination": "desktop/runtime/bin/stratagem-theme-set-templates",
+          "adapted_sha256": "7f655ebb47c18c3f707d1ab35285f19c9e6a84eb2f693a688f92536493f1555b"
+        },
+        {
+          "source": "bin/omarchy-theme-switcher",
+          "source_sha256": "a4c3d0ed7679d5509f4bee7e7ce5c84bb65bde55f1aef2e96f9e1d54b55aa616",
+          "destination": "desktop/runtime/bin/stratagem-theme-switcher",
+          "adapted_sha256": "81c3f4f630ad922aa24a190153afd942c9b1a7350e3d9a7e8c5b217cf73ca86c"
+        },
+        {
+          "source": "bin/omarchy-menu-images",
+          "source_sha256": "cac03a2192dde5ebb8022e0137a92b0dabcb5df182a1d20ec3a2060dc7712400",
+          "destination": "desktop/runtime/bin/stratagem-menu-images",
+          "adapted_sha256": "6e51bd7f62a95c24018d6630d482af096024d11f98e9122bc587f7bad3a239af"
+        },
+        {
+          "source": "bin/omarchy-theme-osc",
+          "source_sha256": "38be968fef972a63e594b1f9322b604a02a711b03020d00048a05da0ae5c8a34",
+          "destination": "desktop/runtime/bin/stratagem-theme-osc",
+          "adapted_sha256": "a181429186c38118cf63fe9234122b941a9bc93e2005b6f736e6afdc3cd804fa"
+        },
+        {
+          "source": "bin/omarchy-theme-set-foot",
+          "source_sha256": "6d1a182565330580c3bb584ea05a49c29cc9cb81a805627b2b22fab9e6a3e461",
+          "destination": "desktop/runtime/bin/stratagem-theme-set-foot",
+          "adapted_sha256": "1eacf76fdab58f24c73a73490dc5d59de2129fa169ab851a0c15e7db63c3dc0d"
+        },
+        {
+          "source": "bin/omarchy-theme-colors-from-alacritty",
+          "source_sha256": "b7fef9bcf13ae32fc82e366fa17191a68181b8e96a21fd4cf3cb418492fd4e9e",
+          "destination": "desktop/runtime/bin/stratagem-theme-colors-from-alacritty",
+          "adapted_sha256": "a8b22d8dc1feab8182e24473dda9e9465809f33f6993d67ded4e855e06dd5f1f"
+        },
+        {
+          "source": "bin/omarchy-theme-set",
+          "source_sha256": "0d06b593818bcb9196e8689838679674bda9898add783644eac27c13a6937ab3",
+          "destination": "desktop/runtime/bin/stratagem-theme-set",
+          "adapted_sha256": "97f7fef1e8a888c01312fb951313269f56e169447596270f1775dcd80114e189"
+        },
+        {
+          "source": "themes/tokyo-night/colors.toml",
+          "source_sha256": "8b5f53ba35b9305aafa72776dd56ea2029faaf29015e2e42db5e19ef698a8e0e",
+          "destination": "desktop/runtime/themes/tokyo-night/colors.toml",
+          "adapted_sha256": "8b5f53ba35b9305aafa72776dd56ea2029faaf29015e2e42db5e19ef698a8e0e"
+        },
+        {
+          "source": "themes/catppuccin/colors.toml",
+          "source_sha256": "a7eddcf3342ee0bee5df5ed7aad71c0e8c07ba5549bba7e040064fc5abc09eea",
+          "destination": "desktop/runtime/themes/catppuccin/colors.toml",
+          "adapted_sha256": "a7eddcf3342ee0bee5df5ed7aad71c0e8c07ba5549bba7e040064fc5abc09eea"
+        },
+        {
+          "source": "themes/gruvbox/colors.toml",
+          "source_sha256": "dc30923fe0f19220ff8087f7830c3e7aa5760829b7f2d2f9a10cadc17e02abe0",
+          "destination": "desktop/runtime/themes/gruvbox/colors.toml",
+          "adapted_sha256": "dc30923fe0f19220ff8087f7830c3e7aa5760829b7f2d2f9a10cadc17e02abe0"
+        },
+        {
+          "source": "themes/nord/colors.toml",
+          "source_sha256": "62d1739a488db2a66b88f2f054579bdfd08c4ec771d2acf5659b9f9d976c57e2",
+          "destination": "desktop/runtime/themes/nord/colors.toml",
+          "adapted_sha256": "62d1739a488db2a66b88f2f054579bdfd08c4ec771d2acf5659b9f9d976c57e2"
+        },
+        {
+          "source": "themes/everforest/colors.toml",
+          "source_sha256": "1adc95c8b6ee34d71106bacf23079f14667b82ec7d8f0b7a478ce3f8d57d1c09",
+          "destination": "desktop/runtime/themes/everforest/colors.toml",
+          "adapted_sha256": "1adc95c8b6ee34d71106bacf23079f14667b82ec7d8f0b7a478ce3f8d57d1c09"
+        },
+        {
+          "source": "themes/rose-pine/colors.toml",
+          "source_sha256": "c9d45f2434edc45520d9a05765b88d42d3053796b6531b4be3d6cc34d2839ae1",
+          "destination": "desktop/runtime/themes/rose-pine/colors.toml",
+          "adapted_sha256": "c9d45f2434edc45520d9a05765b88d42d3053796b6531b4be3d6cc34d2839ae1"
+        },
+        {
+          "source": "themes/catppuccin-latte/colors.toml",
+          "source_sha256": "071e27fe9b0dd7ee0063c7a3a55288648dcc6ac05a6cf7702caeb51c9ca4398e",
+          "destination": "desktop/runtime/themes/catppuccin-latte/colors.toml",
+          "adapted_sha256": "071e27fe9b0dd7ee0063c7a3a55288648dcc6ac05a6cf7702caeb51c9ca4398e"
+        },
+        {
+          "source": "themes/flexoki-light/colors.toml",
+          "source_sha256": "bb3b5c43fc247f7e2f874c2b5b8e1c32f102245e55addb63bb0a2e7df9351ec7",
+          "destination": "desktop/runtime/themes/flexoki-light/colors.toml",
+          "adapted_sha256": "bb3b5c43fc247f7e2f874c2b5b8e1c32f102245e55addb63bb0a2e7df9351ec7"
+        },
+        {
+          "source": "themes/retro-82/colors.toml",
+          "source_sha256": "00a3ddc589250e02a331000f62b245d48dbc51211295289b94090a305ba8310b",
+          "destination": "desktop/runtime/themes/retro-82/colors.toml",
+          "adapted_sha256": "00a3ddc589250e02a331000f62b245d48dbc51211295289b94090a305ba8310b"
+        },
+        {
+          "source": "themes/matte-black/colors.toml",
+          "source_sha256": "71437ba25539371740722baa01de9ffde2dd2d5f35d448a7432ab51adb248c5a",
+          "destination": "desktop/runtime/themes/matte-black/colors.toml",
+          "adapted_sha256": "71437ba25539371740722baa01de9ffde2dd2d5f35d448a7432ab51adb248c5a"
         }
       ]
     }

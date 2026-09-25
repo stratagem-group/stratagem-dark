@@ -25,6 +25,9 @@
       ],
       "right": [
         {
+          "id": "stratagem.bluetooth"
+        },
+        {
           "id": "stratagem.network"
         },
         {
@@ -32,6 +35,9 @@
         },
         {
           "id": "stratagem.power"
+        },
+        {
+          "id": "stratagem.battery"
         }
       ]
     }
@@ -41,14 +47,11 @@
     "stratagem.active-window",
     "stratagem.agents",
     "stratagem.background",
-    "stratagem.battery",
-    "stratagem.bluetooth",
     "stratagem.dev-gallery",
     "stratagem.disk-speedtest",
     "stratagem.dropbox",
     "stratagem.emojis",
     "stratagem.idle",
-    "stratagem.image-picker",
     "stratagem.indicators",
     "stratagem.keyboard-layout",
     "stratagem.lock",
@@ -64,6 +67,7 @@
     "stratagem.tailscale",
     "stratagem.weather",
     "stratagem.wifiqr",
-    "stratagem.clipboard"
+    "stratagem.clipboard",
+    "stratagem.polkit"
   ]
 }

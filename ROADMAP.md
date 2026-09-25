@@ -1,5 +1,21 @@
 # STRATAGEM DARK roadmap
 
+## Current priority — Omarchy desktop parity
+
+The [2026-09-24 source and feedback review](docs/desktop-parity-review.md) supersedes
+older desktop design assumptions below. Alpha2 boots a working adapted Quickshell
+session, but these user-facing corrections remain pending:
+
+- [ ] Native Wi-Fi: select network, password, connect; saved reconnect and Lenovo test.
+- [ ] One-time default agent/provider setup and direct subsequent launch.
+- [ ] Upstream-style visual theme picker, coordinated themes and documented shortcut.
+- [ ] Restore useful shell integrations with their complete dependencies.
+- [ ] Graphical acceptance of these flows before the next test ISO.
+- [ ] Persistent disk installer and installed-system reboot acceptance.
+
+The phase checklist below retains earlier milestones; unchecked items do not imply
+that no portion of a feature exists. Passing alpha2 VM tests is not desktop parity.
+
 ## 0.1 — public foundation (this scaffold)
 
 - [x] Independent identity, MIT strategy, contribution/security policies.

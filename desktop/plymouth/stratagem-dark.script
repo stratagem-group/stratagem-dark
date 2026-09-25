@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: MIT
+Window.SetBackgroundTopColor(0.043, 0.067, 0.055);
+Window.SetBackgroundBottomColor(0.043, 0.067, 0.055);
+logo = Image("logo.png");
+width = Math.Min(logo.GetWidth(), Window.GetWidth() * 0.8);
+logo = logo.Scale(width, logo.GetHeight() * width / logo.GetWidth());
+sprite = Sprite(logo);
+sprite.SetX((Window.GetWidth() - logo.GetWidth()) / 2);
+sprite.SetY((Window.GetHeight() - logo.GetHeight()) / 2);

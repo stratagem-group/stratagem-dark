@@ -38,10 +38,10 @@ Server = file://{bundle}/repository
 ''')
 (profile/'profiledef.sh').write_text('''#!/usr/bin/env bash
 iso_name="stratagem-dark"
-iso_label="STRATAGEM_020"
+iso_label="STRATAGEM_02A4"
 iso_publisher="STRATAGEM DARK"
 iso_application="STRATAGEM DARK Testing Workstation"
-iso_version="0.2.0-alpha1"
+iso_version="0.2.0-alpha4"
 install_dir="arch"
 buildmodes=('iso')
 bootmodes=('uefi.systemd-boot')
@@ -65,10 +65,11 @@ write('etc/shadow',f'root:!*:20000:0:99999:7:::\nstratagem:{password}:20000:0:99
 write('etc/hostname','stratagem-dark\n')
 write('etc/systemd/system-preset/00-stratagem-dark.preset','disable systemd-networkd*\ndisable sshd*\ndisable iwd*\ndisable cloud-*\ndisable ModemManager*\nenable NetworkManager.service\nenable sddm.service\nenable upower.service\nenable power-profiles-daemon.service\n')
 
-write('etc/os-release','NAME="STRATAGEM DARK"\nPRETTY_NAME="STRATAGEM DARK 0.2.0-alpha1"\nID=stratagem-dark\nID_LIKE=arch\nVERSION_ID=0.2.0-alpha1\nHOME_URL="https://github.com/stratagem-group/stratagem-dark"\n')
-write('etc/issue','STRATAGEM DARK 0.2.0-alpha1 — testing live system\\n\\l\n')
+write('etc/os-release','NAME="STRATAGEM DARK"\nPRETTY_NAME="STRATAGEM DARK 0.2.0-alpha4"\nID=stratagem-dark\nID_LIKE=arch\nVERSION_ID=0.2.0-alpha4\nHOME_URL="https://github.com/stratagem-group/stratagem-dark"\n')
+write('etc/issue','STRATAGEM DARK 0.2.0-alpha4 — testing live system\\n\\l\n')
 write('etc/motd','STRATAGEM DARK — testing release. Local login: stratagem / stratagem. No remote access enabled.\n')
-write('etc/sddm.conf.d/stratagem-dark.conf','[Autologin]\nUser=stratagem\nSession=stratagem-dark.desktop\nRelogin=false\n')
+write('usr/share/sddm/themes/stratagem-dark/theme.conf.user','[General]\nLiveSession=true\n')
+write('etc/sddm.conf.d/stratagem-dark.conf','[Theme]\nCurrent=stratagem-dark\n[General]\nDisplayServer=x11\n')
 write('etc/profile.d/stratagem-vm-rendering.sh','export AQ_ALLOW_SOFTWARE_RENDERER=1\n')
 write('etc/modules-load.d/stratagem-vm.conf','qemu_fw_cfg\n9p\n9pnet_virtio\n')
 write('etc/systemd/system/stratagem-vm-check.service','''[Unit]
@@ -78,7 +79,7 @@ ConditionPathExists=/sys/firmware/qemu_fw_cfg/by_name/opt/stratagem/test/raw
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/stratagem-vm-check
-TimeoutStartSec=300
+TimeoutStartSec=600
 [Install]
 WantedBy=graphical.target
 ''')
@@ -92,3 +93,15 @@ p.symlink_to('/usr/lib/systemd/system/graphical.target')
 for source in [repo/'THIRD_PARTY_NOTICES.md',repo/'LICENSES/Omarchy-MIT.txt']:
  dest=airoot/'usr/share/doc/stratagem-dark'/source.name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,dest)
 print('Assembled original branding + upstream desktop +',len(packages),'locked packages')
+
+# Original branded splash in the live initramfs, followed by PAM-backed SDDM.
+write('etc/plymouth/plymouthd.conf','[Daemon]\nTheme=stratagem-dark\nShowDelay=0\n')
+for conf in (airoot/'etc/mkinitcpio.conf.d').glob('*.conf'):
+ text=conf.read_text()
+ if 'HOOKS=' in text and 'plymouth' not in text:
+  text=text.replace('udev ', 'udev plymouth ').replace('systemd ', 'systemd plymouth ')
+  conf.write_text(text)
+for entry in (profile/'efiboot').rglob('*.conf'):
+ text=entry.read_text()
+ text='\n'.join(line+' quiet splash' if line.startswith('options ') else line for line in text.splitlines())+'\n'
+ entry.write_text(text)

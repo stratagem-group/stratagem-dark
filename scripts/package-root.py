@@ -33,7 +33,7 @@ export XDG_SESSION_TYPE=wayland
 dark setup --apply
 exec uwsm start -g -1 -e -D Hyprland hyprland.desktop
 ''',0o755)
-write('usr/share/applications/stratagem-dark-tools.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Tools\nExec=foot dark tools\nIcon=utilities-terminal\nCategories=System;\n')
+write('usr/share/applications/stratagem-dark-tools.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Tools\nExec=foot dark desktop cheatsheet\nIcon=utilities-terminal\nCategories=System;\n')
 
 copy(repo/'config/firewall.nft','usr/share/stratagem-dark/firewall.nft')
 write('etc/systemd/resolved.conf.d/90-stratagem-dark.conf','[Resolve]\nLLMNR=no\nMulticastDNS=no\n')
@@ -55,3 +55,44 @@ WantedBy=multi-user.target
 copy(repo/'LEGAL.md','usr/share/doc/stratagem-dark/LEGAL.md')
 
 write('etc/NetworkManager/conf.d/90-stratagem-dark.conf','[connection]\nconnection.mdns=0\nconnection.llmnr=0\n')
+
+write('usr/share/applications/stratagem-dark-setup.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Setup\nExec=foot dark desktop welcome\nIcon=preferences-system\nCategories=Settings;\n')
+
+write('usr/share/stratagem-dark/optional-pacman.conf','[options]\nArchitecture = x86_64\nCheckSpace\nSigLevel = Required DatabaseOptional\nLocalFileSigLevel = Required\n[core]\nServer = https://archive.archlinux.org/repos/2026/09/23/$repo/os/$arch\n[extra]\nServer = https://archive.archlinux.org/repos/2026/09/23/$repo/os/$arch\n[blackarch]\nServer = https://ftp.halifax.rwth-aachen.de/blackarch/$repo/os/$arch\n')
+write('usr/lib/stratagem-dark/install-optional-tool','''#!/usr/bin/python3 -I
+import sys
+sys.path.insert(0, '/usr/lib/stratagem-dark/src')
+from stratagem_dark.optional_tools import install
+if len(sys.argv) != 2: raise SystemExit('One catalog tool ID required')
+try: raise SystemExit(install(sys.argv[1]))
+except (ValueError, OSError) as error: raise SystemExit(str(error))
+''',0o755)
+write('usr/share/polkit-1/actions/org.stratagem.dark.install-tool.policy','''<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN" "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig><action id="org.stratagem.dark.install-tool">
+<description>Install a supported STRATAGEM DARK tool</description>
+<message>Authenticate to install this signed tool and its dependencies.</message>
+<defaults><allow_any>no</allow_any><allow_inactive>no</allow_inactive><allow_active>auth_self</allow_active></defaults>
+<annotate key="org.freedesktop.policykit.exec.path">/usr/lib/stratagem-dark/install-optional-tool</annotate>
+</action></policyconfig>
+''')
+
+# Native NetworkManager policy allows active local users to modify their own
+# profiles. Do not override it with an extra authentication prompt.
+write('usr/lib/stratagem-dark/connect-wifi', """#!/usr/bin/python3 -I
+import sys
+sys.path.insert(0, '/usr/lib/stratagem-dark/src')
+from stratagem_dark.network import main
+raise SystemExit(main())
+""",0o755)
+
+copy(repo/'tests/check-tools.py','usr/lib/stratagem-dark/check-tools.py')
+copy(repo/'tests/desktop-ui.py','usr/lib/stratagem-dark/desktop-ui-test.py')
+
+copy(repo/'tests/vm/wifi-check.sh','usr/lib/stratagem-dark/wifi-check.sh')
+
+copy(repo/'desktop/sddm','usr/share/sddm/themes/stratagem-dark')
+copy(repo/'branding/wordmark.svg','usr/share/sddm/themes/stratagem-dark/logo.svg')
+copy(repo/'desktop/plymouth','usr/share/plymouth/themes/stratagem-dark')
+
+copy(repo/'tests/tool-functions.py','usr/lib/stratagem-dark/tool-functions.py')
