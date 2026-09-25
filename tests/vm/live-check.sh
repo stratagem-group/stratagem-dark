@@ -8,6 +8,8 @@ exec > >(tee /mnt/test-results/live-check.log /dev/ttyS0) 2>&1
 finish() {
   local status=$?
   journalctl -b --no-pager > /mnt/test-results/journal.log
+  cp /var/lib/sddm/.local/share/sddm/xorg-session.log /mnt/test-results/greeter.log 2>/dev/null || true
+  cp /var/log/Xorg.0.log /mnt/test-results/xorg.log 2>/dev/null || true
   if ((status == 0)); then echo STRATAGEM_DARK_TEST_PASS; else echo STRATAGEM_DARK_TEST_FAIL; fi
   sync
   systemctl poweroff
@@ -18,6 +20,7 @@ for i in $(seq 1 90); do
   if pgrep -f 'sddm-greeter' >/dev/null; then touch /mnt/test-results/greeter-ready; break; fi
   sleep 1
 done
+test -e /mnt/test-results/greeter-ready
 for i in $(seq 1 120); do
   if pgrep -u stratagem -x Hyprland >/dev/null && pgrep -u stratagem -x quickshell >/dev/null; then break; fi
   sleep 2

@@ -19,15 +19,12 @@ def key(code):
  call('send-key',{'keys':[{'type':'qcode','data':code}]});time.sleep(.12)
 def text(value):
  for c in value:key(c)
-def screenshot(name):call('screendump',{'filename':str(out/name)})
+def screenshot(name):call('screendump',{'filename':str(out/name.replace('.ppm','.png')),'format':'png'})
 # Keep boot-stage evidence without modifying boot timing or disabling the splash.
-for n in range(1,25):
+for n in range(1,145):
  time.sleep(1)
- if n in (4,8,12,16,20):screenshot(f'boot-{n}.ppm')
+ if n % 2 == 0 and n <= 60:screenshot(f'boot-{n}.png')
  if (out/'greeter-ready').exists():break
-for _ in range(120):
- if (out/'greeter-ready').exists():break
- time.sleep(1)
 screenshot('login-wait.ppm')
 assert (out/'greeter-ready').exists(), 'SDDM greeter did not start'
 time.sleep(4);screenshot('login.ppm')

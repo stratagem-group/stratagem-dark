@@ -68,6 +68,7 @@ write('etc/systemd/system-preset/00-stratagem-dark.preset','disable systemd-netw
 write('etc/os-release','NAME="STRATAGEM DARK"\nPRETTY_NAME="STRATAGEM DARK 0.2.0-alpha4"\nID=stratagem-dark\nID_LIKE=arch\nVERSION_ID=0.2.0-alpha4\nHOME_URL="https://github.com/stratagem-group/stratagem-dark"\n')
 write('etc/issue','STRATAGEM DARK 0.2.0-alpha4 — testing live system\\n\\l\n')
 write('etc/motd','STRATAGEM DARK — testing release. Local login: stratagem / stratagem. No remote access enabled.\n')
+write('usr/share/sddm/themes/stratagem-dark/theme.conf.user','[General]\nLiveSession=true\n')
 write('etc/sddm.conf.d/stratagem-dark.conf','[Theme]\nCurrent=stratagem-dark\n[General]\nDisplayServer=x11\n')
 write('etc/profile.d/stratagem-vm-rendering.sh','export AQ_ALLOW_SOFTWARE_RENDERER=1\n')
 write('etc/modules-load.d/stratagem-vm.conf','qemu_fw_cfg\n9p\n9pnet_virtio\n')

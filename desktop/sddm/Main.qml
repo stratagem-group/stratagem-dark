@@ -62,7 +62,7 @@ Rectangle {
             onCountChanged: { var index = find("STRATAGEM DARK"); if (index >= 0) currentIndex = index }
         }
         Button { text: "Sign in"; Layout.fillWidth: true; enabled: !root.authenticating; onClicked: root.login() }
-        Label { id: status; text: "Live test login: stratagem / stratagem"; color: "#a7f39b"; wrapMode: Text.Wrap; Layout.fillWidth: true }
+        Label { id: status; text: config.boolValue("LiveSession") ? "Live test login: stratagem / stratagem" : "Sign in to your workstation"; color: "#a7f39b"; wrapMode: Text.Wrap; Layout.fillWidth: true }
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
             Button { text: "Restart"; enabled: sddm.canReboot; onClicked: sddm.reboot() }
