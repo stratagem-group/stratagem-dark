@@ -45,6 +45,8 @@ for attempt in $(seq 1 30); do
   sleep 1
 done
 test "$ready" = 1
+# One network UI owns Wi-Fi credentials; the legacy tray agent must not compete.
+! pgrep -u stratagem -x nm-applet
 runuser -u stratagem --preserve-environment -- foot --check-config
 runuser -u stratagem --preserve-environment -- foot sh -c 'printf "STRATAGEM DARK\nSecurity workstation testing session\n\n"; dark --version; printf "\nBlackArch tools:\n"; capa --version; sleep 120' &
 sleep 5
@@ -129,7 +131,9 @@ runuser -u stratagem --preserve-environment -- stratagem-shell shell hide strata
 # Theme application must update actual terminal and compositor configuration.
 for theme in nord catppuccin-latte phosphor; do
   runuser -u stratagem --preserve-environment -- env STRATAGEM_DARK_THEME_SKIP_BACKGROUND=1 stratagem-theme-set "$theme"
-  runuser -u stratagem --preserve-environment -- foot --check-config
+  # One network UI owns Wi-Fi credentials; the legacy tray agent must not compete.
+! pgrep -u stratagem -x nm-applet
+runuser -u stratagem --preserve-environment -- foot --check-config
   runuser -u stratagem --preserve-environment -- hyprctl configerrors > /tmp/theme-errors
   test -z "$(tr -d '[:space:]' < /tmp/theme-errors)"
   test "$(cat /home/stratagem/.local/state/stratagem/current/theme.name)" = "$theme"

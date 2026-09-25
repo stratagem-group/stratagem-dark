@@ -2,6 +2,7 @@
 
 Alpha3 hardware feedback reported repeated Wi-Fi credential prompts, unusable tool entries, a skipped login screen and missing boot branding. Alpha3's successful simulated WPA2 test did not establish physical Wi-Fi reliability; help/version smoke tests did not establish functional tool workflows.
 
+- The legacy nm-applet XDG autostart is disabled in the STRATAGEM DARK user configuration. Alpha3 logs confirm it ran alongside the native panel and could own a competing secrets dialog. Polkit remains enabled.
 - Personal Wi-Fi activation and saved reconnect now share one private-profile path. Missing saved credentials return to the inline form. Explicit attempts disable autoconnect until successful, and secrets remain profile-owned rather than delegated to another secret agent. Enterprise credentials still use the advanced editor; no certificate validation is weakened. Physical reproduction of the reported second prompt remains required.
 - Tool entries offer a working terminal, literal argument execution and help. The launcher does not invent targets, execute argument text as a shell command, or elevate itself. Packet capture and other privileged operations still require appropriate permissions.
 - The live image stops at an original SDDM username/password screen using the existing vector wordmark and real PAM authentication. The public live test credentials remain stratagem / stratagem. Autologin is removed.
