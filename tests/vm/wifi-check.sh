@@ -33,7 +33,7 @@ wpa_passphrase=92739273
 EOF
 hostapd -B -P "$work/hostapd.pid" "$work/hostapd.conf"
 # A confined DHCP allowance only on the simulated AP interface in this test VM.
-nft insert rule inet stratagem_dark input iifname "$accesspoint" udp dport 67 accept comment 'VM simulated WiFi'
+nft insert rule inet stratagem_dark input iifname "$accesspoint" udp dport 67 accept comment '"VM simulated WiFi"'
 dnsmasq --conf-file=/dev/null --interface="$accesspoint" --bind-interfaces --port=0 --dhcp-range=192.0.2.20,192.0.2.30,255.255.255.0,1h --pid-file="$work/dnsmasq.pid"
 nmcli radio wifi on
 for attempt in $(seq 1 15); do
@@ -63,7 +63,7 @@ done
 ui grim /tmp/wifi-connected.png
 cp /tmp/wifi-connected.png /mnt/test-results/wifi-connected.png
 [[ $(nmcli -g GENERAL.STATE device show "$station") == 100* ]]
-[[ $(nmcli -g connection.permissions connection show STRATAGEM-Test-WiFi) == user:stratagem* ]]
+[[ $(nmcli --escape no -g connection.permissions connection show STRATAGEM-Test-WiFi) == user:stratagem* ]]
 # Opening the panel must not disrupt an established connection.
 ui stratagem-shell stratagem.network close
 ui stratagem-shell stratagem.network open

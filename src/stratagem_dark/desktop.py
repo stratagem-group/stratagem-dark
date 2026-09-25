@@ -21,7 +21,7 @@ Super+Ctrl+L      Lock
 Print             Select screenshot region
 
 Click the Wi-Fi icon, select your network and enter its password.
-Setup > Default agent / provider / model changes your saved agent settings.
+Setup > Default agent changes your saved agent settings.
 Style > Theme (Super+Ctrl+Shift+Space) opens the visual theme picker.
 Security tools opens each installed tool's help; no target is selected for you.
 This testing ISO is live-only. Changes and agent logins are lost on reboot.

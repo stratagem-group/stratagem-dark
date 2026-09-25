@@ -137,7 +137,7 @@ Python dependencies to work around this limitation.
   without the alpha2 extra login-password prompt. Enterprise configuration stays in
   Advanced network settings so certificate and identity policy is not replaced.
 - Super+Shift+A launches the saved agent directly. First use selects the agent and
-  opens native provider sign-in. Change settings under Setup > Default agent / provider / model.
+  opens native provider sign-in. Change settings under Setup > Default agent.
 - Style > Theme or Super+Ctrl+Shift+Space opens the upstream visual picker with 11
   palettes. Shell, terminal, window borders and lock-screen input colors coordinate.
   Original STRATAGEM DARK wallpaper remains; upstream artwork is not included.

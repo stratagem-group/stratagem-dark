@@ -9,6 +9,14 @@
     "label": "Terminal",
     "action": "foot"
   },
+  "style": {
+    "icon": "*",
+    "label": "Style"
+  },
+  "style.theme": {
+    "label": "Theme",
+    "action": "stratagem-theme-choose"
+  },
   "setup": {
     "icon": "*",
     "label": "Setup",
@@ -29,7 +37,7 @@
     "action": "nm-connection-editor"
   },
   "setup.agent": {
-    "label": "Default agent / provider / model",
+    "label": "Default agent",
     "action": "foot dark desktop agent-setup"
   },
   "setup.audio": {
@@ -73,7 +81,7 @@
   },
   "about": {
     "icon": "i",
-    "label": "About STRATAGEM DARK",
+    "label": "About",
     "action": "foot dark desktop about"
   },
   "system": {
@@ -205,13 +213,5 @@
     "icon": "?",
     "label": "Tool cheat sheet / install",
     "action": "foot dark desktop cheatsheet"
-  },
-  "style": {
-    "icon": "*",
-    "label": "Style"
-  },
-  "style.theme": {
-    "label": "Theme",
-    "action": "stratagem-theme-choose"
   }
 }
