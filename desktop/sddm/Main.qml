@@ -60,6 +60,7 @@ Rectangle {
             model: sessionModel
             textRole: "name"
             onCountChanged: { var index = find("STRATAGEM DARK"); if (index >= 0) currentIndex = index }
+            Component.onCompleted: { var index = find("STRATAGEM DARK"); if (index >= 0) currentIndex = index }
         }
         Button { text: "Sign in"; Layout.fillWidth: true; enabled: !root.authenticating; onClicked: root.login() }
         Label { id: status; text: config.boolValue("LiveSession") ? "Live test login: stratagem / stratagem" : "Sign in to your workstation"; color: "#a7f39b"; wrapMode: Text.Wrap; Layout.fillWidth: true }
