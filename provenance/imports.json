@@ -926,7 +926,7 @@
           "source": "shell/plugins/panels/network/Panel.qml",
           "source_sha256": "bbe572efef6ccf876c722cbdb74491004617f9c9701c6117a9e1e42cb457e022",
           "destination": "desktop/runtime/shell/plugins/panels/network/Panel.qml",
-          "adapted_sha256": "741b2dbbd993ac5c3b7b9df941f4d0af7ae5ec65b5f3ba313d8dacc3c79c1e3c"
+          "adapted_sha256": "0429561f4f66c3a201b7cc31e4da596477c09f9bfbe17b5d3ae960002f3067d9"
         },
         {
           "source": "shell/plugins/panels/disk-speedtest/manifest.json",

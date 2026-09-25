@@ -33,7 +33,7 @@ export XDG_SESSION_TYPE=wayland
 dark setup --apply
 exec uwsm start -g -1 -e -D Hyprland hyprland.desktop
 ''',0o755)
-write('usr/share/applications/stratagem-dark-tools.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Tools\nExec=foot dark desktop tool nmap\nIcon=utilities-terminal\nCategories=System;\n')
+write('usr/share/applications/stratagem-dark-tools.desktop','[Desktop Entry]\nType=Application\nName=STRATAGEM DARK Tools\nExec=foot dark desktop cheatsheet\nIcon=utilities-terminal\nCategories=System;\n')
 
 copy(repo/'config/firewall.nft','usr/share/stratagem-dark/firewall.nft')
 write('etc/systemd/resolved.conf.d/90-stratagem-dark.conf','[Resolve]\nLLMNR=no\nMulticastDNS=no\n')
@@ -90,3 +90,9 @@ copy(repo/'tests/check-tools.py','usr/lib/stratagem-dark/check-tools.py')
 copy(repo/'tests/desktop-ui.py','usr/lib/stratagem-dark/desktop-ui-test.py')
 
 copy(repo/'tests/vm/wifi-check.sh','usr/lib/stratagem-dark/wifi-check.sh')
+
+copy(repo/'desktop/sddm','usr/share/sddm/themes/stratagem-dark')
+copy(repo/'branding/wordmark.svg','usr/share/sddm/themes/stratagem-dark/logo.svg')
+copy(repo/'desktop/plymouth','usr/share/plymouth/themes/stratagem-dark')
+
+copy(repo/'tests/tool-functions.py','usr/lib/stratagem-dark/tool-functions.py')

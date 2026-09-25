@@ -91,3 +91,6 @@ libvips
 python-dbus
 hostapd
 dnsmasq
+plymouth
+xorg-server
+xorg-xauth

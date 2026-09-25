@@ -104,3 +104,11 @@ class DefaultAgentPolicyTests(unittest.TestCase):
         self.assertEqual(policy['read']['*.env'],'deny')
         self.assertEqual(policy['read']['*.env.*'],'deny')
         self.assertEqual(policy['read']['*.env.example'],'allow')
+
+class ToolLauncherTests(unittest.TestCase):
+    def test_arguments_are_literal_and_not_shell_evaluated(self):
+        from stratagem_dark.desktop import main
+        from subprocess import CompletedProcess
+        with patch('shutil.which',return_value='/usr/bin/nmap'), patch('stratagem_dark.desktop.choose',side_effect=['Run with arguments','Back']), patch('subprocess.run',return_value=CompletedProcess([],0,'--help "$(touch /tmp/not-executed)"')), patch('subprocess.call',return_value=0) as call, patch('stratagem_dark.desktop.pause'):
+            self.assertEqual(main('tool','nmap',root=ROOT),0)
+            call.assert_called_once_with(['nmap','--help','$(touch /tmp/not-executed)'])

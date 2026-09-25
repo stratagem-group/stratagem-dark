@@ -10,8 +10,12 @@ timeout 720 qemu-system-x86_64 -machine q35,accel=kvm:tcg -cpu max -m 4096 -smp 
   -drive if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE_4M.fd \
   -drive if=pflash,format=raw,file="$results/OVMF_VARS.fd" \
   -cdrom "$iso" -boot d -device virtio-vga -display none \
+  -qmp unix:"$results/qmp.sock",server=on,wait=off \
   -serial file:"$results/serial.log" -no-reboot \
   -netdev user,id=net0 -device virtio-net-pci,netdev=net0 \
   -virtfs local,path="$results",mount_tag=test-results,security_model=none,id=results \
-  -fw_cfg name=opt/stratagem/test,string=1 || true
+  -fw_cfg name=opt/stratagem/test,string=1 &
+qemu_pid=$!
+python3 tests/vm/login.py "$results" || { kill "$qemu_pid" || true; wait "$qemu_pid" || true; exit 1; }
+wait "$qemu_pid" || true
 grep -q STRATAGEM_DARK_TEST_PASS "$results/serial.log"

@@ -57,6 +57,17 @@ ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Return"})'
 sleep 1
 ui grim /tmp/wifi-password.png
 cp /tmp/wifi-password.png /mnt/test-results/wifi-password.png
+# A rejected password must stay in the inline form, without background retries.
+for digit in 1 1 1 1 1 1 1 1; do
+  ui hyprctl dispatch "hl.dsp.send_shortcut({mods = \"\", key = \"$digit\"})"
+  sleep 0.1
+done
+ui hyprctl dispatch 'hl.dsp.send_shortcut({mods = "", key = "Return"})'
+sleep 55
+[[ $(nmcli -g GENERAL.STATE device show "$station") != 100* ]]
+[[ $(nmcli -g connection.autoconnect connection show STRATAGEM-Test-WiFi) == no ]]
+ui grim /tmp/wifi-retry.png
+cp /tmp/wifi-retry.png /mnt/test-results/wifi-retry.png
 for digit in 9 2 7 3 9 2 7 3; do
   ui hyprctl dispatch "hl.dsp.send_shortcut({mods = \"\", key = \"$digit\"})"
   sleep 0.1

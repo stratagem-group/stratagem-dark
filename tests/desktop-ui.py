@@ -7,7 +7,7 @@ def check(action, steps):
     pid,fd=pty.fork()
     if pid==0:
         os.environ['TERM']='xterm-256color'
-        os.execvp('dark',['dark','desktop',action])
+        os.execvp('dark',['dark','desktop',*action.split()])
     fcntl.ioctl(fd,termios.TIOCSWINSZ,struct.pack('HHHH',40,140,0,0))
     transcript=b''
     try:
@@ -40,3 +40,5 @@ def check(action, steps):
 
 check('agents', [('Choose your default coding agent',b'\r'),('Sign in and start',b'\x03')])
 check('cheatsheet', [('BlackArch tool catalog',b'\r'),('Search tools',b'\x03')])
+
+check('tool nmap', [('ready to use',b'\r'),('Tool terminal',b'printf TOOL_TERMINAL_WORKS\nexit\n'),('ready to use',b'\x03')])

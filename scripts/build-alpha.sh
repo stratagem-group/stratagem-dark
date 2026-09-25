@@ -32,11 +32,12 @@ cp "$work/trust/keyrings/blackarch.gpg" "$work/payload/usr/share/pacman/keyrings
 cp "$work/trust/keyrings/blackarch-trusted" "$work/payload/usr/share/pacman/keyrings/stratagem-blackarch-trusted"
 cp "$work/trust/keyrings/blackarch-revoked" "$work/payload/usr/share/pacman/keyrings/stratagem-blackarch-revoked"
 rsvg-convert -w 1920 -h 1080 branding/wallpaper.svg -o "$work/payload/usr/share/stratagem-dark/branding/wallpaper.png"
+rsvg-convert -w 800 branding/wordmark.svg -o "$work/payload/usr/share/plymouth/themes/stratagem-dark/logo.png"
 mkdir -p "$work/pkg"
 cp -a "$work/payload" "$work/pkg/payload"
 cat > "$work/pkg/PKGBUILD" <<'PKG'
 pkgname=stratagem-dark-desktop
-pkgver=0.2.0alpha3
+pkgver=0.2.0alpha4
 pkgrel=1
 pkgdesc='STRATAGEM DARK desktop and security workstation integration'
 arch=('x86_64')
@@ -92,7 +93,7 @@ python scripts/assemble-iso.py "$work/bundle" "$work/profile" "$signer"
 unshare --net -- mkarchiso -v -w "$work/iso-work" -o "$out" "$work/profile"
 # Bundle repository index was generated after the manifest: not part of the installer trust contract.
 # The installer reads only locked package archives, not the mutable repository index.
-tar --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owner -I 'zstd -T0 -6' -cf "$out/stratagem-dark-0.2.0-alpha3-x86_64-bundle.tar.zst" -C "$work" bundle
+tar --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owner -I 'zstd -T0 -6' -cf "$out/stratagem-dark-0.2.0-alpha4-x86_64-bundle.tar.zst" -C "$work" bundle
 cp "$work/bundle/manifest.json" "$work/bundle/manifest.json.asc" "$work/bundle/sbom.spdx.json" "$out/"
 python scripts/vulnerability-report.py "$work/bundle/manifest.json" "$out/security-report.json"
 cd "$out"

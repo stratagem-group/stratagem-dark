@@ -14,6 +14,9 @@ BUS = 'org.freedesktop.NetworkManager'
 BASE = '/org/freedesktop/NetworkManager'
 PROPS = 'org.freedesktop.DBus.Properties'
 
+class PasswordRequired(ValueError):
+    pass
+
 
 def connect(request):
     if os.geteuid() == 0:
@@ -57,8 +60,21 @@ def connect(request):
             if security.get('key-mgmt') not in ('wpa-psk', 'sae'):
                 raise ValueError('Use Advanced network settings for enterprise credentials.')
             security['psk'] = dbus.String(secret)
+            security['psk-flags'] = dbus.UInt32(0)
             settings['802-11-wireless-security'] = security
             candidate.Update(settings)
+        security = settings.get('802-11-wireless-security', {})
+        if security.get('key-mgmt') in ('wpa-psk', 'sae') and not secret:
+            saved = candidate.GetSecrets('802-11-wireless-security')
+            secret = saved.get('802-11-wireless-security', {}).get('psk', '')
+            if not secret:
+                raise PasswordRequired('Enter the Wi-Fi password.')
+        # A failed explicit attempt must not trigger automatic secret-agent retries.
+        if secret:
+            settings['802-11-wireless-security']['psk'] = dbus.String(secret)
+            settings['802-11-wireless-security']['psk-flags'] = dbus.UInt32(0)
+        settings['connection']['autoconnect'] = dbus.Boolean(False)
+        candidate.Update(settings)
         profile = manager.ActivateConnection(path, device_path, ap_path)
         break
     if profile is None:
@@ -66,11 +82,13 @@ def connect(request):
         # The explicit permissions field makes this modify.own, not modify.system.
         settings = {'connection': dbus.Dictionary({
             'id': dbus.String(ssid),
+            'autoconnect': dbus.Boolean(False),
             'permissions': dbus.Array(['user:'+username+':'], signature='s'),
         }, signature='sv')}
         if secret:
-            settings['802-11-wireless-security'] = dbus.Dictionary({'psk': dbus.String(secret)}, signature='sv')
-        _, profile = manager.AddAndActivateConnection(dbus.Dictionary(settings, signature='sa{sv}'), device_path, ap_path)
+            settings['802-11-wireless-security'] = dbus.Dictionary({'psk': dbus.String(secret), 'psk-flags': dbus.UInt32(0)}, signature='sv')
+        path, profile = manager.AddAndActivateConnection(dbus.Dictionary(settings, signature='sa{sv}'), device_path, ap_path)
+    candidate = dbus.Interface(bus.get_object(BUS, path), BUS+'.Settings.Connection')
     state = dbus.Interface(bus.get_object(BUS, profile), PROPS)
     for _ in range(90):
         try:
@@ -78,10 +96,17 @@ def connect(request):
         except dbus.DBusException:
             raise ValueError('Connection ended. Check the password and network availability.') from None
         if value == 2:
+            settings = candidate.GetSettings()
+            settings['connection']['autoconnect'] = dbus.Boolean(True)
+            if secret:
+                settings.setdefault('802-11-wireless-security', {})['psk'] = dbus.String(secret)
+                settings['802-11-wireless-security']['psk-flags'] = dbus.UInt32(0)
+            candidate.Update(settings)
             return 0
         if value == 4:
             raise ValueError('Connection failed. Check the password and network availability.')
         time.sleep(0.5)
+    manager.DeactivateConnection(profile)
     raise ValueError('Connection timed out. Check the network and try again.')
 
 
@@ -91,6 +116,9 @@ def main():
         if not isinstance(request, dict):
             raise ValueError('Invalid network request.')
         return connect(request)
+    except PasswordRequired:
+        print('Enter the Wi-Fi password in the network panel.')
+        return 2
     except Exception:
         # D-Bus errors may contain settings. Never print credentials or raw errors.
         print('Could not connect. Check the password, signal and network settings.')

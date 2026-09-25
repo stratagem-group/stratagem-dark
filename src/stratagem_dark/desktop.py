@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: MIT
 """Interactive desktop workflows. No shell interpolation or unattended scans."""
+import shlex
 import json
 import os
 import re
@@ -23,7 +24,7 @@ Print             Select screenshot region
 Click the Wi-Fi icon, select your network and enter its password.
 Setup > Default agent changes your saved agent settings.
 Style > Theme (Super+Ctrl+Shift+Space) opens the visual theme picker.
-Security tools opens each installed tool's help; no target is selected for you.
+Security tools opens a working terminal or runs the arguments you provide.
 This testing ISO is live-only. Changes and agent logins are lost on reboot.
 '''
 
@@ -162,9 +163,27 @@ def main(action, tool=None, once=False, root=None):
         command = commands[tool]
         if not shutil.which(command[0]):
             print(f'{tool} is not installed in this image.'); pause(); return 1
-        code = subprocess.call(command)
-        if tool != 'wireshark': pause()
-        return code
+        if tool == 'wireshark': return subprocess.call(command)
+        while True:
+            selection = choose(tool + ' — ready to use', ['Open terminal', 'Run with arguments', 'Show help', 'Back'])
+            if not selection or selection == 'Back': return 0
+            if selection == 'Open terminal':
+                print('Tool terminal — run ' + command[0] + ' with your arguments. Type exit to return.', flush=True)
+                subprocess.call(['/bin/bash', '-i'])
+            elif selection == 'Show help':
+                subprocess.call(command)
+                pause()
+            else:
+                result = subprocess.run(['gum', 'input', '--placeholder', 'Arguments for ' + command[0]], capture_output=True, text=True)
+                if result.returncode != 0: continue
+                try: arguments = shlex.split(result.stdout)
+                except ValueError:
+                    print('Unclosed quote in arguments.'); continue
+                # Arguments are passed literally, never evaluated by a shell.
+                if not arguments: continue
+                code = subprocess.call([command[0], *arguments])
+                print('Command finished with exit status ' + str(code))
+                pause()
     if action in ('reboot', 'poweroff'):
         if subprocess.call(['gum', 'confirm', f'{action.capitalize()} this computer? Unsaved live changes will be lost.']) == 0:
             return subprocess.call(['systemctl', action])
@@ -256,7 +275,7 @@ def cheatsheet(root):
     options={}
     if category=='Included launchers':
         for name,argv in launchers.items():
-            if shutil.which(argv[0]):options[f"[Open help] {name}"]=('open',name)
+            if shutil.which(argv[0]):options[f"[Open tool] {name}"]=('open',name)
     else:
         for name,tool in extras.items():
             present=tool['package'] in installed

@@ -35,7 +35,7 @@ def host_checks():
 
 def main(argv=None, root=None):
     parser = argparse.ArgumentParser(prog='dark', description='STRATAGEM DARK developer CLI')
-    parser.add_argument('--version', action='version', version='STRATAGEM DARK 0.2.0-alpha3')
+    parser.add_argument('--version', action='version', version='STRATAGEM DARK 0.2.0-alpha4')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('about', help='product and attribution')
     desktop = sub.add_parser('desktop', help='interactive setup, agents, tools and help')
@@ -75,7 +75,7 @@ def main(argv=None, root=None):
             from .desktop import main as desktop_main
             return desktop_main(args.action, args.tool, args.once, root)
         if args.command == 'about':
-            print('STRATAGEM DARK 0.2.0-alpha3\nOpen security workstation.\nDesktop derived from Omarchy (MIT), copyright David Heinemeier Hansson.\nIncludes separately licensed Arch and selected BlackArch packages.\nhttps://github.com/stratagem-group/stratagem-dark')
+            print('STRATAGEM DARK 0.2.0-alpha4\nOpen security workstation.\nDesktop derived from Omarchy (MIT), copyright David Heinemeier Hansson.\nIncludes separately licensed Arch and selected BlackArch packages.\nhttps://github.com/stratagem-group/stratagem-dark')
             return 0
         if args.command == 'setup':
             print(canonical(setup_user(apply=args.apply)), end='')

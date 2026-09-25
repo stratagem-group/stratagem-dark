@@ -804,8 +804,7 @@ Panel {
 
   function connectDirectly(ssid) {
     runNetworkAction("connect", networkForSsid(ssid), function(network) {
-      if (network.known) network.connect()
-      else startPrivateConnection(ssid, "")
+      startPrivateConnection(ssid, "")
     })
   }
 
@@ -844,6 +843,7 @@ Panel {
       if (code !== 0 && root.actionKind === "connect") {
         root.failureSsid = root.actionSsid
         root.failureReason = "Could not connect. Check password, signal or advanced settings."
+        if (code === 2) root.openPasswordPrompt(root.actionSsid)
         actionTimeout.stop()
         root.actionSsid = ""
         root.actionKind = ""

@@ -1,0 +1,7 @@
+[Plymouth Theme]
+Name=STRATAGEM DARK
+Description=STRATAGEM DARK original boot wordmark
+ModuleName=script
+[script]
+ImageDir=/usr/share/plymouth/themes/stratagem-dark
+ScriptFile=/usr/share/plymouth/themes/stratagem-dark/stratagem-dark.script

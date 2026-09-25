@@ -1,0 +1,10 @@
+[SddmGreeterTheme]
+Name=STRATAGEM DARK
+Description=STRATAGEM DARK original phosphor login
+Author=Stratagem
+License=MIT
+Type=sddm-theme
+Version=1.0
+MainScript=Main.qml
+Theme-Id=stratagem-dark
+Theme-API=2.0

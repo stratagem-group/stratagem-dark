@@ -14,12 +14,19 @@ finish() {
 }
 trap finish EXIT
 set -e
+for i in $(seq 1 90); do
+  if pgrep -f 'sddm-greeter' >/dev/null; then touch /mnt/test-results/greeter-ready; break; fi
+  sleep 1
+done
 for i in $(seq 1 120); do
   if pgrep -u stratagem -x Hyprland >/dev/null && pgrep -u stratagem -x quickshell >/dev/null; then break; fi
   sleep 2
 done
 pgrep -u stratagem -x Hyprland
 pgrep -u stratagem -x quickshell
+touch /mnt/test-results/desktop-started
+runuser -u stratagem -- python /usr/lib/stratagem-dark/tool-functions.py /tmp/tool-functions.json
+cp /tmp/tool-functions.json /mnt/test-results/tool-functions.json
 uid=$(id -u stratagem)
 export XDG_RUNTIME_DIR=/run/user/$uid
 export STRATAGEM_DARK_PATH=/usr/share/stratagem
