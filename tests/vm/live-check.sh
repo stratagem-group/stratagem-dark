@@ -46,7 +46,7 @@ for attempt in $(seq 1 30); do
 done
 test "$ready" = 1
 # One network UI owns Wi-Fi credentials; the legacy tray agent must not compete.
-! pgrep -u stratagem -x nm-applet
+if pgrep -u stratagem -x nm-applet; then echo "Competing network applet is running"; exit 1; fi
 runuser -u stratagem --preserve-environment -- foot --check-config
 runuser -u stratagem --preserve-environment -- foot sh -c 'printf "STRATAGEM DARK\nSecurity workstation testing session\n\n"; dark --version; printf "\nBlackArch tools:\n"; capa --version; sleep 120' &
 sleep 5
@@ -67,9 +67,9 @@ import json
 x=json.load(open('/mnt/test-results/setup-repeat.json'))
 assert not x['created'], x
 PY
-! systemctl is-active sshd.service
-! systemctl is-enabled sshd.service
-! sudo -l -U stratagem 2>/dev/null | grep -q NOPASSWD
+if systemctl is-active --quiet sshd.service; then echo "Unexpected SSH service"; exit 1; fi
+if systemctl is-enabled --quiet sshd.service; then echo "SSH must stay disabled"; exit 1; fi
+if sudo -l -U stratagem 2>/dev/null | grep -q NOPASSWD; then echo "Unexpected passwordless sudo"; exit 1; fi
 ss -lntup > /mnt/test-results/listeners.txt
 pacman -Q > /mnt/test-results/packages.txt
 
@@ -132,12 +132,12 @@ runuser -u stratagem --preserve-environment -- stratagem-shell shell hide strata
 for theme in nord catppuccin-latte phosphor; do
   runuser -u stratagem --preserve-environment -- env STRATAGEM_DARK_THEME_SKIP_BACKGROUND=1 stratagem-theme-set "$theme"
   # One network UI owns Wi-Fi credentials; the legacy tray agent must not compete.
-! pgrep -u stratagem -x nm-applet
+if pgrep -u stratagem -x nm-applet; then echo "Competing network applet is running"; exit 1; fi
 runuser -u stratagem --preserve-environment -- foot --check-config
   runuser -u stratagem --preserve-environment -- hyprctl configerrors > /tmp/theme-errors
   test -z "$(tr -d '[:space:]' < /tmp/theme-errors)"
   test "$(cat /home/stratagem/.local/state/stratagem/current/theme.name)" = "$theme"
-  ! grep -R '{{ ' /home/stratagem/.local/state/stratagem/current/theme/
+  if grep -R '{{ ' /home/stratagem/.local/state/stratagem/current/theme/; then echo "Unresolved theme token"; exit 1; fi
 done
 runuser -u stratagem --preserve-environment -- timeout 30 stratagem-theme-choose > /tmp/theme-picker.log 2>&1 &
 picker_pid=$!

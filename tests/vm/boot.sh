@@ -16,6 +16,9 @@ timeout 720 qemu-system-x86_64 -machine q35,accel=kvm:tcg -cpu max -m 4096 -smp 
   -virtfs local,path="$results",mount_tag=test-results,security_model=none,id=results \
   -fw_cfg name=opt/stratagem/test,string=1 &
 qemu_pid=$!
-python3 tests/vm/login.py "$results" || { kill "$qemu_pid" || true; wait "$qemu_pid" || true; exit 1; }
+login_status=0
+python3 tests/vm/login.py "$results" || login_status=$?
 wait "$qemu_pid" || true
+rm -f "$results/qmp.sock"
+[[ "$login_status" == 0 ]]
 grep -q STRATAGEM_DARK_TEST_PASS "$results/serial.log"

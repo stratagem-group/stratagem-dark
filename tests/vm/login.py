@@ -28,6 +28,7 @@ for n in range(1,25):
 for _ in range(120):
  if (out/'greeter-ready').exists():break
  time.sleep(1)
+screenshot('login-wait.ppm')
 assert (out/'greeter-ready').exists(), 'SDDM greeter did not start'
 time.sleep(4);screenshot('login.ppm')
 text('stratagem');key('tab');text('wrong');key('ret')
